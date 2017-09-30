@@ -1,0 +1,16 @@
+C:\Users\daida\source\repos\DDWindowsApp\DDWindowsApp\bin\Debug\DDWindowsApp.exe.config
+C:\Users\daida\source\repos\DDWindowsApp\DDWindowsApp\bin\Debug\DDWindowsApp.exe
+C:\Users\daida\source\repos\DDWindowsApp\DDWindowsApp\bin\Debug\DDWindowsApp.pdb
+C:\Users\daida\source\repos\DDWindowsApp\DDWindowsApp\obj\Debug\DDWindowsApp.csprojResolveAssemblyReference.cache
+C:\Users\daida\source\repos\DDWindowsApp\DDWindowsApp\obj\Debug\DDWindowsApp.Fin.resources
+C:\Users\daida\source\repos\DDWindowsApp\DDWindowsApp\obj\Debug\DDWindowsApp.Properties.Resources.resources
+C:\Users\daida\source\repos\DDWindowsApp\DDWindowsApp\obj\Debug\DDWindowsApp.csproj.GenerateResource.Cache
+C:\Users\daida\source\repos\DDWindowsApp\DDWindowsApp\obj\Debug\DDWindowsApp.csproj.CoreCompileInputs.cache
+C:\Users\daida\source\repos\DDWindowsApp\DDWindowsApp\obj\Debug\DDWindowsApp.exe
+C:\Users\daida\source\repos\DDWindowsApp\DDWindowsApp\obj\Debug\DDWindowsApp.pdb
+C:\Users\daida\source\repos\DDWindowsApp\DDWindowsApp\obj\Debug\DDWindowsApp.AppPanel.resources
+C:\Users\daida\source\repos\DDWindowsApp\DDWindowsApp\obj\Debug\DDWindowsApp.MainFrame.resources
+C:\Users\daida\source\repos\DDWindowsApp\DDWindowsApp\obj\Debug\DDWindowsApp.NotHit.resources
+C:\Users\daida\source\repos\DDWindowsApp\DDWindowsApp\obj\Debug\DDWindowsApp.NotSAL.resources
+C:\Users\daida\source\repos\DDWindowsApp\DDWindowsApp\obj\Debug\DDWindowsApp.PrintAir.resources
+C:\Users\daida\source\repos\DDWindowsApp\DDWindowsApp\obj\Debug\DDWindowsApp.SentThree.resources
