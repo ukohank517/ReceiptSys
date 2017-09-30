@@ -26,6 +26,8 @@ namespace DDWindowsApp
 {
     public partial class AppPanel : Form
     {
+        public static readonly int BOXMAXNUM = 20;//一つの箱に入れる商品の数。
+
         //staticで宣言することでインスタンスを固定
         public static MainFrame mainFrame;
         public static NotHit notHitFrame;
@@ -36,7 +38,6 @@ namespace DDWindowsApp
 
         public static String boxName;//boxの名前
         public static int boxCount;     //box内の件数
-
 
 
 

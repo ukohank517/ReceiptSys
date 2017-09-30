@@ -37,7 +37,8 @@ namespace DDWindowsApp
             {
                 //件数増える。
                 AppPanel.boxCount++;
-                labelNumDetail.Text = AppPanel.boxCount + "件/20件中";
+                AppPanel.boxCount %= AppPanel.BOXMAXNUM;
+                labelNumDetail.Text = AppPanel.boxCount + "件/"+AppPanel.BOXMAXNUM+"件中";
 
             }
             else if (textJAN.Text == "not sal")
