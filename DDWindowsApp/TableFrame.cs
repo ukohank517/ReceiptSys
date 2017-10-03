@@ -10,17 +10,11 @@ using System.Windows.Forms;
 
 namespace DDWindowsApp
 {
-    public partial class SentThree : UserControl
+    public partial class TableFrame : UserControl
     {
-        public SentThree()
+        public TableFrame()
         {
             InitializeComponent();
-        }
-
-        private void buttonConfirm_Clicked(object sender, EventArgs e)
-        {
-            AppPanel.sentThreeFrame.Visible = false;
-            AppPanel.mainFrame.Visible = true;
         }
     }
 }

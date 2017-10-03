@@ -26,7 +26,7 @@ namespace DDWindowsApp
 {
     public partial class AppPanel : Form
     {
-        public static readonly int BOXMAXNUM = 20;//一つの箱に入れる商品の数。
+        public static readonly int BOXMAXNUM = 5;//一つの箱に入れる商品の数。
 
         //staticで宣言することでインスタンスを固定
         public static MainFrame mainFrame;
@@ -36,9 +36,11 @@ namespace DDWindowsApp
         public static SentThree sentThreeFrame;
         public static Fin finFrame;
 
+        public static TableFrame tableFrame;
+
         public static String boxName;//boxの名前
         public static int boxCount;     //box内の件数
-
+        
 
 
         public AppPanel()
@@ -50,8 +52,12 @@ namespace DDWindowsApp
             printAirFrame = new PrintAir();
             sentThreeFrame = new SentThree();
             finFrame = new Fin();
+
+            tableFrame = new TableFrame();
+
             boxName = "A1";
             boxCount = 0;
+           
 
             //パネルにすべてのコントロールを追加
             panel.Controls.Add(mainFrame);
@@ -61,6 +67,9 @@ namespace DDWindowsApp
             panel.Controls.Add(sentThreeFrame);
             panel.Controls.Add(finFrame);
 
+            //テーブル専用パネルにテーブルを追加
+            panelTable.Controls.Add(tableFrame);
+
             //立ち上がった時、コントロールmainのみが見える。
             mainFrame.Visible = true;
             notHitFrame.Visible = false;
@@ -68,6 +77,9 @@ namespace DDWindowsApp
             printAirFrame.Visible = false;
             sentThreeFrame.Visible = false;
             finFrame.Visible = false;
+
+            tableFrame.Visible = true;
         }
+
     }
 }

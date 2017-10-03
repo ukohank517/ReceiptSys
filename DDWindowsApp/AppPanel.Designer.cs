@@ -29,20 +29,29 @@
         private void InitializeComponent()
         {
             this.panel = new System.Windows.Forms.Panel();
+            this.panelTable = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // panel
             // 
             this.panel.Location = new System.Drawing.Point(12, 12);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(360,200);
+            this.panel.Size = new System.Drawing.Size(360, 200);
             this.panel.TabIndex = 0;
+            // 
+            // panelTable
+            // 
+            this.panelTable.Location = new System.Drawing.Point(379, 13);
+            this.panelTable.Name = "panelTable";
+            this.panelTable.Size = new System.Drawing.Size(450, 200);
+            this.panelTable.TabIndex = 1;
             // 
             // AppPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 224);
+            this.ClientSize = new System.Drawing.Size(845, 223);
+            this.Controls.Add(this.panelTable);
             this.Controls.Add(this.panel);
             this.Name = "AppPanel";
             this.Text = "App";
@@ -53,6 +62,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panel;
+        private System.Windows.Forms.Panel panelTable;
     }
 }
 

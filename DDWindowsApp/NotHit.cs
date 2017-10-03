@@ -16,5 +16,12 @@ namespace DDWindowsApp
         {
             InitializeComponent();
         }
+
+
+        private void buttonConfirm_Clicked(object sender, EventArgs e)
+        {
+            AppPanel.notHitFrame.Visible = false;
+            AppPanel.mainFrame.Visible = true;
+        }
     }
 }

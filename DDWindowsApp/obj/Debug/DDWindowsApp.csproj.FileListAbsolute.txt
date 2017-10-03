@@ -14,3 +14,4 @@ C:\Users\daida\source\repos\DDWindowsApp\DDWindowsApp\obj\Debug\DDWindowsApp.Not
 C:\Users\daida\source\repos\DDWindowsApp\DDWindowsApp\obj\Debug\DDWindowsApp.NotSAL.resources
 C:\Users\daida\source\repos\DDWindowsApp\DDWindowsApp\obj\Debug\DDWindowsApp.PrintAir.resources
 C:\Users\daida\source\repos\DDWindowsApp\DDWindowsApp\obj\Debug\DDWindowsApp.SentThree.resources
+C:\Users\daida\source\repos\DDWindowsApp\DDWindowsApp\obj\Debug\DDWindowsApp.TableFrame.resources

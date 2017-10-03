@@ -16,5 +16,11 @@ namespace DDWindowsApp
         {
             InitializeComponent();
         }
+
+        private void buttonConfirm_Clicked(object sender, EventArgs e)
+        {
+            AppPanel.printAirFrame.Visible = false;
+            AppPanel.mainFrame.Visible = true;
+        }
     }
 }

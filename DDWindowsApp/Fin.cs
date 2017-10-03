@@ -22,9 +22,11 @@ namespace DDWindowsApp
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonConfirm_Clicked(object sender, EventArgs e)
         {
-
+            AppPanel.tableFrame.situationTable.Rows.Clear();
+            AppPanel.finFrame.Visible = false;
+            AppPanel.mainFrame.Visible = true;
         }
     }
 }

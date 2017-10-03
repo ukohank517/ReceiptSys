@@ -89,6 +89,12 @@
     <Compile Include="Fin.Designer.cs">
       <DependentUpon>Fin.cs</DependentUpon>
     </Compile>
+    <Compile Include="TableFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TableFrame.Designer.cs">
+      <DependentUpon>TableFrame.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Fin.resx">
       <DependentUpon>Fin.cs</DependentUpon>
     </EmbeddedResource>
@@ -118,6 +124,9 @@
     </Compile>
     <EmbeddedResource Include="SentThree.resx">
       <DependentUpon>SentThree.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TableFrame.resx">
+      <DependentUpon>TableFrame.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
