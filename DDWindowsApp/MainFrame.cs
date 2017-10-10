@@ -20,61 +20,54 @@ namespace DDWindowsApp
         private void MainFrame_Load(object sender, EventArgs e)
         {
 
+            //アプリ立ち上がった時の処理をここに
+            Data.boxName = 100;
+            Data.boxCount = 0;
+            AppPanel.boxNoLabel.Text = Data.boxName.ToString();
+
+            //helper 設定
+            ReadWriteHelper rwhelper = new ReadWriteHelper();        
+
+            //前準備:データベースから、必要なdbBoxNoとdbSKUを取ってくる
+            rwhelper.TakeFromDBData();
+
+            //昨日の結果DB(多くても16)を読み込んで、表を更新、
+
         }
 
         private void buttonSearchClicked(object sender, EventArgs e)
-        {
+        {   
+            string janCode = textJAN.Text;
+            WindowChangeHelper windowChange = new WindowChangeHelper();
+            if (janCode == "")
+                windowChange.changeWindowTo("nothit");
+
+            windowChange.checkSKU(janCode.Trim());
+            /*
             if (textJAN.Text == "aa")
             {
                 //表更新
                 //AppPanel.
-                AppPanel.tableFrame.situationTable.Rows.Add(AppPanel.boxCount+1, textJAN.Text, "OrderId", "Line");
+                AppPanel.tableFrame.situationTable.Rows.Add(Data.boxCount+1, textJAN.Text, "OrderId", "Line");
 
                 //件数増える。
-                AppPanel.boxCount++;
-                labelNumDetail.Text = AppPanel.boxCount + "件/" + AppPanel.BOXMAXNUM + "件中";
+                Data.boxCount++;
+                labelNumDetail.Text = Data.boxCount + "件/" + Data.GOODSMAXNUM + "件中";
 
                 //box名前、box中の番号を管理
-                if(AppPanel.boxCount == AppPanel.BOXMAXNUM)
+                if(Data.boxCount == Data.BOXMAXNUM)
                 {
                     //MAXに達したら、件数更新して、Fin表示する
-                    AppPanel.boxCount = 0;
+                    Data.boxCount = 0;
                     //AppPanel.boxName = ??;//boxも変更
-                    labelNumDetail.Text = AppPanel.boxCount + "件/" + AppPanel.BOXMAXNUM + "件中";
+                    labelNumDetail.Text = Data.boxCount + "件/" + Data.GOODSMAXNUM + "件中";
 
                     //fin表示
                     AppPanel.mainFrame.Visible = false;
                     AppPanel.finFrame.Visible = true;
                 }
-
-
-
             }
-            else if (textJAN.Text == "not sal")
-            {
-                //not sal
-                AppPanel.mainFrame.Visible = false;
-                AppPanel.notSALFrame.Visible = true;
-
-            }
-            else if (textJAN.Text == "air")
-            {
-                //pring air
-                AppPanel.mainFrame.Visible = false;
-                AppPanel.printAirFrame.Visible = true;
-            }
-            else if (textJAN.Text == "3flore")
-            {
-                //3階商品
-                AppPanel.mainFrame.Visible = false;
-                AppPanel.sentThreeFrame.Visible = true;
-            }
-            
-            else//not hit
-            {
-                AppPanel.mainFrame.Visible = false;
-                AppPanel.notHitFrame.Visible = true;
-            }
+            */
             textJAN.ResetText();
         }
 

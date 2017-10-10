@@ -92,7 +92,7 @@
             this.labelNumDetail.Name = "labelNumDetail";
             this.labelNumDetail.Size = new System.Drawing.Size(87, 16);
             this.labelNumDetail.TabIndex = 5;
-            this.labelNumDetail.Text = AppPanel.boxCount+"件/" + AppPanel.BOXMAXNUM + "件中";
+            this.labelNumDetail.Text = Data.boxCount+"件/" + Data.GOODSMAXNUM + "件中";
             //this.labelNumDetail.Click += new System.EventHandler(this.labelNumDetail_Click);
             // 
             // MainFrame
