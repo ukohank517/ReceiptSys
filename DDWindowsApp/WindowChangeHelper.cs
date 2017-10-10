@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Office.Interop.Excel;
 
 namespace DDWindowsApp
 {
@@ -21,9 +22,17 @@ namespace DDWindowsApp
             {
                 if(janCode==Data.dbSKU[i] && Data.dbBoxNo[i]==null)
                 {
+                    Console.WriteLine("手持ちではヒットしたよ！");
                     //ファイルの中から本当にからかどうかチェック
-                    
+                    Microsoft.Office.Interop.Excel.Application ExcelApp = new Microsoft.Office.Interop.Excel.Application();
+                    ExcelApp.Visible = false;
+                    Microsoft.Office.Interop.Excel.Workbook workbook = ExcelApp.Workbooks.Open(Data.dbpath);
 
+                    //--------------TODO LIST--------------------
+                    //-------------------------------------------
+
+                    workbook.Close();
+                    ExcelApp.Quit();
                     //本当じゃないならdbboxnum,dbskuを変更,continue
                     
                     //本当なら
@@ -32,6 +41,7 @@ namespace DDWindowsApp
                     //発送方法チェック
                 }
             }
+
             changeWindowTo("nothit");
             return;
         }

@@ -20,12 +20,12 @@ namespace DDWindowsApp
         {
 
             Console.WriteLine("取り出し開始");
-            Microsoft.Office.Interop.Excel.Application ExcelAppp = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel.Application ExcelApp = new Microsoft.Office.Interop.Excel.Application();
             // Excelの非表示
-            ExcelAppp.Visible = false;
+            ExcelApp.Visible = false;
             
             //エクセルファイルのオープンと、ワークブックの作成
-            Microsoft.Office.Interop.Excel.Workbook workbook = ExcelAppp.Workbooks.Open(Data.dbpath);
+            Microsoft.Office.Interop.Excel.Workbook workbook = ExcelApp.Workbooks.Open(Data.dbpath);
 
             //1シート目の選択
             Microsoft.Office.Interop.Excel.Worksheet sheet = workbook.Sheets[1];
@@ -39,12 +39,12 @@ namespace DDWindowsApp
             int row_count = sheet.get_Range("C1").End[Microsoft.Office.Interop.Excel.XlDirection.xlDown].Row;
             for(int i = 0; i < row_count-1; i++)//目録を削除
             {
-                Range range = ExcelAppp.get_Range("B"+Convert.ToString(i+2), Type.Missing);
+                Range range = ExcelApp.get_Range("B"+Convert.ToString(i+2), Type.Missing);
                 if (range == null)
                     Data.dbBoxNo.Add("");
                 else Data.dbBoxNo.Add(Convert.ToString(range.Value));
 
-                range = ExcelAppp.get_Range("C"+Convert.ToString(i+2), Type.Missing);
+                range = ExcelApp.get_Range("C"+Convert.ToString(i+2), Type.Missing);
                 if (range == null)
                     Data.dbSKU.Add("");
                 else Data.dbSKU.Add(Convert.ToString(range.Value));
@@ -53,7 +53,7 @@ namespace DDWindowsApp
             //ワークブックを閉じる
             workbook.Close();
             //エクセルを閉じる
-            ExcelAppp.Quit();
+            ExcelApp.Quit();
 
             Console.WriteLine("取り出し完了");
         }
