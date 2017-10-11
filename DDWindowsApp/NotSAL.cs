@@ -24,5 +24,10 @@ namespace DDWindowsApp
             AppPanel.notSALFrame.Visible = false;
             AppPanel.mainFrame.Visible = true;
         }
+
+        private void NotSAL_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

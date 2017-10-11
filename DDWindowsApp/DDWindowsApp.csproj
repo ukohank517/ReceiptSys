@@ -51,6 +51,18 @@
     <Compile Include="AppPanel.Designer.cs">
       <DependentUpon>AppPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="PluralTableFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PluralTableFrame.Designer.cs">
+      <DependentUpon>PluralTableFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PluralFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PluralFrame.Designer.cs">
+      <DependentUpon>PluralFrame.cs</DependentUpon>
+    </Compile>
     <Compile Include="WindowChangeHelper.cs" />
     <Compile Include="ReadWriteHelper.cs" />
     <Compile Include="Data.cs" />
@@ -112,6 +124,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NotSAL.resx">
       <DependentUpon>NotSAL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PluralFrame.resx">
+      <DependentUpon>PluralFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PluralTableFrame.resx">
+      <DependentUpon>PluralTableFrame.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PrintAir.resx">
       <DependentUpon>PrintAir.cs</DependentUpon>

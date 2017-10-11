@@ -16,3 +16,4 @@ C:\Users\daida\source\repos\DDWindowsApp\DDWindowsApp\obj\Debug\DDWindowsApp.Pri
 C:\Users\daida\source\repos\DDWindowsApp\DDWindowsApp\obj\Debug\DDWindowsApp.SentThree.resources
 C:\Users\daida\source\repos\DDWindowsApp\DDWindowsApp\obj\Debug\DDWindowsApp.TableFrame.resources
 C:\Users\daida\source\repos\DDWindowsApp\DDWindowsApp\obj\Debug\DDWindowsApp.csproj.ResolveComReference.cache
+C:\Users\daida\source\repos\DDWindowsApp\DDWindowsApp\obj\Debug\DDWindowsApp.PluralTableFrame.resources

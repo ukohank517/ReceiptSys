@@ -28,6 +28,7 @@ namespace DDWindowsApp
     {
         //staticで宣言することでインスタンスを固定
         public static MainFrame mainFrame;
+        public static PluralFrame pluralFrame;
         public static NotHit notHitFrame;
         public static NotSAL notSALFrame;
         public static PrintAir printAirFrame;
@@ -35,11 +36,13 @@ namespace DDWindowsApp
         public static Fin finFrame;
 
         public static TableFrame tableFrame;
+        public static PluralTableFrame pluralTableFrame;
 
         public AppPanel()
         {
             InitializeComponent();
             mainFrame = new MainFrame();
+            pluralFrame = new PluralFrame();
             notHitFrame = new NotHit();
             notSALFrame = new NotSAL();
             printAirFrame = new PrintAir();
@@ -47,9 +50,11 @@ namespace DDWindowsApp
             finFrame = new Fin();
 
             tableFrame = new TableFrame();
+            pluralTableFrame = new PluralTableFrame();
 
             //パネルにすべてのコントロールを追加
             panel.Controls.Add(mainFrame);
+            panel.Controls.Add(pluralFrame);
             panel.Controls.Add(notHitFrame);
             panel.Controls.Add(notSALFrame);
             panel.Controls.Add(printAirFrame);
@@ -58,9 +63,11 @@ namespace DDWindowsApp
 
             //テーブル専用パネルにテーブルを追加
             panelTable.Controls.Add(tableFrame);
+            panelTable.Controls.Add(pluralTableFrame);
 
             //立ち上がった時、コントロールmainのみが見える。
             mainFrame.Visible = true;
+            pluralFrame.Visible = false;
             notHitFrame.Visible = false;
             notSALFrame.Visible = false;
             printAirFrame.Visible = false;
@@ -68,6 +75,7 @@ namespace DDWindowsApp
             finFrame.Visible = false;
 
             tableFrame.Visible = true;
+            pluralTableFrame.Visible = false;
         }
 
     }
