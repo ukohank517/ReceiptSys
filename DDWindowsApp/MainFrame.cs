@@ -23,7 +23,8 @@ namespace DDWindowsApp
             //アプリ立ち上がった時の処理をここに
             Data.boxName = 100;
             Data.boxCount = 0;
-            AppPanel.boxNoLabel.Text = Data.boxName.ToString();
+            AppPanel.tableFrame.situationTable.Rows.Add(16, 5000, "4905040277305", "203-8052704-9329916", "20000");
+
 
             //helper 設定
             ReadWriteHelper rwhelper = new ReadWriteHelper();        
@@ -42,7 +43,7 @@ namespace DDWindowsApp
             if (janCode == "")
                 windowChange.changeWindowTo("nothit");
 
-            windowChange.checkSKU(janCode.Trim());
+            windowChange.checkSKU(janCode.Replace(Environment.NewLine,"").Trim());
             /*
             if (textJAN.Text == "aa")
             {

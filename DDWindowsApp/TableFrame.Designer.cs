@@ -30,6 +30,7 @@
         {
             this.situationTable = new System.Windows.Forms.DataGridView();
             this.ColumnNO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnBoxNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnJAN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnOrderID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnLine = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,6 +43,7 @@
             this.situationTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.situationTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnNO,
+            this.ColumnBoxNo,
             this.ColumnJAN,
             this.ColumnOrderID,
             this.ColumnLine});
@@ -56,6 +58,13 @@
             this.ColumnNO.HeaderText = "NO.";
             this.ColumnNO.Name = "ColumnNO";
             this.ColumnNO.ReadOnly = true;
+            this.ColumnNO.Width = 50;
+            // 
+            // ColumnBoxNo
+            // 
+            this.ColumnBoxNo.HeaderText = "BOX";
+            this.ColumnBoxNo.Name = "ColumnBoxNo";
+            this.ColumnBoxNo.Width = 55;
             // 
             // ColumnJAN
             // 
@@ -68,12 +77,14 @@
             this.ColumnOrderID.HeaderText = "OrderID";
             this.ColumnOrderID.Name = "ColumnOrderID";
             this.ColumnOrderID.ReadOnly = true;
+            this.ColumnOrderID.Width = 130;
             // 
             // ColumnLine
             // 
             this.ColumnLine.HeaderText = "行番号";
             this.ColumnLine.Name = "ColumnLine";
             this.ColumnLine.ReadOnly = true;
+            this.ColumnLine.Width = 70;
             // 
             // TableFrame
             // 
@@ -90,9 +101,10 @@
         #endregion
 
         public System.Windows.Forms.DataGridView situationTable;
-        public System.Windows.Forms.DataGridViewTextBoxColumn ColumnNO;
-        public System.Windows.Forms.DataGridViewTextBoxColumn ColumnJAN;
-        public System.Windows.Forms.DataGridViewTextBoxColumn ColumnOrderID;
-        public System.Windows.Forms.DataGridViewTextBoxColumn ColumnLine;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnBoxNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnJAN;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnOrderID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLine;
     }
 }
