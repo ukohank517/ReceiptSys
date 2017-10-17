@@ -66,6 +66,10 @@ namespace DDWindowsApp
             return flag;
         }
 
+
+
+
+
         public static bool PluralProcess(int lineNo) 
         {
             bool flag = false;
@@ -101,10 +105,10 @@ namespace DDWindowsApp
             Console.WriteLine(beginIndex + " " + endIndex);
             //その人の専用のボックスが存在するかどうかを確認
             Microsoft.Office.Interop.Excel.Range pBoxNo = sheet.get_Range("T" + Convert.ToString(lineNo+2));
-            if (pBoxNo.Value != null) Data.pluralBoxNo = pBoxNo.Value;
+            if (pBoxNo.Value != null) AppPanel.pluralBoxNo = pBoxNo.Value;
             else
             {
-                Data.pluralBoxNo = 'P' + Convert.ToString(Data.pluralCount);
+                AppPanel.pluralBoxNo = 'P' + Convert.ToString(Data.pluralCount);
                 Data.PluralBoxRenew();
             }
             for(int i = beginIndex; i <= endIndex; i++)
@@ -115,14 +119,20 @@ namespace DDWindowsApp
                 Microsoft.Office.Interop.Excel.Range aim = sheet.get_Range("R" + Convert.ToString(i + 2));
                 Microsoft.Office.Interop.Excel.Range stock = sheet.get_Range("U" + Convert.ToString(i + 2));
 
-                //Data.pluralDate.Add(Convert.ToString(date.Value2));
+
+                Console.WriteLine(Convert.ToString(date.Value));
+
+                AppPanel.pluralDate.Add(Convert.ToString(date.Value));
+                
+                /*
+                Data.pluralDate.Add(Convert.ToString(date.Value));
                 Data.pluralLineNo.Add(Convert.ToInt32(line.Value));
                 Data.pluralOrderID.Add(Convert.ToString(orderId.Value));
                 Data.pluralAim.Add(Convert.ToInt32(aim.Value));
                 if (stock.Value != null)
                     Data.pluralStock.Add(Convert.ToInt32(stock.Value));
                 else Data.pluralStock.Add(0);
-
+                */
                 //Console.WriteLine(Data.pluralDate[0]);
             }
             

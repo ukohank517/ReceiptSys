@@ -22,6 +22,9 @@ namespace DDWindowsApp
         public static List<string> dbBoxNo = new List<string>();
         public static List<string> dbSKU = new List<string>();
 
+
+
+        /*
         //----複数口注文する客用リスト-----
         public static List<string> pluralDate;//注文日にち
         public static List<int> pluralLineNo;//行バン後う
@@ -29,7 +32,7 @@ namespace DDWindowsApp
         public static List<string> pluralOrderID;//注文番号
         public static List<int> pluralAim;//目標個数
         public static List<int> pluralStock;//現在個数
-
+        
 
         public static void PluralReset()
         {
@@ -39,6 +42,8 @@ namespace DDWindowsApp
             pluralAim.Clear();
             pluralStock.Clear();
         }
+        */
+
         public static void PluralBoxRenew()
         {
             pluralCount++;

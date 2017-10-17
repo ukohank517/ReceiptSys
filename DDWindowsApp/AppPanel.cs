@@ -38,6 +38,16 @@ namespace DDWindowsApp
         public static TableFrame tableFrame;
         public static PluralTableFrame pluralTableFrame;
 
+
+        //checkhelperページで定義し、（表示できればいいので。あとはファイルに書き込む。）
+        public static List<string> pluralDate;//注文日にち
+        public static List<int> pluralLineNo;//行バン後う
+        public static string pluralBoxNo;//頭にPを付けて文字列とする
+        public static List<string> pluralOrderID;//注文番号
+        public static List<int> pluralAim;//目標個数
+        public static List<int> pluralStock;//現在個数
+
+
         public AppPanel()
         {
             InitializeComponent();
@@ -77,6 +87,16 @@ namespace DDWindowsApp
             tableFrame.Visible = true;
             pluralTableFrame.Visible = false;
         }
+
+        public static void PluralReset()
+        {
+            pluralDate.Clear();
+            pluralLineNo.Clear();
+            pluralOrderID.Clear();
+            pluralAim.Clear();
+            pluralStock.Clear();
+        }
+
 
     }
 }
