@@ -51,6 +51,7 @@
     <Compile Include="AppPanel.Designer.cs">
       <DependentUpon>AppPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="CheckHelper.cs" />
     <Compile Include="PluralTableFrame.cs">
       <SubType>UserControl</SubType>
     </Compile>

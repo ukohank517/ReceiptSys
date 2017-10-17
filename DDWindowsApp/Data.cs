@@ -23,26 +23,26 @@ namespace DDWindowsApp
         public static List<string> dbSKU = new List<string>();
 
         //----複数口注文する客用リスト-----
-        public static List<DateTime> pluralDate;
-        public static List<int> pluralLineNo;
-        public static List<int> pluralBoxNo;//頭にDを付けて文字列とする
-        public static List<string> pluralOrderID;
-        public static List<int> pluralAim;
-        public static List<int> pluralStock;
+        public static List<string> pluralDate;//注文日にち
+        public static List<int> pluralLineNo;//行バン後う
+        public static string pluralBoxNo;//頭にPを付けて文字列とする
+        public static List<string> pluralOrderID;//注文番号
+        public static List<int> pluralAim;//目標個数
+        public static List<int> pluralStock;//現在個数
 
 
         public static void PluralReset()
         {
             pluralDate.Clear();
             pluralLineNo.Clear();
-            pluralBoxNo.Clear();
             pluralOrderID.Clear();
             pluralAim.Clear();
             pluralStock.Clear();
         }
         public static void PluralBoxRenew()
         {
-
+            pluralCount++;
+            pluralCount %= PLURALBOXMAX;
         }
     }
 }
