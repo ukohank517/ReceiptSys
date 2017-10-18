@@ -155,7 +155,7 @@ namespace DDWindowsApp
         /// </summary>
         /// <param name="lineNo"></param>
         /// <returns>0:SAL, 1:air, 2:その他</returns>
-        public static int SALCheck(int lineNo)//F
+        public static int SALCheck(int lineNo)
         {
             char way;
             using (var book = new XLWorkbook(Data.dbpath, XLEventTracking.Disabled))
@@ -167,6 +167,23 @@ namespace DDWindowsApp
             if (way == '*') return 0;
             if (way == 'e') return 2;
             return 1;
+        }
+
+        public static bool TimeCheck(int lineNo)
+        {
+            DateTime T = new DateTime();
+            DateTime today = DateTime.Today;
+
+            using (var book = new XLWorkbook(Data.dbpath, XLEventTracking.Disabled))
+            {
+                var sheet1 = book.Worksheet(1);
+                T = Convert.ToDateTime(sheet1.Cell("A" + Convert.ToString(lineNo + 2)).Value);
+                book.Save();
+            }
+
+            TimeSpan ts = today - T;
+            Console.WriteLine(ts);
+            return true;
         }
 
     }
