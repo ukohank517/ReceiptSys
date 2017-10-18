@@ -16,6 +16,18 @@ namespace DDWindowsApp
                 AppPanel.mainFrame.Visible = false;
                 AppPanel.notHitFrame.Visible = true;
             }
+            if (to == "plural")
+            {
+                AppPanel.mainFrame.Visible = false;
+                AppPanel.tableFrame.Visible = false;
+                AppPanel.pluralFrame.Visible = true;
+                AppPanel.pluralTableFrame.Visible = true;
+            }
+            if(to=="notsal")
+            {
+                AppPanel.mainFrame.Visible = false;
+                AppPanel.notSALFrame.Visible = true;
+            }
         }
 
         public void checkSKU(string janCode)
@@ -37,17 +49,19 @@ namespace DDWindowsApp
                         //複数注文処理
                         Console.WriteLine("複数ですよ！");
                         CheckHelper.PluralProcess(i);
-                        //画面表示
-                        AppPanel.mainFrame.Visible = false;
-                        AppPanel.tableFrame.Visible = false;
-                        AppPanel.pluralFrame.Visible = true;
-                        AppPanel.pluralTableFrame.Visible = true;
-
+                        changeWindowTo("plural");//画面表示
                         return;
                     }
-                    
+
+                    //sal以外の動作？？？？
                     //複数注文ではない
-                    
+                    int issal = CheckHelper.SALCheck(i);
+                    if(issal != 0)
+                    {
+                        changeWindowTo("notsal");
+                    }
+
+
 
                 }
             }
