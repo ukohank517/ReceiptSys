@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Office.Interop.Excel;
+using ClosedXML.Excel;
+
 namespace DDWindowsApp
 {
     class CheckHelper
@@ -11,33 +13,27 @@ namespace DDWindowsApp
         /// <summary>
         /// 手元がヒットしてないが、データベースの中に本当に入ってないかどうかを確認
         /// false: 入荷済み、Dataのデータを更新
-        /// true : やはりヒットしてない。 
+        /// true : 番号あり、他のパソコンが既に操作 false : 番号無し、他のパソコンも操作してない。
         /// </summary>
         /// <param name="lineNo"></param>
         /// <returns></returns>
         public static bool CheckFileBoxNo(int lineNo)
         {
-            
-            bool flag = true;
-            //ファイル開く操作
-            Microsoft.Office.Interop.Excel.Application ExcelApp = new Microsoft.Office.Interop.Excel.Application();
-            ExcelApp.Visible = false;
-            Microsoft.Office.Interop.Excel.Workbook workbook = ExcelApp.Workbooks.Open(Data.dbpath);
-            Worksheet sheet = workbook.Sheets[1];
-            sheet.Select();
-
-            //----------ファイルの中のbox noは入ってるかどうかを確認------------
-            Microsoft.Office.Interop.Excel.Range range = sheet.get_Range("B" + Convert.ToString(lineNo + 2));
-            //既に発送ならデータ更新
-            if (range.Value != null)
+            Console.WriteLine("check" + lineNo);
+            bool flag = false;  　　//やはり空白
+            using (var book=new XLWorkbook(Data.dbpath,XLEventTracking.Disabled))
             {
-                Data.dbBoxNo[lineNo] = Convert.ToString(range.Value);//本当は他のパソコンで既に操作している
-                flag = false ;
-            }
-            //ファイル関連の後処理
-            workbook.Close();
-            ExcelApp.Quit();
+                var sheet1 = book.Worksheet(1);
+                string detail = Convert.ToString(sheet1.Cell("B" + Convert.ToString(lineNo + 2)).Value);
 
+                if (detail != "")
+                {
+                    Data.dbBoxNo[lineNo] = detail;
+                    flag = true;
+                }
+                
+                book.Save();
+            }
             return flag;
         }
 
@@ -50,97 +46,108 @@ namespace DDWindowsApp
         public static bool CheckPlural(int lineNo)
         {
             bool flag = false;
-            //ファイル開く操作
-            Microsoft.Office.Interop.Excel.Application ExcelApp = new Microsoft.Office.Interop.Excel.Application();
-            ExcelApp.Visible = false;
-            Microsoft.Office.Interop.Excel.Workbook workbook = ExcelApp.Workbooks.Open(Data.dbpath);
-            Worksheet sheet = workbook.Sheets[1];
-            sheet.Select();
+            using (var book = new XLWorkbook(Data.dbpath,XLEventTracking.Disabled))
+            {
+                var sheet1 = book.Worksheet(1);
+                string plural = Convert.ToString(sheet1.Cell("S" + Convert.ToString(lineNo + 2)).Value);//複数の違う内容の注文かどうか
+                string num = Convert.ToString(sheet1.Cell("R" + Convert.ToString(lineNo + 2)).Value);//同じ商品を複数注文
+                if (plural != null || num != "1") flag = true;//何かしらの情報が複数である
 
-            Microsoft.Office.Interop.Excel.Range plural = sheet.get_Range("S" + Convert.ToString(lineNo + 2));//複数の違う内容の注文かどうか
-            Microsoft.Office.Interop.Excel.Range num = sheet.get_Range("R" + Convert.ToString(lineNo + 2));//複数個、同じ注文商品
-            if (plural.Value != null || num.Value != 1) flag = true;//何かしらの情報が複数
-
-            workbook.Close();
-            ExcelApp.Quit();
+                book.Save();
+               
+            }
             return flag;
         }
 
 
 
 
-
-        public static bool PluralProcess(int lineNo) 
+        /// <summary>
+        /// 複数注文の商品について、ファイルに更新、複数注文専用画面を更新
+        /// </summary>
+        /// <param name="lineNo"></param>
+        public static void PluralProcess(int lineNo) 
         {
-            bool flag = false;
-            //ファイル開く操作
-            Microsoft.Office.Interop.Excel.Application ExcelApp = new Microsoft.Office.Interop.Excel.Application();
-            ExcelApp.Visible = false;
-            Microsoft.Office.Interop.Excel.Workbook workbook = ExcelApp.Workbooks.Open(Data.dbpath);
-            Worksheet sheet = workbook.Sheets[1];
-            sheet.Select();
 
-            int beginIndex = lineNo;//一番最初の注文番号ライン
-            while (true)
+            using (var book=new XLWorkbook(Data.dbpath, XLEventTracking.Disabled))
             {
-                if (beginIndex == 1) break;
-                Microsoft.Office.Interop.Excel.Range now = sheet.get_Range("S" + Convert.ToString(beginIndex + 2));
-                Microsoft.Office.Interop.Excel.Range before = sheet.get_Range("S" + Convert.ToString(beginIndex + 2 - 1));
+                var sheet1 = book.Worksheet(1);
 
-                //Console.WriteLine("now"+Convert.ToString(now.Value));
-                //Console.WriteLine("before"+Convert.ToString(before.Value));
-                if (before.Value == now.Value) beginIndex--;
-                else break;
+                int beginIndex = lineNo;
+                while (true)
+                {
+                    if (beginIndex == 1) break;
+                    string before = Convert.ToString(sheet1.Cell("S" + Convert.ToString(beginIndex + 2 - 1)).Value);
+                    string now = Convert.ToString(sheet1.Cell("S" + Convert.ToString(beginIndex + 2)).Value);
+                    if (before == now) beginIndex--;
+                    else break;
+                }
+                int endIndex = lineNo;
+                while (true)
+                {
+                    if (endIndex >= Data.dbBoxNo.Count - 1) break;
+                    string now = Convert.ToString(sheet1.Cell("S"+Convert.ToString(endIndex+2)).Value);
+                    string after = Convert.ToString(sheet1.Cell("S"+Convert.ToString(endIndex+2+1)).Value);
+                    if (now == after) endIndex++;
+                    else break;
+                }
+
+                Console.WriteLine(beginIndex + " " + endIndex);
+
+                //その人専用のボックス更新、内容がpluralBox保存
+                Data.pluralBoxNo = Convert.ToString(sheet1.Cell("T" + Convert.ToString(lineNo + 2)).Value);
+                if (Data.pluralBoxNo == "")
+                {
+                    Data.pluralBoxNo = 'P' + Convert.ToString(Data.pluralCount);
+                    Data.PluralBoxRenew();
+                }
+                Data.PluralRenew();
+                for(int i = beginIndex; i <= endIndex; i++)
+                {
+                    string date = Convert.ToString(sheet1.Cell("A" + Convert.ToString(i + 2)).Value);
+                    int line = Convert.ToInt32(sheet1.Cell("D" + Convert.ToString(i + 2)).Value);
+                    string orderId = Convert.ToString(sheet1.Cell("G" + Convert.ToString(i + 2)).Value);
+                    int aim = Convert.ToInt32(sheet1.Cell("R" + Convert.ToString(i + 2)).Value);
+                    string stock = Convert.ToString(sheet1.Cell("U" + Convert.ToString(i + 2)).Value);
+
+                    Data.pluralDate.Add(date);
+                    Data.pluralLineNo.Add(line);
+                    Data.pluralOrderID.Add(orderId);
+                    Data.pluralAim.Add(aim);
+                    if (i == lineNo)
+                    {
+                        if (stock == "") Data.pluralStock.Add(1);
+                        else Data.pluralStock.Add(Convert.ToInt32(stock) + 1);
+                    }
+                    else
+                    {
+                        if (stock == "") Data.pluralStock.Add(0);
+                        else Data.pluralStock.Add(Convert.ToInt32(stock));
+                    }
+                }
+                //複数人用のデータ情報をエクセルに書き込む
+                for(int i = beginIndex; i <= endIndex; i++)//入荷数とボックスナンバーだけで
+                {
+                    sheet1.Cell("U" + Convert.ToString(i + 2)).SetValue(Data.pluralStock[i - beginIndex]);//stock
+                    sheet1.Cell("T" + Convert.ToString(i + 2)).SetValue(Data.pluralBoxNo);//boxNo
+                    Console.WriteLine(Data.pluralStock[i - beginIndex] + " " + Data.pluralBoxNo);
+                }
+                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //book.Save();//実際使用するとき、コメント外してね
+                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             }
-            int endIndex = lineNo;
-            while (true)
+            //table更新
+            AppPanel.pluralTableFrame.pluralTable.Rows.Clear();
+            AppPanel.pluralFrame.buttonPrint.Enabled = true;
+            for (int i = 0; i < Data.pluralDate.Count; i++)
             {
-                if (endIndex >= Data.dbBoxNo.Count - 1) break;
-                Microsoft.Office.Interop.Excel.Range now = sheet.get_Range("S" + Convert.ToString(endIndex + 2));
-                Microsoft.Office.Interop.Excel.Range after = sheet.get_Range("S" + Convert.ToString(endIndex + 2 + 1));
-                Console.WriteLine(Convert.ToString(now.Value) + " " + Convert.ToString(after));
-                if (now.Value == after.Value) endIndex++;
-                else break;
+                AppPanel.pluralTableFrame.pluralTable.Rows.Add(Data.pluralBoxNo, Data.pluralDate[i], Data.pluralLineNo[i], Data.pluralOrderID[i], Data.pluralAim[i], Data.pluralStock[i]);
+                if (Data.pluralAim != Data.pluralStock)
+                {
+                    AppPanel.pluralFrame.buttonPrint.Enabled = false;
+                }
             }
-            Console.WriteLine(beginIndex + " " + endIndex);
-            //その人の専用のボックスが存在するかどうかを確認
-            Microsoft.Office.Interop.Excel.Range pBoxNo = sheet.get_Range("T" + Convert.ToString(lineNo+2));
-            if (pBoxNo.Value != null) AppPanel.pluralBoxNo = pBoxNo.Value;
-            else
-            {
-                AppPanel.pluralBoxNo = 'P' + Convert.ToString(Data.pluralCount);
-                Data.PluralBoxRenew();
-            }
-            for(int i = beginIndex; i <= endIndex; i++)
-            {
-                Microsoft.Office.Interop.Excel.Range date = sheet.get_Range("A" + Convert.ToString(i + 2));
-                Microsoft.Office.Interop.Excel.Range line= sheet.get_Range("D" + Convert.ToString(i + 2));
-                Microsoft.Office.Interop.Excel.Range orderId = sheet.get_Range("G" + Convert.ToString(i + 2));
-                Microsoft.Office.Interop.Excel.Range aim = sheet.get_Range("R" + Convert.ToString(i + 2));
-                Microsoft.Office.Interop.Excel.Range stock = sheet.get_Range("U" + Convert.ToString(i + 2));
-
-
-                Console.WriteLine(Convert.ToString(date.Value));
-
-                AppPanel.pluralDate.Add(Convert.ToString(date.Value));
-                
-                /*
-                Data.pluralDate.Add(Convert.ToString(date.Value));
-                Data.pluralLineNo.Add(Convert.ToInt32(line.Value));
-                Data.pluralOrderID.Add(Convert.ToString(orderId.Value));
-                Data.pluralAim.Add(Convert.ToInt32(aim.Value));
-                if (stock.Value != null)
-                    Data.pluralStock.Add(Convert.ToInt32(stock.Value));
-                else Data.pluralStock.Add(0);
-                */
-                //Console.WriteLine(Data.pluralDate[0]);
-            }
-            
-            
-
-            workbook.Close();
-            ExcelApp.Quit();
-            return flag;
+            //return flag;
         }
 
     }

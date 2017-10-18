@@ -28,32 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.pluralTable = new System.Windows.Forms.DataGridView();
             this.ColumnBoxNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnLineNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnOrderId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnAim = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnStock = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pluralTable)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // pluralTable
             // 
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.pluralTable.AllowUserToOrderColumns = true;
+            this.pluralTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.pluralTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnBoxNo,
             this.ColumnDate,
             this.ColumnLineNo,
             this.ColumnOrderId,
             this.ColumnAim,
             this.ColumnStock});
-            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 21;
-            this.dataGridView1.Size = new System.Drawing.Size(444, 197);
-            this.dataGridView1.TabIndex = 0;
+            this.pluralTable.Location = new System.Drawing.Point(3, 3);
+            this.pluralTable.Name = "pluralTable";
+            this.pluralTable.RowTemplate.Height = 21;
+            this.pluralTable.Size = new System.Drawing.Size(444, 197);
+            this.pluralTable.TabIndex = 0;
             // 
             // ColumnBoxNo
             // 
@@ -95,17 +95,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.pluralTable);
             this.Name = "PluralTableFrame";
             this.Size = new System.Drawing.Size(450, 200);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pluralTable)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        public System.Windows.Forms.DataGridView pluralTable;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnBoxNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLineNo;

@@ -43,32 +43,8 @@ namespace DDWindowsApp
             if (janCode == "")
                 windowChange.changeWindowTo("nothit");
 
-            windowChange.checkSKU(janCode.Replace(Environment.NewLine,"").Trim());
-            /*
-            if (textJAN.Text == "aa")
-            {
-                //表更新
-                //AppPanel.
-                AppPanel.tableFrame.situationTable.Rows.Add(Data.boxCount+1, textJAN.Text, "OrderId", "Line");
+            windowChange.checkSKU(janCode.Replace(Environment.NewLine,"").Trim());//行頭末の空白、改行コードを取り除いて、渡す
 
-                //件数増える。
-                Data.boxCount++;
-                labelNumDetail.Text = Data.boxCount + "件/" + Data.GOODSMAXNUM + "件中";
-
-                //box名前、box中の番号を管理
-                if(Data.boxCount == Data.BOXMAXNUM)
-                {
-                    //MAXに達したら、件数更新して、Fin表示する
-                    Data.boxCount = 0;
-                    //AppPanel.boxName = ??;//boxも変更
-                    labelNumDetail.Text = Data.boxCount + "件/" + Data.GOODSMAXNUM + "件中";
-
-                    //fin表示
-                    AppPanel.mainFrame.Visible = false;
-                    AppPanel.finFrame.Visible = true;
-                }
-            }
-            */
             textJAN.ResetText();
         }
 

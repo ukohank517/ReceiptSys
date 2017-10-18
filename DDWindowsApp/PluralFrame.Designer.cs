@@ -36,7 +36,7 @@
             // buttonConfirm
             // 
             this.buttonConfirm.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.buttonConfirm.Location = new System.Drawing.Point(246, 194);
+            this.buttonConfirm.Location = new System.Drawing.Point(246, 169);
             this.buttonConfirm.Name = "buttonConfirm";
             this.buttonConfirm.Size = new System.Drawing.Size(75, 23);
             this.buttonConfirm.TabIndex = 0;
@@ -47,7 +47,7 @@
             // buttonPrint
             // 
             this.buttonPrint.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.buttonPrint.Location = new System.Drawing.Point(246, 223);
+            this.buttonPrint.Location = new System.Drawing.Point(125, 169);
             this.buttonPrint.Name = "buttonPrint";
             this.buttonPrint.Size = new System.Drawing.Size(75, 23);
             this.buttonPrint.TabIndex = 1;
@@ -73,7 +73,7 @@
             this.Controls.Add(this.buttonPrint);
             this.Controls.Add(this.buttonConfirm);
             this.Name = "PluralFrame";
-            this.Size = new System.Drawing.Size(360, 260);
+            this.Size = new System.Drawing.Size(360, 200);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -82,7 +82,7 @@
         #endregion
 
         private System.Windows.Forms.Button buttonConfirm;
-        private System.Windows.Forms.Button buttonPrint;
+        public System.Windows.Forms.Button buttonPrint;
         private System.Windows.Forms.Label label1;
     }
 }

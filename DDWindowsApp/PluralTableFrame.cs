@@ -12,9 +12,13 @@ namespace DDWindowsApp
 {
     public partial class PluralTableFrame : UserControl
     {
+
+
         public PluralTableFrame()
         {
             InitializeComponent();
+
         }
+
     }
 }

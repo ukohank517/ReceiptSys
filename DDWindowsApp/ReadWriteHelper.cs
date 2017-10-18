@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Office.Interop.Excel;
+using ClosedXML.Excel;
 
 namespace DDWindowsApp
 {
@@ -13,49 +14,32 @@ namespace DDWindowsApp
         /*
          * memo:
          * Excel関連:
-         * https://qiita.com/kyama0922/items/f0c6449d8734889d1e83
-         * https://www.ipentec.com/document/document.aspx?page=csharp-open-read-excel-book-and-sheet
+         * http://sourcechord.hatenablog.com/entry/2015/06/21/180557
+         * http://nineworks2.blog.fc2.com/?tag=ClosedXML&page=3
+         * https://closedxml.codeplex.com/wikipage?title=Showcase&referringTitle=Documentation
+         * https://closedxml.codeplex.com/wikipage?title=Hello%20World&referringTitle=Documentation
+         * https://www.projectgroup.info/tips/Microsoft.NET/tips_0005.html
          */
         public void TakeFromDBData()
         {
 
             Console.WriteLine("取り出し開始");
-            Microsoft.Office.Interop.Excel.Application ExcelApp = new Microsoft.Office.Interop.Excel.Application();
-            // Excelの非表示
-            ExcelApp.Visible = false;
-            
-            //エクセルファイルのオープンと、ワークブックの作成
-            Microsoft.Office.Interop.Excel.Workbook workbook = ExcelApp.Workbooks.Open(Data.dbpath);
-
-            //1シート目の選択
-            Microsoft.Office.Interop.Excel.Worksheet sheet = workbook.Sheets[1];
-            sheet.Select();
-
-            //A1セルから右への連続データ数
-            //int column_count = sheet.get_Range("A1").End[Microsoft.Office.Interop.Excel.XlDirection.xlToRight].Column;
-            //Console.WriteLine("右への連続データ数は:"+column_count);
-
-            //縦セルからの連続データ数（データベースの中の全データ数）
-            int row_count = sheet.get_Range("C1").End[Microsoft.Office.Interop.Excel.XlDirection.xlDown].Row;
-            for(int i = 0; i < row_count-1; i++)//目録を削除
+            using (var book = new XLWorkbook(Data.dbpath,XLEventTracking.Disabled))
             {
-                Range range = ExcelApp.get_Range("B"+Convert.ToString(i+2), Type.Missing);
-                if (range == null)
-                    Data.dbBoxNo.Add("");
-                else Data.dbBoxNo.Add(Convert.ToString(range.Value));
+                var sheet1 = book.Worksheet(1);
+                var range = sheet1.RangeUsed();
 
-                range = ExcelApp.get_Range("C"+Convert.ToString(i+2), Type.Missing);
-                if (range == null)
-                    Data.dbSKU.Add("");
-                else Data.dbSKU.Add(Convert.ToString(range.Value));
+                Console.WriteLine(range.ColumnCount() + " " + range.RowCount());
+
+                for (int i = 0; i < range.RowCount()-1; i++)
+                {
+                    Data.dbBoxNo.Add(Convert.ToString(sheet1.Cell(i + 2, 2).Value));
+                    Data.dbSKU.Add(Convert.ToString(sheet1.Cell(i + 2, 3).Value));
+                }
+
+                book.Save();
             }
-
-            //ワークブックを閉じる
-            workbook.Close();
-            //エクセルを閉じる
-            ExcelApp.Quit();
-
-            Console.WriteLine("取り出し完了");
+            Console.WriteLine("finished");
         }
 
     }

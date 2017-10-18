@@ -11,9 +11,11 @@ namespace DDWindowsApp
     {
         public void changeWindowTo(string to)
         {
-            if(to == "nothit")
-            AppPanel.mainFrame.Visible = false;
-            AppPanel.notHitFrame.Visible = true;
+            if (to == "nothit")
+            {
+                AppPanel.mainFrame.Visible = false;
+                AppPanel.notHitFrame.Visible = true;
+            }
         }
 
         public void checkSKU(string janCode)
@@ -21,44 +23,32 @@ namespace DDWindowsApp
             for(int i = 0; i < Data.dbBoxNo.Count; i++)
             {
                 //手元のデータで照会したところ、まだ発送してない。
-                if(janCode==Data.dbSKU[i] && Data.dbBoxNo[i]==null)
+                if(janCode==Data.dbSKU[i] && Data.dbBoxNo[i]=="")
                 {
-                    //ファイル開く操作
-                    Microsoft.Office.Interop.Excel.Application ExcelApp = new Microsoft.Office.Interop.Excel.Application();
-                    ExcelApp.Visible = false;
-                    Microsoft.Office.Interop.Excel.Workbook workbook = ExcelApp.Workbooks.Open(Data.dbpath);
-                    Worksheet sheet = workbook.Sheets[1];
-                    sheet.Select();
-
-
-
+                    //本当に出荷済みかどうかを確認
                     bool notSend = CheckHelper.CheckFileBoxNo(i);
-                    if (!notSend) continue;     //出荷済みなら、飛ばそう
-
-
+                    if (notSend) continue;   //notSendの中に何かがある。
+                   
+                    Console.WriteLine("やはり出荷してないので、複数かどうか確認します");
+                    //出荷してないので、複数かどかを確認
                     bool pluralBook = CheckHelper.CheckPlural(i);
                     if (pluralBook)
                     {
                         //複数注文処理
+                        Console.WriteLine("複数ですよ！");
                         CheckHelper.PluralProcess(i);
                         //画面表示
+                        AppPanel.mainFrame.Visible = false;
+                        AppPanel.tableFrame.Visible = false;
+                        AppPanel.pluralFrame.Visible = true;
+                        AppPanel.pluralTableFrame.Visible = true;
 
-
-
-                        //ファイル関連の後処理
-                        workbook.Close();
-                        ExcelApp.Quit();
                         return;
                     }
-
-
-
+                    
                     //複数注文ではない
+                    
 
-
-                    //ファイル関連の後処理
-                    workbook.Close();
-                    ExcelApp.Quit();
                 }
             }
 
