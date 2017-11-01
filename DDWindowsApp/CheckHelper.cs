@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Office.Interop.Excel;
 using ClosedXML.Excel;
+using System.Globalization;
 
 namespace DDWindowsApp
 {
@@ -51,8 +52,7 @@ namespace DDWindowsApp
                 var sheet1 = book.Worksheet(1);
                 string plural = Convert.ToString(sheet1.Cell("S" + Convert.ToString(lineNo + 2)).Value);//複数の違う内容の注文かどうか
                 string num = Convert.ToString(sheet1.Cell("R" + Convert.ToString(lineNo + 2)).Value);//同じ商品を複数注文
-                if (plural != null || num != "1") flag = true;//何かしらの情報が複数である
-
+                if (plural != "" || num != "1") flag = true;//何かしらの情報が複数である
                 book.Save();
                
             }
@@ -176,13 +176,32 @@ namespace DDWindowsApp
 
             using (var book = new XLWorkbook(Data.dbpath, XLEventTracking.Disabled))
             {
+                /*
+                 * 参考してね！！！！！！！！！
+                //https://msdn.microsoft.com/ja-jp/library/system.datetime(v=vs.110).aspx
+                ！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
+
+                */
                 var sheet1 = book.Worksheet(1);
-                T = Convert.ToDateTime(sheet1.Cell("A" + Convert.ToString(lineNo + 2)).Value);
+                var aaaa = sheet1.Cell("A" + Convert.ToString(lineNo + 2)).Value;
+                //string dateString = Convert.ToString(aaaa);
+                string dateString = "115216";
+                string[] formats = { "yyyyMMdd", "HHmmss" };
+                DateTime parsedDate;
+                if (DateTime.TryParseExact(dateString, formats, null,
+                           DateTimeStyles.AllowWhiteSpaces |
+                           DateTimeStyles.AdjustToUniversal,
+                           out parsedDate))
+
+
+                    //String D = Convert.ToString(sheet1.Cell("A" + Convert.ToString(lineNo + 2)).Value);
+                    Console.WriteLine("time !!" + parsedDate + "!!time");
+                else Console.WriteLine("fail");
                 book.Save();
             }
 
             TimeSpan ts = today - T;
-            Console.WriteLine(ts);
+            Console.WriteLine(today);
             return true;
         }
 
