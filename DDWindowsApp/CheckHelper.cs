@@ -169,41 +169,42 @@ namespace DDWindowsApp
             return 1;
         }
 
+
+        /// <summary>
+        /// 2週間以上の商品であるかどうかを確認
+        /// </summary>
+        /// <param name="lineNo"></param>
+        /// <returns>true: 2週間以上、 false: 2週間以内</returns>
         public static bool TimeCheck(int lineNo)
         {
-            DateTime T = new DateTime();
-            DateTime today = DateTime.Today;
 
             using (var book = new XLWorkbook(Data.dbpath, XLEventTracking.Disabled))
             {
-                /*
-                 * 参考してね！！！！！！！！！
-                //https://msdn.microsoft.com/ja-jp/library/system.datetime(v=vs.110).aspx
-                ！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
-
-                */
                 var sheet1 = book.Worksheet(1);
-                var aaaa = sheet1.Cell("A" + Convert.ToString(lineNo + 2)).Value;
-                //string dateString = Convert.ToString(aaaa);
-                string dateString = "115216";
-                string[] formats = { "yyyyMMdd", "HHmmss" };
-                DateTime parsedDate;
-                if (DateTime.TryParseExact(dateString, formats, null,
-                           DateTimeStyles.AllowWhiteSpaces |
-                           DateTimeStyles.AdjustToUniversal,
-                           out parsedDate))
+                int aaaa = Convert.ToInt32( sheet1.Cell("A" + Convert.ToString(lineNo + 2)).Value);
+                Console.WriteLine("--->"+aaaa);
+                DateTime goodsTime = new DateTime(1900, 1, 1, 0, 0, 0);
+                goodsTime += new TimeSpan(aaaa - 2, 0, 0, 0);
+                DateTime today = DateTime.Today;
 
-
-                    //String D = Convert.ToString(sheet1.Cell("A" + Convert.ToString(lineNo + 2)).Value);
-                    Console.WriteLine("time !!" + parsedDate + "!!time");
-                else Console.WriteLine("fail");
-                book.Save();
+                TimeSpan goodsSpan = today - goodsTime;
+                TimeSpan defaltSpan = new TimeSpan(14, 0, 0, 0);
+                Console.WriteLine(goodsSpan);
+                if (goodsSpan < defaltSpan)
+                {
+                    Console.WriteLine("2週間以内");
+                    book.Save();
+                    return false;
+                }
+                else
+                {
+                    Console.WriteLine("2週間以上");
+                    book.Save();
+                    return true;
+                }
             }
-
-            TimeSpan ts = today - T;
-            Console.WriteLine(today);
-            return true;
         }
+
 
     }
 }
