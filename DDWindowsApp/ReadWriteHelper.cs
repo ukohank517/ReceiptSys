@@ -75,7 +75,18 @@ namespace DDWindowsApp
 
         }
 
-
+        /// <summary>
+        /// 入力した行番号のboxnoに、入力したstringで埋める（特殊発送方法）
+        /// </summary>
+        public void ChangeStatus(int line, String box)
+        {
+            using (var book = new XLWorkbook(Data.dbpath, XLEventTracking.Disabled))
+            {
+                var sheet1 = book.Worksheet(1);
+                sheet1.Cell("B" + Convert.ToString(line + 2)).SetValue(box);
+                book.Save();
+            }
+        }
 
     }
 }

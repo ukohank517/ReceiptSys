@@ -112,8 +112,6 @@ namespace DDWindowsApp
                     int aim = Convert.ToInt32(sheet1.Cell("R" + Convert.ToString(i + 2)).Value);
                     string stock = Convert.ToString(sheet1.Cell("U" + Convert.ToString(i + 2)).Value);
 
-                    
-
                     Data.pluralDate.Add(date);
                     Data.pluralLineNo.Add(line);
                     Data.pluralOrderID.Add(orderId);
@@ -135,6 +133,13 @@ namespace DDWindowsApp
                     sheet1.Cell("U" + Convert.ToString(i + 2)).SetValue(Data.pluralStock[i - beginIndex]);//stock
                     sheet1.Cell("T" + Convert.ToString(i + 2)).SetValue(Data.pluralBoxNo);//boxNo
                     Console.WriteLine(Data.pluralStock[i - beginIndex] + " " + Data.pluralBoxNo);
+                    int aim = Convert.ToInt32(sheet1.Cell("R" + Convert.ToString(i + 2)).Value);
+                    Console.WriteLine("aim->" +aim);
+                    if (Data.pluralStock[i - beginIndex]==aim)
+                    {
+                        sheet1.Cell("B" + Convert.ToString(i + 2)).SetValue(Data.pluralBoxNo);
+                    }
+
                 }
                 book.Save();
             }

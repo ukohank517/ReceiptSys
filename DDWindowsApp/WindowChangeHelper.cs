@@ -40,6 +40,7 @@ namespace DDWindowsApp
 
         public void checkSKU(string janCode)
         {
+            ReadWriteHelper rwhelper = new ReadWriteHelper();
             for(int i = 0; i < Data.dbBoxNo.Count; i++)
             {
                 //手元のデータで照会したところ、まだ発送してない。
@@ -65,6 +66,7 @@ namespace DDWindowsApp
                     {
                         //TODO ※とairの分岐すべき？
                         changeWindowTo("notsal");
+                        rwhelper.ChangeStatus(i, "notsal");
                         return;
                     }
 
@@ -75,11 +77,11 @@ namespace DDWindowsApp
                     if (overtime)
                     {
                         changeWindowTo("overtime");//2週間以上の商品なので、急いで出品
+                        rwhelper.ChangeStatus(i, "overtime");
                         return;
                     }
                     else
                     {//初めての入荷処理x
-                        ReadWriteHelper rwhelper = new ReadWriteHelper();
                         rwhelper.Arrival(i);
                         return;
                     }
