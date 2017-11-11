@@ -30,6 +30,15 @@ namespace DDWindowsApp
         public static List<int> pluralAim = new List<int>();//目標個数
         public static List<int> pluralStock = new List<int>();//現在個数 
 
+        public static void RenewBox()
+        {
+            if(boxCount == GOODSMAXNUM)
+            {
+                boxName++;
+                boxName %= BOXMAXNUM;
+                boxCount = 0;
+            }
+        }
 
         public static void PluralBoxRenew()
         {

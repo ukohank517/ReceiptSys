@@ -47,9 +47,32 @@ namespace DDWindowsApp
         /// </summary>
         public void Arrival(int i)
         {
-            //プログラムの持ってるリストを更新する。
-            //ファイルに入ってるデータを出荷済み登録する。
+            //box情報更新
+            if (Data.boxCount == Data.GOODSMAXNUM)
+            {
+                Data.boxCount = 0;
+                Data.boxName++;
+                Data.boxName %= Data.BOXMAXNUM;
+            }
+            int NO = Data.boxCount;
+            int BOX = Data.boxName;
+            String JAN = Data.dbSKU[i];
+            String Order = "";
+            int line=i+2;
+
+            //プログラムの持ってるリスト、ファイルの出荷済みを更新する。
+            Data.dbBoxNo[i]=Convert.ToString(Data.boxName);//リスト
+            using (var book = new XLWorkbook(Data.dbpath, XLEventTracking.Disabled))//ファイル
+            {
+                var sheet1 = book.Worksheet(1);
+                sheet1.Cell("B" + Convert.ToString(i + 2)).SetValue(Data.boxName);
+                Order = Convert.ToString(sheet1.Cell("B" + Convert.ToString(i + 2)).Value);
+                book.Save();
+            }
+
             //画面の右側の表を更新
+            AppPanel.tableFrame.situationTable.Rows.Add(NO, BOX, JAN, Order, line);
+
         }
 
 

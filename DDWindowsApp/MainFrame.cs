@@ -23,8 +23,8 @@ namespace DDWindowsApp
             //アプリ立ち上がった時の処理をここに
             Data.boxName = 100;
             Data.boxCount = 0;
-            AppPanel.tableFrame.situationTable.Rows.Add(16, 5000, "4905040277305", "203-8052704-9329916", "20000");
-
+            AppPanel.tableFrame.situationTable.Rows.Add(1, 5000, "4905040277305", "203-8052704-9329916", "20000");
+            Data.boxCount++;
 
             //helper 設定
             ReadWriteHelper rwhelper = new ReadWriteHelper();        

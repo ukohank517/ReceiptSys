@@ -112,6 +112,8 @@ namespace DDWindowsApp
                     int aim = Convert.ToInt32(sheet1.Cell("R" + Convert.ToString(i + 2)).Value);
                     string stock = Convert.ToString(sheet1.Cell("U" + Convert.ToString(i + 2)).Value);
 
+                    
+
                     Data.pluralDate.Add(date);
                     Data.pluralLineNo.Add(line);
                     Data.pluralOrderID.Add(orderId);
@@ -134,9 +136,7 @@ namespace DDWindowsApp
                     sheet1.Cell("T" + Convert.ToString(i + 2)).SetValue(Data.pluralBoxNo);//boxNo
                     Console.WriteLine(Data.pluralStock[i - beginIndex] + " " + Data.pluralBoxNo);
                 }
-                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                //book.Save();//実際使用するとき、コメント外してね
-                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                book.Save();
             }
             //table更新
             AppPanel.pluralTableFrame.pluralTable.Rows.Clear();
