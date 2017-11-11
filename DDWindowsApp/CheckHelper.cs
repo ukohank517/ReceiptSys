@@ -188,13 +188,19 @@ namespace DDWindowsApp
             using (var book = new XLWorkbook(Data.dbpath, XLEventTracking.Disabled))
             {
                 var sheet1 = book.Worksheet(1);
-                int aaaa = Convert.ToInt32( sheet1.Cell("A" + Convert.ToString(lineNo + 2)).Value);
+                var str = sheet1.Cell("A" + Convert.ToString(lineNo + 2)).Value;
+                Console.WriteLine("---->"+str + "<------");
+                Console.WriteLine();
+                DateTime aaaa = Convert.ToDateTime(str);
+                
                 Console.WriteLine("--->"+aaaa);
                 DateTime goodsTime = new DateTime(1900, 1, 1, 0, 0, 0);
-                goodsTime += new TimeSpan(aaaa - 2, 0, 0, 0);
+                        
+                //goodsTime += new TimeSpan(aaaa - 2, 0, 0, 0);
+                
                 DateTime today = DateTime.Today;
-
-                TimeSpan goodsSpan = today - goodsTime;
+                
+                TimeSpan goodsSpan = today - aaaa;
                 TimeSpan defaltSpan = new TimeSpan(14, 0, 0, 0);
                 Console.WriteLine(goodsSpan);
                 if (goodsSpan < defaltSpan)
