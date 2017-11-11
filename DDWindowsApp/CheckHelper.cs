@@ -14,11 +14,11 @@ namespace DDWindowsApp
         /// <summary>
         /// 手元がヒットしてないが、データベースの中に本当に入ってないかどうかを確認
         /// false: 入荷済み、Dataのデータを更新
-        /// true : 番号あり、他のパソコンが既に操作 false : 番号無し、他のパソコンも操作してない。
+        /// true : (既に入荷、存在)番号あり、他のパソコンが既に操作 false : (まだ入荷じゃない、存在しない)番号無し、他のパソコンも操作してない。
         /// </summary>
         /// <param name="lineNo"></param>
         /// <returns></returns>
-        public static bool CheckFileBoxNo(int lineNo)
+        public static bool CheckIfExsit(int lineNo)
         {
             Console.WriteLine("check" + lineNo);
             bool flag = false;  　　//やはり空白
@@ -37,6 +37,8 @@ namespace DDWindowsApp
             }
             return flag;
         }
+
+
 
 
         /// <summary>

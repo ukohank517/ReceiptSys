@@ -80,6 +80,12 @@
     <Compile Include="PluralFrame.Designer.cs">
       <DependentUpon>PluralFrame.cs</DependentUpon>
     </Compile>
+    <Compile Include="OverTime.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OverTime.Designer.cs">
+      <DependentUpon>OverTime.cs</DependentUpon>
+    </Compile>
     <Compile Include="WindowChangeHelper.cs" />
     <Compile Include="ReadWriteHelper.cs" />
     <Compile Include="Data.cs" />
@@ -141,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NotSAL.resx">
       <DependentUpon>NotSAL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OverTime.resx">
+      <DependentUpon>OverTime.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PluralFrame.resx">
       <DependentUpon>PluralFrame.cs</DependentUpon>

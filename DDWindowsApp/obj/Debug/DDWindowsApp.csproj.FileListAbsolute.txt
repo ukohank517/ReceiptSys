@@ -26,3 +26,4 @@ C:\Users\daida\source\repos\DDWindowsApp\DDWindowsApp\bin\Debug\System.IO.Packag
 C:\Users\daida\source\repos\DDWindowsApp\DDWindowsApp\bin\Debug\ClosedXML.pdb
 C:\Users\daida\source\repos\DDWindowsApp\DDWindowsApp\bin\Debug\ClosedXML.xml
 C:\Users\daida\source\repos\DDWindowsApp\DDWindowsApp\bin\Debug\DocumentFormat.OpenXml.xml
+C:\Users\daida\source\repos\DDWindowsApp\DDWindowsApp\obj\Debug\DDWindowsApp.OverTime.resources

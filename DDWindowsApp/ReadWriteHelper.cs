@@ -42,5 +42,17 @@ namespace DDWindowsApp
             Console.WriteLine("finished");
         }
 
+        /// <summary>
+        /// 入荷処理
+        /// </summary>
+        public void Arrival(int i)
+        {
+            //プログラムの持ってるリストを更新する。
+            //ファイルに入ってるデータを出荷済み登録する。
+            //画面の右側の表を更新
+        }
+
+
+
     }
 }

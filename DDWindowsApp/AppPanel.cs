@@ -34,6 +34,7 @@ namespace DDWindowsApp
         public static PrintAir printAirFrame;
         public static SentThree sentThreeFrame;
         public static Fin finFrame;
+        public static OverTime overTimeFrame;
 
         public static TableFrame tableFrame;
         public static PluralTableFrame pluralTableFrame;
@@ -53,6 +54,7 @@ namespace DDWindowsApp
             printAirFrame = new PrintAir();
             sentThreeFrame = new SentThree();
             finFrame = new Fin();
+            overTimeFrame = new OverTime();
 
             tableFrame = new TableFrame();
             pluralTableFrame = new PluralTableFrame();
@@ -65,6 +67,7 @@ namespace DDWindowsApp
             panel.Controls.Add(printAirFrame);
             panel.Controls.Add(sentThreeFrame);
             panel.Controls.Add(finFrame);
+            panel.Controls.Add(overTimeFrame);
 
             //テーブル専用パネルにテーブルを追加
             panelTable.Controls.Add(tableFrame);
@@ -78,6 +81,7 @@ namespace DDWindowsApp
             printAirFrame.Visible = false;
             sentThreeFrame.Visible = false;
             finFrame.Visible = false;
+            overTimeFrame.Visible = false;
 
             tableFrame.Visible = true;
             pluralTableFrame.Visible = false;
