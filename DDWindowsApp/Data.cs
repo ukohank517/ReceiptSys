@@ -27,8 +27,9 @@ namespace DDWindowsApp
         public static List<string> dbSentWay = new List<string>();     //発送方法
         public static List<string> dbOrderID = new List<string>();     //オーダーID
         public static List<int> dbNumber = new List<int>();            //注文個数
-        public static List<String> dbPlural = new List<String>();            //複数違う注文商品しているのかどうか
-        
+        public static List<String> dbPlural = new List<String>();      //複数違う注文商品しているのかどうか
+        public static List<String> dbPluralBoxNumber = new List<String>();//複数注文用boxNo,頭にPを付けた文字列。
+        public static List<int> dbPluralStore = new List<int>();       //複数注口商品の現在数
 
         //-----複数注文をする人用の変数(table専用)--------------
         public static List<string> pluralDate = new List<string>();//注文日にち
