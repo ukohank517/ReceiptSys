@@ -33,10 +33,16 @@ namespace DDWindowsApp
 
                 for (int i = 0; i < range.RowCount()-1; i++)
                 {
+                    Data.dbDate.Add(Convert.ToDateTime(sheet1.Cell(i + 2, 1).Value));
                     Data.dbBoxNo.Add(Convert.ToString(sheet1.Cell(i + 2, 2).Value));
                     Data.dbSKU.Add(Convert.ToString(sheet1.Cell(i + 2, 3).Value));
+                    Data.dbLineNo.Add(Convert.ToInt32(sheet1.Cell(i + 2, 4).Value));
+                    Data.dbStoreStatus.Add(Convert.ToString(sheet1.Cell(i + 2, 5).Value));
+                    Data.dbSentWay.Add(Convert.ToString(sheet1.Cell(i + 2, 6).Value));
+                    Data.dbOrderID.Add(Convert.ToString(sheet1.Cell(i + 2, 7).Value));
                 }
-
+                Console.WriteLine(Convert.ToString(sheet1.Cell(2, 2).Value));
+                Console.WriteLine(Convert.ToString(sheet1.Cell("B2").Value));
                 book.Save();
             }
             Console.WriteLine("finished");
