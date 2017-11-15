@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -46,10 +47,17 @@ namespace DDWindowsApp
                 //手元のデータで照会したところ、まだ発送してない。
                 if(janCode==Data.dbSKU[i] && Data.dbBoxNo[i]=="")
                 {
+                    Console.WriteLine("---------------");
+                    Console.Write("check"); Console.WriteLine(i);
+                    Console.WriteLine("-----------");
+
                     //本当に入荷済みかどうかを確認
                     bool deal = CheckHelper.CheckIfExsit(i);
                     if (deal) continue;   //この商品が既に処理されている。
 
+                    Console.WriteLine("beforebefore chekck");
+                    Console.WriteLine(Data.dbPlural[9]);
+                    
                     //まだ入荷処理されていないので、複数かどかを確認
                     bool pluralBook = CheckHelper.CheckPlural(i);
                     if (pluralBook)//複数注文処理
@@ -58,6 +66,9 @@ namespace DDWindowsApp
                         changeWindowTo("plural");//画面表示
                         return;
                     }
+
+
+                    Console.WriteLine("not plural  fdsahjkfhasklhflkj");
 
                     //複数注文ではない
                     //sal以外の動作？？？？

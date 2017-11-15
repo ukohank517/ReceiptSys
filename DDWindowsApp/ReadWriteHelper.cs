@@ -58,7 +58,7 @@ namespace DDWindowsApp
                     Data.dbPluralStore.Add(Convert.ToString(sheet1.Cell(i + 2, 21).Value));
                     Console.WriteLine("tillpluralstore");
                     }
-                /*
+                
                 Console.Write("注文日  :");Console.WriteLine(Data.dbDate[267]);
                 Console.Write("boxNo   :");Console.WriteLine(Data.dbBoxNo[267]);
                 Console.Write("SKU     :");Console.WriteLine(Data.dbSKU[267]);
@@ -67,10 +67,10 @@ namespace DDWindowsApp
                 Console.Write("送り方法;");Console.WriteLine(Data.dbSentWay[267]);
                 Console.Write("注文番号:");Console.WriteLine(Data.dbOrderID[267]);
                 Console.Write("注文個数:");Console.WriteLine(Data.dbNumber[267]);
-                Console.Write("複数状況:");Console.WriteLine(Data.dbPlural[267]);
+                Console.Write("複数口　:");Console.WriteLine(Data.dbPlural[267]);
                 Console.Write("複数箱名:");Console.WriteLine(Data.dbPluralBoxNumber[267]);
                 Console.Write("複在庫数:");Console.WriteLine(Data.dbPluralStore[267]);
-                */
+                Console.Write("debug:"); Console.WriteLine(Data.dbPlural[9]);
                 book.Save();
             }
             Console.WriteLine("finished");
