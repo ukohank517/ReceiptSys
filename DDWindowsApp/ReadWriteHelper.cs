@@ -20,6 +20,8 @@ namespace DDWindowsApp
          * https://closedxml.codeplex.com/wikipage?title=Hello%20World&referringTitle=Documentation
          * https://www.projectgroup.info/tips/Microsoft.NET/tips_0005.html
          */
+
+         //アプリの初期設定
         public void TakeFromDBData()
         {
 
@@ -30,37 +32,45 @@ namespace DDWindowsApp
                 var range = sheet1.RangeUsed();
 
                 Console.WriteLine(range.ColumnCount() + " " + range.RowCount());
-                /*
-        public const string dbpath = "\\\\192.168.1.37\\share\\DB_ForTest\\DB_sample.xlsx";
-        public static List<DateTime> dbDate = new List<DateTime>();    //日付
-        public static List<string> dbBoxNo = new List<string>();       //BoxNo
-        public static List<string> dbSKU = new List<string>();         //SKU
-        public static List<int> dbLineNo = new List<int>();      //行番号
-        public static List<string> dbStoreStatus = new List<string>(); //在庫か、入荷版なのか
-        public static List<string> dbSentWay = new List<string>();     //発送方法
-        public static List<string> dbOrderID = new List<string>();     //オーダーID
-        public static List<int> dbNumber = new List<int>();            //注文個数
-        public static List<String> dbPlural = new List<String>();      //複数違う注文商品しているのかどうか
-        public static List<String> dbPluralBoxNumber = new List<String>();//複数注文用boxNo,頭にPを付けた文字列。
-        
-                 */
+              
                 for (int i = 0; i < range.RowCount()-1; i++)
                 {
                     Data.dbDate.Add(Convert.ToDateTime(sheet1.Cell(i + 2, 1).Value));
+                    Console.WriteLine("tilldate");
                     Data.dbBoxNo.Add(Convert.ToString(sheet1.Cell(i + 2, 2).Value));
+                    Console.WriteLine("tillboxno");
                     Data.dbSKU.Add(Convert.ToString(sheet1.Cell(i + 2, 3).Value));
+                    Console.WriteLine("tillsku");
                     Data.dbLineNo.Add(Convert.ToInt32(sheet1.Cell(i + 2, 4).Value));
+                    Console.WriteLine("tilllineno");
                     Data.dbStoreStatus.Add(Convert.ToString(sheet1.Cell(i + 2, 5).Value));
+                    Console.WriteLine("tillstorestatus");
                     Data.dbSentWay.Add(Convert.ToString(sheet1.Cell(i + 2, 6).Value));
+                    Console.WriteLine("tillsentway");
                     Data.dbOrderID.Add(Convert.ToString(sheet1.Cell(i + 2, 7).Value));
+                    Console.WriteLine("tillorderid");
                     Data.dbNumber.Add(Convert.ToInt32(sheet1.Cell(i + 2, 18).Value));
+                    Console.WriteLine("tillnumber");
                     Data.dbPlural.Add(Convert.ToString(sheet1.Cell(i + 2, 19).Value));
+                    Console.WriteLine("tillplural");
                     Data.dbPluralBoxNumber.Add(Convert.ToString(sheet1.Cell(i + 2, 20).Value));
-                    Data.dbPluralStore.Add(Convert.ToInt32(sheet1.Cell(1 + 2, 21).Value));
-
-                        }
-                Console.WriteLine(Convert.ToString(sheet1.Cell(2, 2).Value));
-                Console.WriteLine(Convert.ToString(sheet1.Cell("B2").Value));
+                    Console.WriteLine("tillpluralboxnumber");
+                    Data.dbPluralStore.Add(Convert.ToString(sheet1.Cell(i + 2, 21).Value));
+                    Console.WriteLine("tillpluralstore");
+                    }
+                /*
+                Console.Write("注文日  :");Console.WriteLine(Data.dbDate[267]);
+                Console.Write("boxNo   :");Console.WriteLine(Data.dbBoxNo[267]);
+                Console.Write("SKU     :");Console.WriteLine(Data.dbSKU[267]);
+                Console.Write("行番号  :");Console.WriteLine(Data.dbLineNo[267]);
+                Console.Write("在庫状況:");Console.WriteLine(Data.dbStoreStatus[267]);
+                Console.Write("送り方法;");Console.WriteLine(Data.dbSentWay[267]);
+                Console.Write("注文番号:");Console.WriteLine(Data.dbOrderID[267]);
+                Console.Write("注文個数:");Console.WriteLine(Data.dbNumber[267]);
+                Console.Write("複数状況:");Console.WriteLine(Data.dbPlural[267]);
+                Console.Write("複数箱名:");Console.WriteLine(Data.dbPluralBoxNumber[267]);
+                Console.Write("複在庫数:");Console.WriteLine(Data.dbPluralStore[267]);
+                */
                 book.Save();
             }
             Console.WriteLine("finished");

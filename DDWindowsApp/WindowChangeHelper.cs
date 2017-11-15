@@ -24,7 +24,7 @@ namespace DDWindowsApp
                 AppPanel.pluralFrame.Visible = true;
                 AppPanel.pluralTableFrame.Visible = true;
             }
-            if(to=="notsal")
+            if(to == "notsal")
             {
                 AppPanel.mainFrame.Visible = false;
                 AppPanel.notSALFrame.Visible = true;
