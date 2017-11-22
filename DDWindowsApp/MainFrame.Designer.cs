@@ -95,7 +95,7 @@
             this.labelNumDetail.Text = Data.boxCount+"件/" + Data.GOODSMAXNUM + "件中";
             //this.labelNumDetail.Click += new System.EventHandler(this.labelNumDetail_Click);
             // 
-            // MainFrame
+            // MainFramefda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -120,6 +120,6 @@
         private System.Windows.Forms.TextBox textNum;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button buttonSearch;
-        private System.Windows.Forms.Label labelNumDetail;
+        public System.Windows.Forms.Label labelNumDetail;
     }
 }

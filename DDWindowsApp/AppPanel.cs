@@ -35,6 +35,7 @@ namespace DDWindowsApp
         public static SentThree sentThreeFrame;
         public static Fin finFrame;
         public static OverTime overTimeFrame;
+        public static IsCansel isCanselFrame;
 
         public static TableFrame tableFrame;
         public static PluralTableFrame pluralTableFrame;
@@ -55,6 +56,7 @@ namespace DDWindowsApp
             sentThreeFrame = new SentThree();
             finFrame = new Fin();
             overTimeFrame = new OverTime();
+            isCanselFrame = new IsCansel();
 
             tableFrame = new TableFrame();
             pluralTableFrame = new PluralTableFrame();
@@ -68,6 +70,7 @@ namespace DDWindowsApp
             panel.Controls.Add(sentThreeFrame);
             panel.Controls.Add(finFrame);
             panel.Controls.Add(overTimeFrame);
+            panel.Controls.Add(isCanselFrame);
 
             //テーブル専用パネルにテーブルを追加
             panelTable.Controls.Add(tableFrame);
@@ -82,6 +85,7 @@ namespace DDWindowsApp
             sentThreeFrame.Visible = false;
             finFrame.Visible = false;
             overTimeFrame.Visible = false;
+            isCanselFrame.Visible = false;
 
             tableFrame.Visible = true;
             pluralTableFrame.Visible = false;

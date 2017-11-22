@@ -36,58 +36,35 @@ namespace DDWindowsApp
                 for (int i = 0; i < range.RowCount()-1; i++)
                 {
                     Data.dbDate.Add(Convert.ToDateTime(sheet1.Cell(i + 2, 1).Value));
-                    Console.WriteLine("tilldate");
                     Data.dbBoxNo.Add(Convert.ToString(sheet1.Cell(i + 2, 2).Value));
-                    Console.WriteLine("tillboxno");
-                    Data.dbSKU.Add(Convert.ToString(sheet1.Cell(i + 2, 3).Value));
-                    Console.WriteLine("tillsku");
-                    Data.dbLineNo.Add(Convert.ToInt32(sheet1.Cell(i + 2, 4).Value));
-                    Console.WriteLine("tilllineno");
-                    Data.dbStoreStatus.Add(Convert.ToString(sheet1.Cell(i + 2, 5).Value));
-                    Console.WriteLine("tillstorestatus");
-                    Data.dbSentWay.Add(Convert.ToString(sheet1.Cell(i + 2, 6).Value));
-                    Console.WriteLine("tillsentway");
-                    Data.dbOrderID.Add(Convert.ToString(sheet1.Cell(i + 2, 7).Value));
-                    Console.WriteLine("tillorderid");
-                    Data.dbNumber.Add(Convert.ToInt32(sheet1.Cell(i + 2, 18).Value));
-                    Console.WriteLine("tillnumber");
-                    Data.dbPlural.Add(Convert.ToString(sheet1.Cell(i + 2, 19).Value));
-                    Console.WriteLine("tillplural");
-                    Data.dbPluralBoxNumber.Add(Convert.ToString(sheet1.Cell(i + 2, 20).Value));
-                    Console.WriteLine("tillpluralboxnumber");
-                    Data.dbPluralStore.Add(Convert.ToString(sheet1.Cell(i + 2, 21).Value));
-                    Console.WriteLine("tillpluralstore");
-                    }
-                /*
-                Console.Write("注文日  :");Console.WriteLine(Data.dbDate[267]);
-                Console.Write("boxNo   :");Console.WriteLine(Data.dbBoxNo[267]);
-                Console.Write("SKU     :");Console.WriteLine(Data.dbSKU[267]);
-                Console.Write("行番号  :");Console.WriteLine(Data.dbLineNo[267]);
-                Console.Write("在庫状況:");Console.WriteLine(Data.dbStoreStatus[267]);
-                Console.Write("送り方法;");Console.WriteLine(Data.dbSentWay[267]);
-                Console.Write("注文番号:");Console.WriteLine(Data.dbOrderID[267]);
-                Console.Write("注文個数:");Console.WriteLine(Data.dbNumber[267]);
-                Console.Write("複数状況:");Console.WriteLine(Data.dbPlural[267]);
-                Console.Write("複数箱名:");Console.WriteLine(Data.dbPluralBoxNumber[267]);
-                Console.Write("複在庫数:");Console.WriteLine(Data.dbPluralStore[267]);
-                */
+                    Data.dbSKU.Add(Convert.ToString(sheet1.Cell(i + 2, 3).Value));                   
+                }
                 book.Save();
             }
             Console.WriteLine("finished");
         }
 
         /// <summary>
-        /// 入荷処理
+        /// 例外なしの入荷処理
         /// </summary>
         public void Arrival(int i)
         {
+            Data.boxCount++;
+            AppPanel.mainFrame.labelNumDetail.Text = Data.boxCount + "件/" + Data.GOODSMAXNUM + "件中";
             //box情報更新
-            if (Data.boxCount == Data.GOODSMAXNUM)
+            if (Data.boxCount == Data.GOODSMAXNUM+1)
             {
-                Data.boxCount = 0;
+                Data.boxCount = 1;
                 Data.boxName++;
                 Data.boxName %= Data.BOXMAXNUM;
+
+
+                Console.WriteLine("aaaaaaaaaaaafdsafadsf");
+                AppPanel.tableFrame.situationTable.Rows.Clear();
+                //AppPanel.tableFrame.situationTable.
+                
             }
+
             int NO = Data.boxCount;
             int BOX = Data.boxName;
             String JAN = Data.dbSKU[i];
@@ -100,13 +77,14 @@ namespace DDWindowsApp
             {
                 var sheet1 = book.Worksheet(1);
                 sheet1.Cell("B" + Convert.ToString(i + 2)).SetValue(Data.boxName);
-                Order = Convert.ToString(sheet1.Cell("B" + Convert.ToString(i + 2)).Value);
+                Order = Convert.ToString(sheet1.Cell("G" + Convert.ToString(i + 2)).Value);
+                line = Convert.ToInt32(sheet1.Cell("D" + Convert.ToString(i + 2)).Value);
                 book.Save();
             }
 
             //画面の右側の表を更新
             AppPanel.tableFrame.situationTable.Rows.Add(NO, BOX, JAN, Order, line);
-
+            Data.RenewBox();
         }
 
         /// <summary>

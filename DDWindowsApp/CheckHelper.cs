@@ -32,8 +32,8 @@ namespace DDWindowsApp
                     Data.dbBoxNo[lineNo] = detail;
                     flag = true;
                 }
-                
                 book.Save();
+
             }
             return flag;
         }
@@ -81,6 +81,7 @@ namespace DDWindowsApp
                     if (beginIndex == 1) break;
                     string before = Convert.ToString(sheet1.Cell("S" + Convert.ToString(beginIndex + 2 - 1)).Value);
                     string now = Convert.ToString(sheet1.Cell("S" + Convert.ToString(beginIndex + 2)).Value);
+                    if (before == "") break;
                     if (before == now) beginIndex--;
                     else break;
                 }
@@ -90,6 +91,7 @@ namespace DDWindowsApp
                     if (endIndex >= Data.dbBoxNo.Count - 1) break;
                     string now = Convert.ToString(sheet1.Cell("S"+Convert.ToString(endIndex+2)).Value);
                     string after = Convert.ToString(sheet1.Cell("S"+Convert.ToString(endIndex+2+1)).Value);
+                    if (now == "") break;
                     if (now == after) endIndex++;
                     else break;
                 }
@@ -111,11 +113,17 @@ namespace DDWindowsApp
                     string orderId = Convert.ToString(sheet1.Cell("G" + Convert.ToString(i + 2)).Value);
                     int aim = Convert.ToInt32(sheet1.Cell("R" + Convert.ToString(i + 2)).Value);
                     string stock = Convert.ToString(sheet1.Cell("U" + Convert.ToString(i + 2)).Value);
+                    string ifinthree = Convert.ToString(sheet1.Cell("E" + Convert.ToString(i + 2)).Value);
 
                     Data.pluralDate.Add(date);
                     Data.pluralLineNo.Add(line);
                     Data.pluralOrderID.Add(orderId);
                     Data.pluralAim.Add(aim);
+                    if (ifinthree != "") Data.pluralInThree.Add(true);//在庫
+                    else Data.pluralInThree.Add(false);
+                    
+
+
                     if (i == lineNo)
                     {
                         if (stock == "") Data.pluralStock.Add(1);
@@ -154,6 +162,12 @@ namespace DDWindowsApp
                     AppPanel.pluralFrame.buttonPrint.Enabled = false;
                 }
             }
+
+
+
+
+            //画面表示
+            
             //return flag;
         }
 
@@ -161,7 +175,7 @@ namespace DDWindowsApp
         /// 発送方法チェックする
         /// </summary>
         /// <param name="lineNo"></param>
-        /// <returns>0:SAL, 1:air, 2:その他</returns>
+        /// <returns>0:*, 1:e, 2:c, 3:その他</returns>
         public static int SALCheck(int lineNo)
         {
             char way;
@@ -172,8 +186,9 @@ namespace DDWindowsApp
                 book.Save();
             }
             if (way == '*') return 0;
-            if (way == 'e') return 2;
-            return 1;
+            if (way == 'e') return 1;
+            if (way == 'c') return 2;
+            return 3;
         }
 
 

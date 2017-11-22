@@ -25,6 +25,7 @@ namespace DDWindowsApp
         private void buttonPrintClicked(object sender, EventArgs e)
         {
             //印刷処理
+            buttonPrint.Enabled = false;
             changeWindow();
         }
 

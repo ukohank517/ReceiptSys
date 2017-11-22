@@ -41,6 +41,8 @@
     <Reference Include="FastMember.Signed, Version=1.0.0.9, Culture=neutral, PublicKeyToken=9e8f22703bef9a29, processorArchitecture=MSIL">
       <HintPath>..\packages\FastMember.Signed.1.1.0\lib\net40\FastMember.Signed.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -85,6 +87,12 @@
     </Compile>
     <Compile Include="OverTime.Designer.cs">
       <DependentUpon>OverTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IsCansel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IsCansel.Designer.cs">
+      <DependentUpon>IsCansel.cs</DependentUpon>
     </Compile>
     <Compile Include="WindowChangeHelper.cs" />
     <Compile Include="ReadWriteHelper.cs" />
@@ -138,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AppPanel.resx">
       <DependentUpon>AppPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IsCansel.resx">
+      <DependentUpon>IsCansel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainFrame.resx">
       <DependentUpon>MainFrame.cs</DependentUpon>

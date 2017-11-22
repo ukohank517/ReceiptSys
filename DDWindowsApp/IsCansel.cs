@@ -10,19 +10,17 @@ using System.Windows.Forms;
 
 namespace DDWindowsApp
 {
-    public partial class SentThree : UserControl
+    public partial class IsCansel : UserControl
     {
-        public SentThree()
+        public IsCansel()
         {
             InitializeComponent();
         }
 
-        private void buttonConfirm_Clicked(object sender, EventArgs e)
+        private void ButtonConfirmPressed(object sender, EventArgs e)
         {
-            AppPanel.sentThreeFrame.Visible = false;
-            AppPanel.pluralTableFrame.Visible = false;
+            AppPanel.isCanselFrame.Visible = false;
             AppPanel.mainFrame.Visible = true;
-            AppPanel.tableFrame.Visible = true;
         }
     }
 }

@@ -23,6 +23,30 @@ namespace DDWindowsApp
                 AppPanel.tableFrame.Visible = false;
                 AppPanel.pluralFrame.Visible = true;
                 AppPanel.pluralTableFrame.Visible = true;
+                bool finish = false;
+                bool tothree = false;
+                for(int i = 0; i < Data.pluralStock.Count()+1; i++)
+                {
+                    if (i == Data.pluralStock.Count()) { finish = true;break; }
+                    if (Data.pluralStock[i] != Data.pluralAim[i])
+                    {
+                        if (Data.pluralInThree[i] == true) tothree = true;
+                        else { finish = false; break; }
+                    }
+                }
+                if (finish == true)//終了
+                {
+                    if (tothree == true)//三階へ送信
+                    {
+                        AppPanel.pluralFrame.Visible = false;
+                        AppPanel.sentThreeFrame.Visible = true;
+                    }
+                    else//印刷ボタンを有効に
+                    {
+                        AppPanel.pluralFrame.buttonPrint.Enabled = true;
+                    }
+                }
+                
             }
             if(to == "notsal")
             {
@@ -35,6 +59,11 @@ namespace DDWindowsApp
                 AppPanel.mainFrame.Visible = false;
                 AppPanel.overTimeFrame.Visible = true;
                 AppPanel.tableFrame.Visible = false;
+            }
+            if (to == "cancel")
+            {
+                AppPanel.mainFrame.Visible = false;
+                AppPanel.isCanselFrame.Visible = true;
             }
         }
 
@@ -55,14 +84,20 @@ namespace DDWindowsApp
                     if (pluralBook)//複数注文処理
                     {
                         CheckHelper.PluralProcess(i);
-                        changeWindowTo("plural");//画面表示
+                        changeWindowTo("plural");
                         return;
                     }
 
                     //複数注文ではない
                     //sal以外の動作？？？？
                     int issal = CheckHelper.SALCheck(i);
-                    if (issal != 0)//0はsal 
+                    if(issal == 2)
+                    {
+                        changeWindowTo("cancel");
+                        rwhelper.ChangeStatus(i, "cancel");
+                        return;
+                    }
+                    else if (issal != 0)//0はsal 
                     {
                         //TODO ※とairの分岐すべき？
                         changeWindowTo("notsal");
@@ -81,7 +116,7 @@ namespace DDWindowsApp
                         return;
                     }
                     else
-                    {//初めての入荷処理x
+                    {//初めての入荷処理
                         rwhelper.Arrival(i);
                         return;
                     }
