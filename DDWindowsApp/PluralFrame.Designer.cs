@@ -31,6 +31,7 @@
             this.buttonConfirm = new System.Windows.Forms.Button();
             this.buttonPrint = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonConfirm
@@ -65,10 +66,21 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "複数口注文の商品です。";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label2.Location = new System.Drawing.Point(78, 117);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(86, 16);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "発送方法は";
+            // 
             // PluralFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonPrint);
             this.Controls.Add(this.buttonConfirm);
@@ -83,6 +95,7 @@
 
         private System.Windows.Forms.Button buttonConfirm;
         public System.Windows.Forms.Button buttonPrint;
-        private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label label2;
     }
 }

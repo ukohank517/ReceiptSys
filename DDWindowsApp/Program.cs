@@ -4,6 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/// <summary>
+/// 
+/// 印刷について
+/// https://msdn.microsoft.com/ja-jp/library/cwbe712d(v=vs.110).aspx
+/// </summary>
 namespace DDWindowsApp
 {
     static class Program

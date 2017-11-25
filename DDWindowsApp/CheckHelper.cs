@@ -21,7 +21,11 @@ namespace DDWindowsApp
         public static bool CheckIfExsit(int lineNo)
         {
             Console.WriteLine("check" + lineNo);
-            bool flag = false;  　　//やはり空白
+            bool flag = false;    //やはり空白
+
+
+            
+                
             using (var book=new XLWorkbook(Data.dbpath,XLEventTracking.Disabled))
             {
                 var sheet1 = book.Worksheet(1);
@@ -32,8 +36,10 @@ namespace DDWindowsApp
                     Data.dbBoxNo[lineNo] = detail;
                     flag = true;
                 }
-                book.Save();
 
+
+                book.Save();
+        
             }
             return flag;
         }
@@ -95,7 +101,9 @@ namespace DDWindowsApp
                     if (now == after) endIndex++;
                     else break;
                 }
-
+                string sentway = Convert.ToString(sheet1.Cell("F" + Convert.ToString(lineNo + 2)).Value);
+                AppPanel.pluralFrame.label2.Text = "発送方法は"+sentway +"だよ";
+                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                 Console.WriteLine(beginIndex + " " + endIndex);
 
                 //その人専用のボックス更新、内容がpluralBox保存
