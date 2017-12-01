@@ -70,6 +70,7 @@
       <DependentUpon>AppPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="CheckHelper.cs" />
+    <Compile Include="ExcelPrint.cs" />
     <Compile Include="PluralTableFrame.cs">
       <SubType>UserControl</SubType>
     </Compile>
