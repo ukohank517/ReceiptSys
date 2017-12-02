@@ -51,19 +51,7 @@ namespace DDWindowsApp
         {
             Data.boxCount++;
             AppPanel.mainFrame.labelNumDetail.Text = Data.boxCount + "件/" + Data.GOODSMAXNUM + "件中";
-            //box情報更新
-            if (Data.boxCount == Data.GOODSMAXNUM+1)
-            {
-                Data.boxCount = 1;
-                Data.boxName++;
-                Data.boxName %= Data.BOXMAXNUM;
 
-
-                Console.WriteLine("aaaaaaaaaaaafdsafadsf");
-                AppPanel.tableFrame.situationTable.Rows.Clear();
-                //AppPanel.tableFrame.situationTable.
-                
-            }
 
             int NO = Data.boxCount;
             int BOX = Data.boxName;
@@ -84,6 +72,36 @@ namespace DDWindowsApp
 
             //画面の右側の表を更新
             AppPanel.tableFrame.situationTable.Rows.Add(NO, BOX, JAN, Order, line);
+
+
+            //box情報更新
+            if (Data.boxCount == Data.GOODSMAXNUM)
+            {
+                /*
+                Data.boxCount = 1;
+                Data.boxName++;
+                Data.boxName %= Data.BOXMAXNUM;
+                */
+
+
+                AppPanel.mainFrame.Visible = false;
+                AppPanel.finFrame.Visible = true;
+
+                //AppPanel.tableFrame.situationTable.
+
+            }
+
+            Data.NameinB.Add(Data.nowName);
+            Data.Address1inB.Add(Data.nowAdress1);
+            Data.Address2inB.Add(Data.nowAdress2);
+            Data.Address3inB.Add(Data.nowAdress3);
+            Data.Address4inB.Add(Data.nowAdress4);
+            Data.PostIDinB.Add(Data.nowPostID);
+            Data.CountryinB.Add(Data.nowCountry);
+            Data.TELinB.Add(Data.nowTEL);
+            Data.DescriptioninB.Add(Data.nowDescription);
+
+
             Data.RenewBox();
         }
 

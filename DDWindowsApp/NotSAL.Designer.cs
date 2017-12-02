@@ -82,6 +82,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonConfirm;
-        private System.Windows.Forms.TextBox textBox1;
+        public System.Windows.Forms.TextBox textBox1;
     }
 }

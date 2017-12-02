@@ -50,18 +50,21 @@ namespace DDWindowsApp
             }
             if(to == "notsal")
             {
+                AppPanel.notSALFrame.textBox1.Text = "行番号" + Data.nowLineNo;
                 AppPanel.mainFrame.Visible = false;
                 AppPanel.notSALFrame.Visible = true;
             }
             if (to == "overtime")
             {
                 //左にovertimeFrameを表示、右も消しましょう
+                AppPanel.overTimeFrame.textBox1.Text = "行番号" + Data.nowLineNo;
                 AppPanel.mainFrame.Visible = false;
                 AppPanel.overTimeFrame.Visible = true;
                 AppPanel.tableFrame.Visible = false;
             }
             if (to == "cancel")
             {
+                AppPanel.isCanselFrame.textBox1.Text = "行番号:"+ Data.nowLineNo;
                 AppPanel.mainFrame.Visible = false;
                 AppPanel.isCanselFrame.Visible = true;
             }

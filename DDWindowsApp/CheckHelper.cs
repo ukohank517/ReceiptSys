@@ -23,9 +23,6 @@ namespace DDWindowsApp
             Console.WriteLine("check" + lineNo);
             bool flag = false;    //やはり空白
 
-
-            
-                
             using (var book=new XLWorkbook(Data.dbpath,XLEventTracking.Disabled))
             {
                 var sheet1 = book.Worksheet(1);
@@ -34,12 +31,24 @@ namespace DDWindowsApp
                 if (detail != "")
                 {
                     Data.dbBoxNo[lineNo] = detail;
-                    flag = true;
+                    return true;
                 }
-
-
+                else
+                {
+                    Data.nowLineNo = Convert.ToString(sheet1.Cell("D" + Convert.ToString(lineNo + 2)).Value);
+                    Data.nowName = Convert.ToString(sheet1.Cell("H" + Convert.ToString(lineNo + 2)).Value);
+                    Data.nowAdress1 = Convert.ToString(sheet1.Cell("I" + Convert.ToString(lineNo + 2)).Value);
+                    Data.nowAdress2 = Convert.ToString(sheet1.Cell("J" + Convert.ToString(lineNo + 2)).Value);
+                    Data.nowAdress3 = Convert.ToString(sheet1.Cell("K" + Convert.ToString(lineNo + 2)).Value);
+                    Data.nowAdress4 = Convert.ToString(sheet1.Cell("L" + Convert.ToString(lineNo + 2)).Value);
+                    Data.nowPostID = Convert.ToString(sheet1.Cell("M" + Convert.ToString(lineNo + 2)).Value);
+                    Data.nowTEL = Convert.ToString(sheet1.Cell("P" + Convert.ToString(lineNo + 2)).Value);
+                    Data.nowCountry = Convert.ToString(sheet1.Cell("N" + Convert.ToString(lineNo + 2)).Value);
+                    Data.nowDescription = Convert.ToString(sheet1.Cell("Q" + Convert.ToString(lineNo + 2)).Value);
+                    Data.nownum = Convert.ToInt32(sheet1.Cell("R" + Convert.ToString(lineNo + 2)).Value);
+                }
+                //%%%%%%%%%%%
                 book.Save();
-        
             }
             return flag;
         }
@@ -61,6 +70,7 @@ namespace DDWindowsApp
                 string plural = Convert.ToString(sheet1.Cell("S" + Convert.ToString(lineNo + 2)).Value);//複数の違う内容の注文かどうか
                 string num = Convert.ToString(sheet1.Cell("R" + Convert.ToString(lineNo + 2)).Value);//同じ商品を複数注文
                 if (plural != "" || num != "1") flag = true;//何かしらの情報が複数である
+                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                 book.Save();
                
             }
@@ -103,8 +113,7 @@ namespace DDWindowsApp
                 }
                 string sentway = Convert.ToString(sheet1.Cell("F" + Convert.ToString(lineNo + 2)).Value);
                 AppPanel.pluralFrame.label2.Text = "発送方法は"+sentway +"だよ";
-                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-                Console.WriteLine(beginIndex + " " + endIndex);
+                
 
                 //その人専用のボックス更新、内容がpluralBox保存
                 Data.pluralBoxNo = Convert.ToString(sheet1.Cell("T" + Convert.ToString(lineNo + 2)).Value);
@@ -171,11 +180,6 @@ namespace DDWindowsApp
                 }
             }
 
-
-
-
-            //画面表示
-            
             //return flag;
         }
 
@@ -191,6 +195,7 @@ namespace DDWindowsApp
             {
                 var sheet1 = book.Worksheet(1);
                 way = Convert.ToChar(sheet1.Cell("F" + Convert.ToString(lineNo + 2)).Value);
+                //%%%%%%%%%%%%%%%%%%%%%%%%%
                 book.Save();
             }
             if (way == '*') return 0;
@@ -229,12 +234,14 @@ namespace DDWindowsApp
                 if (goodsSpan < defaltSpan)
                 {
                     Console.WriteLine("2週間以内");
+                    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                     book.Save();
                     return false;
                 }
                 else
                 {
                     Console.WriteLine("2週間以上");
+                    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                     book.Save();
                     return true;
                 }

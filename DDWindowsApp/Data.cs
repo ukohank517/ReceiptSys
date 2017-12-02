@@ -17,6 +17,33 @@ namespace DDWindowsApp
         public static int boxName;         //boxの名前
         public static int boxCount;        //box内現在ある件数
         public static int pluralCount = 0; //更新起動時はファイルから読み込む
+
+        //現在見てる行の情報
+        public static String nowLineNo = "";
+        public static String nowName = "";
+        public static String nowAdress1 = "";
+        public static String nowAdress2 = "";
+        public static String nowAdress3 = "";
+        public static String nowAdress4 = "";
+        public static String nowPostID = "";
+        public static String nowTEL = "";
+        public static String nowDescription = "";
+        public static String nowCountry = "";
+        public static int nownum = 0;
+
+
+        //box内の情報
+        public static List<String> NameinB = new List<string>();
+        public static List<String> Address1inB = new List<string>();
+        public static List<String> Address2inB = new List<string>();
+        public static List<String> Address3inB = new List<string>();
+        public static List<String> Address4inB = new List<string>();
+        public static List<String> PostIDinB = new List<string>();
+        public static List<String> CountryinB = new List<string>();
+        public static List<String> TELinB = new List<string>();
+        public static List<String> DescriptioninB = new List<string>();
+       
+
         //DBの情報
         public const string dbpath = "\\\\192.168.1.37\\share\\DB_ForTest\\DB_sample.xlsx";
         public static List<DateTime> dbDate = new List<DateTime>();    //日付
@@ -32,6 +59,19 @@ namespace DDWindowsApp
         public static List<int> pluralAim = new List<int>();//目標個数
         public static List<int> pluralStock = new List<int>();//現在個数 
         public static List<bool> pluralInThree = new List<bool>();//3階に在庫あるかどうか
+
+        public static void EmptyBox()
+        {
+            NameinB.Clear();
+            Address1inB.Clear();
+            Address2inB.Clear();
+            Address3inB.Clear();
+            Address4inB.Clear();
+            PostIDinB.Clear();
+            CountryinB.Clear();
+            TELinB.Clear();
+            DescriptioninB.Clear();
+        }
 
         public static void RenewBox()
         {
