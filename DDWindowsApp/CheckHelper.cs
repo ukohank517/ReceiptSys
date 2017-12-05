@@ -131,11 +131,13 @@ namespace DDWindowsApp
                     int aim = Convert.ToInt32(sheet1.Cell("R" + Convert.ToString(i + 2)).Value);
                     string stock = Convert.ToString(sheet1.Cell("U" + Convert.ToString(i + 2)).Value);
                     string ifinthree = Convert.ToString(sheet1.Cell("E" + Convert.ToString(i + 2)).Value);
+                    string description = Convert.ToString(sheet1.Cell("Q" + Convert.ToString(i + 2)).Value);
 
                     Data.pluralDate.Add(date);
                     Data.pluralLineNo.Add(line);
                     Data.pluralOrderID.Add(orderId);
                     Data.pluralAim.Add(aim);
+                    Data.pluralDescription.Add(description);
                     if (ifinthree != "") Data.pluralInThree.Add(true);//在庫
                     else Data.pluralInThree.Add(false);
                     

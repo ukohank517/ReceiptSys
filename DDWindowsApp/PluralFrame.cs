@@ -24,7 +24,11 @@ namespace DDWindowsApp
 
         private void buttonPrintClicked(object sender, EventArgs e)
         {
-            //印刷処理
+            //追加処理
+            if(buttonPrint.Enabled == true)
+            {
+                Console.WriteLine("追加せんかい！");
+            }
             buttonPrint.Enabled = false;
             changeWindow();
         }

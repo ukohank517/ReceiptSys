@@ -44,6 +44,8 @@ namespace DDWindowsApp
         public static List<String> DescriptioninB = new List<string>();
         public static List<bool> isPluralinB = new List<bool>();
 
+        public static List<String> DescriptioninBPlural = new List<string>();
+        public static List<String> NuminBPlural = new List<string>();
 
         //DBの情報
         public const string dbpath = "\\\\192.168.1.37\\share\\DB_ForTest\\DB_sample.xlsx";
@@ -60,6 +62,7 @@ namespace DDWindowsApp
         public static List<int> pluralAim = new List<int>();//目標個数
         public static List<int> pluralStock = new List<int>();//現在個数 
         public static List<bool> pluralInThree = new List<bool>();//3階に在庫あるかどうか
+        public static List<string> pluralDescription = new List<string>();//商品名
 
         public static void EmptyBox()
         {
@@ -98,6 +101,7 @@ namespace DDWindowsApp
             pluralAim.Clear();
             pluralStock.Clear();
             pluralInThree.Clear();
+            pluralDescription.Clear();
         }
     }
 }
