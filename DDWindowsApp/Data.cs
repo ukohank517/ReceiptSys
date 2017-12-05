@@ -42,7 +42,8 @@ namespace DDWindowsApp
         public static List<String> CountryinB = new List<string>();
         public static List<String> TELinB = new List<string>();
         public static List<String> DescriptioninB = new List<string>();
-       
+        public static List<bool> isPluralinB = new List<bool>();
+
 
         //DBの情報
         public const string dbpath = "\\\\192.168.1.37\\share\\DB_ForTest\\DB_sample.xlsx";
@@ -71,6 +72,7 @@ namespace DDWindowsApp
             CountryinB.Clear();
             TELinB.Clear();
             DescriptioninB.Clear();
+            isPluralinB.Clear();
         }
 
         public static void RenewBox()

@@ -26,8 +26,8 @@ namespace DDWindowsApp
         public String _FAX = "";
 
         public int _sum = 1;//全部で何行入ってるのか
-        public String _description = "";
-        public int _num = 1;//注文個数
+        public String[] _description = new String[10];
+        public int[] _num = new int[10];//注文個数
         public int _unitP = 10;
 
 
@@ -199,21 +199,13 @@ namespace DDWindowsApp
                 {
                     objCell = objWorkSheet.Cells[_line + 37 + i, _col + 1];
                     objRange = objWorkSheet.get_Range(objCell, objCell);
-                    objRange.Value2 = _description;
+                    objRange.Value2 = _description[i];
                     Marshal.ReleaseComObject(objRange);
                     Marshal.ReleaseComObject(objCell);
 
                     objCell = objWorkSheet.Cells[_line + 37 + i, _col + 4];
                     objRange = objWorkSheet.get_Range(objCell, objCell);
-                    objRange.Value2 = Convert.ToString(_num);
-                    Console.WriteLine(_num);
-                    Console.WriteLine(_num);
-                    Console.WriteLine(_num);
-                    Console.WriteLine(_num);
-                    Console.WriteLine(_num);
-                    Console.WriteLine(_num);
-                    Console.WriteLine(_num);
-                    Console.WriteLine(_num);
+                    objRange.Value2 = Convert.ToString(_num[i]);
 
 
                     Marshal.ReleaseComObject(objRange);
@@ -227,7 +219,7 @@ namespace DDWindowsApp
 
                     objCell = objWorkSheet.Cells[_line + 37 + i, _col + 7];
                     objRange = objWorkSheet.get_Range(objCell, objCell);
-                    objRange.Value2 = Convert.ToString(_num * _unitP);
+                    objRange.Value2 = Convert.ToString(_num[i] * _unitP);
                     Marshal.ReleaseComObject(objRange);
                     Marshal.ReleaseComObject(objCell);
                 }

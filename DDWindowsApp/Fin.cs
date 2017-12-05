@@ -55,9 +55,16 @@ namespace DDWindowsApp
                 objExcel._PostNo = Data.PostIDinB[i];
                 objExcel._Country = Data.CountryinB[i];
                 objExcel._TEL = Data.TELinB[i];
-                objExcel._num = 1;
-                objExcel._description = Data.DescriptioninB[i];
-
+                if (Data.isPluralinB[i] == false)
+                {
+                    objExcel._sum = 1;
+                    objExcel._num[0] = 1;
+                    objExcel._description[0] = Data.DescriptioninB[i];
+                }
+                else
+                {
+                    
+                }
                 objExcel.Print();
             }
             Data.EmptyBox();

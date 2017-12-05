@@ -67,29 +67,14 @@ namespace DDWindowsApp
                 sheet1.Cell("B" + Convert.ToString(i + 2)).SetValue(Data.boxName);
                 Order = Convert.ToString(sheet1.Cell("G" + Convert.ToString(i + 2)).Value);
                 line = Convert.ToInt32(sheet1.Cell("D" + Convert.ToString(i + 2)).Value);
-                book.Save();
+                //book.Save();
             }
 
             //画面の右側の表を更新
             AppPanel.tableFrame.situationTable.Rows.Add(NO, BOX, JAN, Order, line);
 
 
-            //box情報更新
-            if (Data.boxCount == Data.GOODSMAXNUM)
-            {
-                /*
-                Data.boxCount = 1;
-                Data.boxName++;
-                Data.boxName %= Data.BOXMAXNUM;
-                */
 
-
-                AppPanel.mainFrame.Visible = false;
-                AppPanel.finFrame.Visible = true;
-
-                //AppPanel.tableFrame.situationTable.
-
-            }
 
             Data.NameinB.Add(Data.nowName);
             Data.Address1inB.Add(Data.nowAdress1);
@@ -100,7 +85,16 @@ namespace DDWindowsApp
             Data.CountryinB.Add(Data.nowCountry);
             Data.TELinB.Add(Data.nowTEL);
             Data.DescriptioninB.Add(Data.nowDescription);
+            Data.isPluralinB.Add(false);
 
+            //box情報更新
+            if (Data.boxCount == Data.GOODSMAXNUM)
+            {
+
+                AppPanel.mainFrame.Visible = false;
+                AppPanel.finFrame.Visible = true;
+
+            }
 
             Data.RenewBox();
         }

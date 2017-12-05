@@ -48,7 +48,7 @@ namespace DDWindowsApp
                     Data.nownum = Convert.ToInt32(sheet1.Cell("R" + Convert.ToString(lineNo + 2)).Value);
                 }
                 //%%%%%%%%%%%
-                book.Save();
+                //book.Save();
             }
             return flag;
         }
@@ -71,7 +71,7 @@ namespace DDWindowsApp
                 string num = Convert.ToString(sheet1.Cell("R" + Convert.ToString(lineNo + 2)).Value);//同じ商品を複数注文
                 if (plural != "" || num != "1") flag = true;//何かしらの情報が複数である
                 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-                book.Save();
+                //book.Save();
                
             }
             return flag;
@@ -196,7 +196,7 @@ namespace DDWindowsApp
                 var sheet1 = book.Worksheet(1);
                 way = Convert.ToChar(sheet1.Cell("F" + Convert.ToString(lineNo + 2)).Value);
                 //%%%%%%%%%%%%%%%%%%%%%%%%%
-                book.Save();
+                //book.Save();
             }
             if (way == '*') return 0;
             if (way == 'e') return 1;
@@ -235,14 +235,14 @@ namespace DDWindowsApp
                 {
                     Console.WriteLine("2週間以内");
                     //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-                    book.Save();
+                    //book.Save();
                     return false;
                 }
                 else
                 {
                     Console.WriteLine("2週間以上");
                     //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-                    book.Save();
+                    //book.Save();
                     return true;
                 }
             }
