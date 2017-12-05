@@ -12,7 +12,7 @@ namespace DDWindowsApp
         public int _sheetNo = 1;                        // シートNo.
         public int _col = 1;                            // データ書き込みカラム
         public int _line = 1;                           // データ書き込み開始行
-        public String _printer = "GreenLabel";                    // 出力プリンター
+        public String _printer = "Invoice";                    // 出力プリンター
 
 
         public String _Name = "";

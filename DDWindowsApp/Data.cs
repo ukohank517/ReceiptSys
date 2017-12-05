@@ -44,8 +44,8 @@ namespace DDWindowsApp
         public static List<String> DescriptioninB = new List<string>();
         public static List<bool> isPluralinB = new List<bool>();
 
-        public static List<String> DescriptioninBPlural = new List<string>();
-        public static List<String> NuminBPlural = new List<string>();
+        public static List<List<String>> DescriptioninBPlural = new List<List<string>>();
+        public static List<List<int>> NuminBPlural = new List<List<int>>();
 
         //DBの情報
         public const string dbpath = "\\\\192.168.1.37\\share\\DB_ForTest\\DB_sample.xlsx";

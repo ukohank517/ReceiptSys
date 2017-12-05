@@ -43,9 +43,11 @@ namespace DDWindowsApp
             //invoice印刷
            
             Console.WriteLine("printインボイス");
-
-            for(int i = 0; i < Data.GOODSMAXNUM; i++)
+        
+           
+            for (int i = 0; i < Data.GOODSMAXNUM; i++)
             {
+
                 ExcelPrint objExcel = new ExcelPrint();
                 objExcel._Name = Data.NameinB[i];
                 objExcel._Address1 = Data.Address1inB[i];
@@ -63,7 +65,12 @@ namespace DDWindowsApp
                 }
                 else
                 {
-                    
+                    objExcel._sum = Data.DescriptioninBPlural[Convert.ToInt32(Data.DescriptioninB[i])].Count();
+                    for(int j = 0; j < objExcel._sum; j++)
+                    {
+                        objExcel._description[j] = Data.DescriptioninBPlural[Convert.ToInt32(Data.DescriptioninB[i])][j];
+                        objExcel._num[j] = Data.NuminBPlural[Convert.ToInt32(Data.DescriptioninB[i])][j];
+                    }
                 }
                 objExcel.Print();
             }
