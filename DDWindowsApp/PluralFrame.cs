@@ -67,15 +67,17 @@ namespace DDWindowsApp
                 Data.CountryinB.Add(Data.nowCountry);
                 Data.TELinB.Add(Data.nowTEL);
 
-                List<String> p = new List<string>() ;
-                for (int i = 0; i < Data.pluralDescription.Count(); i++)
-                    p.Add(Data.pluralDescription[i]);
+                List<String> de = new List<string>() ;
+                List<int> nu = new List<int>();
+                for (int i = 0; i < Data.pluralDescription.Count(); i++) {
+                    de.Add(Data.pluralDescription[i]);
+                    nu.Add(Data.pluralAim[i]);
+                }
 
-                numの処理も書いてね！
 
-                Data.DescriptioninBPlural.Add(p);
-                Data.NuminBPlural.Add(Data.pluralAim);
-                Data.DescriptioninB.Add(Convert.ToString(Data.NuminBPlural.Count() -1 ));
+                Data.DescriptioninBPlural.Add(de);
+                Data.NuminBPlural.Add(nu);
+                Data.DescriptioninB.Add(Convert.ToString(Data.NuminBPlural.Count() -1));
 
                 Data.isPluralinB.Add(true);
                 Console.WriteLine("%%%%%%%%%%%after%%%%%%%%%%%%%%");
