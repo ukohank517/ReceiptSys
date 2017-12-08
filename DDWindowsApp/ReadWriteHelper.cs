@@ -67,7 +67,8 @@ namespace DDWindowsApp
                 sheet1.Cell("B" + Convert.ToString(i + 2)).SetValue(Data.boxName);
                 Order = Convert.ToString(sheet1.Cell("G" + Convert.ToString(i + 2)).Value);
                 line = Convert.ToInt32(sheet1.Cell("D" + Convert.ToString(i + 2)).Value);
-                //book.Save();
+                sheet1.Cell("B" + Convert.ToString(i + 2)).SetValue(Data.boxName);
+                book.Save();
             }
 
             //画面の右側の表を更新

@@ -46,10 +46,10 @@ namespace DDWindowsApp
                     Data.nowCountry = Convert.ToString(sheet1.Cell("N" + Convert.ToString(lineNo + 2)).Value);
                     Data.nowDescription = Convert.ToString(sheet1.Cell("Q" + Convert.ToString(lineNo + 2)).Value);
                     Data.nownum = Convert.ToInt32(sheet1.Cell("R" + Convert.ToString(lineNo + 2)).Value);
-                    sheet1.Cell("B" + Convert.ToString(lineNo + 2)).SetValue(Data.boxName);
+                    //sheet1.Cell("B" + Convert.ToString(lineNo + 2)).SetValue(Data.boxName);
                 }
                 //%%%%%%%%%%%
-                book.Save();
+                //book.Save();
             }
             return flag;
         }
