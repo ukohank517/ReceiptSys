@@ -188,12 +188,12 @@ namespace DDWindowsApp
                 Marshal.ReleaseComObject(objRange);
                 Marshal.ReleaseComObject(objCell);
 
-                /*
+                
                 int totalNum = 0;
                 for (int i = 0; i < _sum; i++)
                     totalNum += _num[i];
                 _unitP = 10 / totalNum;
-                */
+                
 
                 for (int i = 0; i < _sum; i++)
                 {
@@ -229,7 +229,7 @@ namespace DDWindowsApp
                 if ((_unitP) == 0)
                     objRange.Value2 = "10";
                 else
-                    objRange.Value2 = Convert.ToString(_unitP);
+                    objRange.Value2 = Convert.ToString(_unitP*totalNum);
                 Marshal.ReleaseComObject(objRange);
                 Marshal.ReleaseComObject(objCell);
 

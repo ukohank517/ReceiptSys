@@ -113,7 +113,8 @@ namespace DDWindowsApp
                     else break;
                 }
                 string sentway = Convert.ToString(sheet1.Cell("F" + Convert.ToString(lineNo + 2)).Value);
-                AppPanel.pluralFrame.label2.Text = "発送方法は"+sentway +"だよ";
+                //発送方法
+                //AppPanel.pluralFrame.label2.Text = "発送方法は"+sentway +"だよ";
                 
 
                 //その人専用のボックス更新、内容がpluralBox保存
