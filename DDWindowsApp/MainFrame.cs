@@ -47,5 +47,11 @@ namespace DDWindowsApp
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AppPanel.mainFrame.Visible = false;
+            AppPanel.singlePringFrame.Visible = true;
+        }
     }
 }

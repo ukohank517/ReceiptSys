@@ -34,7 +34,8 @@ namespace DDWindowsApp
             PrintDocument pd = new PrintDocument();
             pd.PrintPage += new PrintPageEventHandler(green_Print);
             pd.PrinterSettings.PrinterName = "GreenLabel";
-            pd.Print(); 
+            pd.Print();
+            pd.Print();
 
             //invoice印刷
             Console.WriteLine("printインボイス");          

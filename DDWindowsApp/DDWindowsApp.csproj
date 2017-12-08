@@ -95,6 +95,12 @@
     <Compile Include="IsCansel.Designer.cs">
       <DependentUpon>IsCansel.cs</DependentUpon>
     </Compile>
+    <Compile Include="SinglePrint.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SinglePrint.Designer.cs">
+      <DependentUpon>SinglePrint.cs</DependentUpon>
+    </Compile>
     <Compile Include="WindowChangeHelper.cs" />
     <Compile Include="ReadWriteHelper.cs" />
     <Compile Include="Data.cs" />
@@ -183,6 +189,9 @@
     </Compile>
     <EmbeddedResource Include="SentThree.resx">
       <DependentUpon>SentThree.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SinglePrint.resx">
+      <DependentUpon>SinglePrint.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TableFrame.resx">
       <DependentUpon>TableFrame.cs</DependentUpon>

@@ -192,6 +192,7 @@ namespace DDWindowsApp
                 int totalNum = 0;
                 for (int i = 0; i < _sum; i++)
                     totalNum += _num[i];
+                if (totalNum == 0) totalNum = 1;
                 _unitP = 10 / totalNum;
                 
 

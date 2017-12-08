@@ -36,6 +36,7 @@ namespace DDWindowsApp
         public static Fin finFrame;
         public static OverTime overTimeFrame;
         public static IsCansel isCanselFrame;
+        public static SinglePrint singlePringFrame;
 
         public static TableFrame tableFrame;
         public static PluralTableFrame pluralTableFrame;
@@ -57,6 +58,7 @@ namespace DDWindowsApp
             finFrame = new Fin();
             overTimeFrame = new OverTime();
             isCanselFrame = new IsCansel();
+            singlePringFrame = new SinglePrint();
 
             tableFrame = new TableFrame();
             pluralTableFrame = new PluralTableFrame();
@@ -71,6 +73,7 @@ namespace DDWindowsApp
             panel.Controls.Add(finFrame);
             panel.Controls.Add(overTimeFrame);
             panel.Controls.Add(isCanselFrame);
+            panel.Controls.Add(singlePringFrame);
 
             //テーブル専用パネルにテーブルを追加
             panelTable.Controls.Add(tableFrame);

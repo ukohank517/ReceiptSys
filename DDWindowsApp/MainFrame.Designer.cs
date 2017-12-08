@@ -34,12 +34,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.buttonSearch = new System.Windows.Forms.Button();
             this.labelNumDetail = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textJAN
             // 
             this.textJAN.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textJAN.Location = new System.Drawing.Point(67, 24);
+            this.textJAN.Location = new System.Drawing.Point(67, 66);
             this.textJAN.Name = "textJAN";
             this.textJAN.Size = new System.Drawing.Size(178, 23);
             this.textJAN.TabIndex = 0;
@@ -48,7 +49,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.Location = new System.Drawing.Point(21, 27);
+            this.label1.Location = new System.Drawing.Point(21, 69);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(40, 16);
             this.label1.TabIndex = 1;
@@ -57,7 +58,7 @@
             // textNum
             // 
             this.textNum.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textNum.Location = new System.Drawing.Point(260, 24);
+            this.textNum.Location = new System.Drawing.Point(251, 66);
             this.textNum.Name = "textNum";
             this.textNum.Size = new System.Drawing.Size(27, 23);
             this.textNum.TabIndex = 2;
@@ -67,7 +68,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label2.Location = new System.Drawing.Point(293, 27);
+            this.label2.Location = new System.Drawing.Point(284, 69);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(24, 16);
             this.label2.TabIndex = 3;
@@ -90,15 +91,26 @@
             this.labelNumDetail.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelNumDetail.Location = new System.Drawing.Point(230, 157);
             this.labelNumDetail.Name = "labelNumDetail";
-            this.labelNumDetail.Size = new System.Drawing.Size(87, 16);
+            this.labelNumDetail.Size = new System.Drawing.Size(16, 16);
             this.labelNumDetail.TabIndex = 5;
-            this.labelNumDetail.Text = Data.boxCount+"件/" + Data.GOODSMAXNUM + "件中";
-            //this.labelNumDetail.Click += new System.EventHandler(this.labelNumDetail_Click);
+            this.labelNumDetail.Text = "0";
             // 
-            // MainFramefda
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(61, 25);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "単品";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // MainFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.labelNumDetail);
             this.Controls.Add(this.buttonSearch);
             this.Controls.Add(this.label2);
@@ -121,5 +133,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button buttonSearch;
         public System.Windows.Forms.Label labelNumDetail;
+        private System.Windows.Forms.Button button1;
     }
 }

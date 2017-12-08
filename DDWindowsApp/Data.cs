@@ -9,7 +9,7 @@ namespace DDWindowsApp
     class Data
     {
         //すべての変数をここに
-        public const int GOODSMAXNUM = 3; //ボックス内グッズの数
+        public const int GOODSMAXNUM = 16; //ボックス内グッズの数
         public const int BOXMAXNUM = 5000;
         public const int PLURALBOXMAX = 5000;//複数口注文する人用ボックス
 
