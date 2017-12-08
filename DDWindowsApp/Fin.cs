@@ -30,21 +30,14 @@ namespace DDWindowsApp
             AppPanel.mainFrame.Visible = true;
 
             //GreenLabel印刷
-
-            Console.WriteLine("printグリーンラベル");
-            /*
+            Console.WriteLine("printグリーンラベル");           
             PrintDocument pd = new PrintDocument();
             pd.PrintPage += new PrintPageEventHandler(green_Print);
             pd.PrinterSettings.PrinterName = "GreenLabel";
-            pd.Print();
-            */
-
+            pd.Print(); 
 
             //invoice印刷
-           
-            Console.WriteLine("printインボイス");
-        
-           
+            Console.WriteLine("printインボイス");          
             for (int i = 0; i < Data.GOODSMAXNUM; i++)
             {
 
@@ -144,6 +137,7 @@ namespace DDWindowsApp
             int wy = 80;
             int lh = 20;
 
+            DateTime dtToday = DateTime.Today;
 
             for (int i = 0; i < 4; i++)
             {
@@ -157,16 +151,10 @@ namespace DDWindowsApp
                     e.Graphics.DrawString("g", font, brush, new Point(weightx + i * minx, weighty + j * miny + wy));
                     e.Graphics.DrawString("USD", font, brush, new Point(weightx + i * minx + wx, weighty + j * miny + wy - lh));
                     e.Graphics.DrawString("10", font, brush, new Point(weightx + i * minx + 2 + wx, weighty + j * miny + wy));
-                    e.Graphics.DrawString("2017/11/25/Manabu Hano", font, brush, new Point(datex + i * minx, datey + j * miny));
+                    e.Graphics.DrawString(dtToday.ToString("d")+"/Manabu Hano", font, brush, new Point(datex + i * minx, datey + j * miny));
                 }
             }
-
-
-            //e.Graphics.DrawString("テスト123456789", font, brush, new PointF(-500, 0));//←、↑
-
-            //Pen p = new Pen(Color.Black);
-            //e.Graphics.DrawRectangle(p, new Rectangle(20, 100, 200, 100));//(20,100) 200*100
-            font.Dispose();
+         font.Dispose();
         }
 
 

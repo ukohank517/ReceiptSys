@@ -11,7 +11,6 @@ namespace DDWindowsApp
     {
         public void changeWindowTo(string to)
         {
-            Console.WriteLine("change windows to >>" + to);
             if (to == "nothit")
             {
                 AppPanel.mainFrame.Visible = false;
@@ -110,7 +109,6 @@ namespace DDWindowsApp
 
 
                     //通常のsal処理
-                    //4973307009730 
                     bool overtime = CheckHelper.TimeCheck(i);
                     if (overtime)
                     {

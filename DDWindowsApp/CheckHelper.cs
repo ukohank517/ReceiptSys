@@ -20,9 +20,6 @@ namespace DDWindowsApp
         /// <returns></returns>
         public static bool CheckIfExsit(int lineNo)
         {
-            Console.WriteLine("check" + lineNo);
-            bool flag = false;    //やはり空白
-
             using (var book=new XLWorkbook(Data.dbpath,XLEventTracking.Disabled))
             {
                 var sheet1 = book.Worksheet(1);
@@ -46,12 +43,9 @@ namespace DDWindowsApp
                     Data.nowCountry = Convert.ToString(sheet1.Cell("N" + Convert.ToString(lineNo + 2)).Value);
                     Data.nowDescription = Convert.ToString(sheet1.Cell("Q" + Convert.ToString(lineNo + 2)).Value);
                     Data.nownum = Convert.ToInt32(sheet1.Cell("R" + Convert.ToString(lineNo + 2)).Value);
-                    //sheet1.Cell("B" + Convert.ToString(lineNo + 2)).SetValue(Data.boxName);
                 }
-                //%%%%%%%%%%%
-                //book.Save();
             }
-            return flag;
+            return false;
         }
 
 
@@ -64,18 +58,14 @@ namespace DDWindowsApp
         /// <returns>true: 複数の注文     false: 複数ではない注文</returns>
         public static bool CheckPlural(int lineNo)
         {
-            bool flag = false;
             using (var book = new XLWorkbook(Data.dbpath,XLEventTracking.Disabled))
             {
                 var sheet1 = book.Worksheet(1);
                 string plural = Convert.ToString(sheet1.Cell("S" + Convert.ToString(lineNo + 2)).Value);//複数の違う内容の注文かどうか
                 string num = Convert.ToString(sheet1.Cell("R" + Convert.ToString(lineNo + 2)).Value);//同じ商品を複数注文
-                if (plural != "" || num != "1") flag = true;//何かしらの情報が複数である
-                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-                //book.Save();
-               
+                if (plural != "" || num != "1") return true;//何かしらの情報が複数である
             }
-            return flag;
+            return false;
         }
 
 
@@ -113,8 +103,7 @@ namespace DDWindowsApp
                     else break;
                 }
                 string sentway = Convert.ToString(sheet1.Cell("F" + Convert.ToString(lineNo + 2)).Value);
-                //発送方法
-                //AppPanel.pluralFrame.label2.Text = "発送方法は"+sentway +"だよ";
+                AppPanel.pluralFrame.label2.Text = "発送方法は"+sentway +"だよ";
                 
 
                 //その人専用のボックス更新、内容がpluralBox保存
@@ -162,9 +151,7 @@ namespace DDWindowsApp
                 {
                     sheet1.Cell("U" + Convert.ToString(i + 2)).SetValue(Data.pluralStock[i - beginIndex]);//stock
                     sheet1.Cell("T" + Convert.ToString(i + 2)).SetValue(Data.pluralBoxNo);//boxNo
-                    Console.WriteLine(Data.pluralStock[i - beginIndex] + " " + Data.pluralBoxNo);
                     int aim = Convert.ToInt32(sheet1.Cell("R" + Convert.ToString(i + 2)).Value);
-                    Console.WriteLine("aim->" +aim);
                     if (Data.pluralStock[i - beginIndex]==aim)
                     {
                         sheet1.Cell("B" + Convert.ToString(i + 2)).SetValue(Data.pluralBoxNo);
@@ -184,8 +171,6 @@ namespace DDWindowsApp
                     AppPanel.pluralFrame.buttonPrint.Enabled = false;
                 }
             }
-
-            //return flag;
         }
 
         /// <summary>
@@ -200,8 +185,6 @@ namespace DDWindowsApp
             {
                 var sheet1 = book.Worksheet(1);
                 way = Convert.ToChar(sheet1.Cell("F" + Convert.ToString(lineNo + 2)).Value);
-                //%%%%%%%%%%%%%%%%%%%%%%%%%
-                //book.Save();
             }
             if (way == '*') return 0;
             if (way == 'e') return 1;
@@ -222,34 +205,17 @@ namespace DDWindowsApp
             {
                 var sheet1 = book.Worksheet(1);
                 var str = sheet1.Cell("A" + Convert.ToString(lineNo + 2)).Value;
-                Console.WriteLine("---->"+str + "<------");
-                Console.WriteLine();
                 DateTime aaaa = Convert.ToDateTime(str);
                 
-                Console.WriteLine("--->"+aaaa);
                 DateTime goodsTime = new DateTime(1900, 1, 1, 0, 0, 0);
-                        
-                //goodsTime += new TimeSpan(aaaa - 2, 0, 0, 0);
-                
+                                        
                 DateTime today = DateTime.Today;
                 
                 TimeSpan goodsSpan = today - aaaa;
                 TimeSpan defaltSpan = new TimeSpan(14, 0, 0, 0);
-                Console.WriteLine(goodsSpan);
-                if (goodsSpan < defaltSpan)
-                {
-                    Console.WriteLine("2週間以内");
-                    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-                    //book.Save();
-                    return false;
-                }
-                else
-                {
-                    Console.WriteLine("2週間以上");
-                    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-                    //book.Save();
-                    return true;
-                }
+
+                if (goodsSpan < defaltSpan) return false;
+                else return true;
             }
         }
 

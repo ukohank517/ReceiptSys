@@ -24,14 +24,10 @@ namespace DDWindowsApp
          //アプリの初期設定
         public void TakeFromDBData()
         {
-
-            Console.WriteLine("取り出し開始");
             using (var book = new XLWorkbook(Data.dbpath,XLEventTracking.Disabled))
             {
                 var sheet1 = book.Worksheet(1);
                 var range = sheet1.RangeUsed();
-
-                Console.WriteLine(range.ColumnCount() + " " + range.RowCount());
               
                 for (int i = 0; i < range.RowCount()-1; i++)
                 {
@@ -41,7 +37,6 @@ namespace DDWindowsApp
                 }
                 book.Save();
             }
-            Console.WriteLine("finished");
         }
 
         /// <summary>
@@ -74,9 +69,6 @@ namespace DDWindowsApp
             //画面の右側の表を更新
             AppPanel.tableFrame.situationTable.Rows.Add(NO, BOX, JAN, Order, line);
 
-
-
-
             Data.NameinB.Add(Data.nowName);
             Data.Address1inB.Add(Data.nowAdress1);
             Data.Address2inB.Add(Data.nowAdress2);
@@ -91,10 +83,8 @@ namespace DDWindowsApp
             //box情報更新
             if (Data.boxCount == Data.GOODSMAXNUM)
             {
-
                 AppPanel.mainFrame.Visible = false;
                 AppPanel.finFrame.Visible = true;
-
             }
 
             Data.RenewBox();
