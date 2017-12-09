@@ -53,18 +53,13 @@ namespace DDWindowsApp
                 Data.TELinB.Add(Data.nowTEL);
 
                 List<String> de = new List<string>() ;
-                List<int> nu = new List<int>();
-                for (int i = 0; i < Data.pluralDescription.Count(); i++) {
-                    de.Add(Data.pluralDescription[i]);
-                    nu.Add(Data.pluralAim[i]);
-                }
+                int nu = 0;
+                for (int i = 0; i < Data.pluralDescription.Count(); i++) 
+                    nu += Data.pluralAim[i];
 
+                Data.DescriptioninB.Add(Data.pluralDescription[0]);
+                Data.NuminB.Add(nu);
 
-                Data.DescriptioninBPlural.Add(de);
-                Data.NuminBPlural.Add(nu);
-                Data.DescriptioninB.Add(Convert.ToString(Data.NuminBPlural.Count() -1));
-
-                Data.isPluralinB.Add(true);
 
                 //box情報更新
                 if (Data.boxCount == Data.GOODSMAXNUM)

@@ -50,13 +50,13 @@ namespace DDWindowsApp
                 objExcel._PostNo = this.textPost.Text;
                 objExcel._Country = this.textCountry.Text;
                 objExcel._TEL = this.textTEL.Text;
-                objExcel._sum = words.Count() / 2;
+                objExcel._description = word[0];
+                objExcel._num = 0;
                 for (int i = 0; i < words.Count() / 2; i++)
                 {
-                    objExcel._description[i] = words[2*i];
                     int a = 0;
-                    bool re = int.TryParse(words[2 * i + 1], out a);
-                    objExcel._num[i] = a;
+                    int.TryParse(words[2 * i + 1], out a);
+                    objExcel._num += a;
                 }
                 objExcel.Print();
             }

@@ -32,7 +32,9 @@ namespace DDWindowsApp
         }
 
         private void buttonSearchClicked(object sender, EventArgs e)
-        {   
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            
             string janCode = textJAN.Text;
             WindowChangeHelper windowChange = new WindowChangeHelper();
             if (janCode == "")

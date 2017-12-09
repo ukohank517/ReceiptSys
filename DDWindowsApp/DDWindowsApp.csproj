@@ -101,6 +101,12 @@
     <Compile Include="SinglePrint.Designer.cs">
       <DependentUpon>SinglePrint.cs</DependentUpon>
     </Compile>
+    <Compile Include="NotFour.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NotFour.Designer.cs">
+      <DependentUpon>NotFour.cs</DependentUpon>
+    </Compile>
     <Compile Include="WindowChangeHelper.cs" />
     <Compile Include="ReadWriteHelper.cs" />
     <Compile Include="Data.cs" />
@@ -159,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainFrame.resx">
       <DependentUpon>MainFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NotFour.resx">
+      <DependentUpon>NotFour.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NotHit.resx">
       <DependentUpon>NotHit.cs</DependentUpon>

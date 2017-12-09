@@ -25,6 +25,8 @@ namespace DDWindowsApp
 
         private void buttonConfirm_Clicked(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
+
             AppPanel.tableFrame.situationTable.Rows.Clear();
             AppPanel.finFrame.Visible = false;
             AppPanel.mainFrame.Visible = true;
@@ -33,12 +35,20 @@ namespace DDWindowsApp
             Console.WriteLine("printグリーンラベル");           
             PrintDocument pd = new PrintDocument();
             pd.PrintPage += new PrintPageEventHandler(green_Print);
+            pd.PrintController = new System.Drawing.Printing.StandardPrintController();
             pd.PrinterSettings.PrinterName = "GreenLabel";
             pd.Print();
-            pd.Print();
-
+            if (Data.DescriptioninB.Count > 8)
+            {
+                PrintDocument pd2 = new PrintDocument();
+                pd2.PrintPage += new PrintPageEventHandler(green_Print2);
+                pd2.PrintController = new System.Drawing.Printing.StandardPrintController();
+                pd2.PrinterSettings.PrinterName = "GreenLabel";
+                pd2.Print();
+            }
             //invoice印刷
-            Console.WriteLine("printインボイス");          
+            Console.WriteLine("printインボイス");    
+            
             for (int i = 0; i < Data.GOODSMAXNUM; i++)
             {
 
@@ -51,29 +61,13 @@ namespace DDWindowsApp
                 objExcel._PostNo = Data.PostIDinB[i];
                 objExcel._Country = Data.CountryinB[i];
                 objExcel._TEL = Data.TELinB[i];
-                if (Data.isPluralinB[i] == false)
-                {
-                    objExcel._sum = 1;
-                    objExcel._num[0] = 1;
-                    objExcel._description[0] = Data.DescriptioninB[i];
-                }
-                else
-                {
-                    objExcel._sum = Data.DescriptioninBPlural[Convert.ToInt32(Data.DescriptioninB[i])].Count();
-                    for(int j = 0; j < objExcel._sum; j++)
-                    {
-                        objExcel._description[j] = Data.DescriptioninBPlural[Convert.ToInt32(Data.DescriptioninB[i])][j];
-                        objExcel._num[j] = Data.NuminBPlural[Convert.ToInt32(Data.DescriptioninB[i])][j];
-                    }
-                }
+                objExcel._Count = Convert.ToString(i+1);
+                objExcel._num = Data.NuminB[i];
+                objExcel._description = Data.DescriptioninB[i];
                 objExcel.Print();
             }
-            Data.EmptyBox();
-
-            //ExcelPrint objExcel = new ExcelPrint();
-            //objExcel._B2 = "Shipping Address: xxxxxxxxxx";//ExcelPring.csも弄らないといけない。
-            //objExcel.Print();
             
+            Data.EmptyBox();
         }
 
         /// <summary>
@@ -138,24 +132,138 @@ namespace DDWindowsApp
             int wy = 80;
             int lh = 20;
 
+            IDictionary<int, string> goodsnum = new Dictionary<int,string>();
+            goodsnum.Add(1, "");
+            goodsnum.Add(2, "two piece");
+            goodsnum.Add(3, "three piece");
+            goodsnum.Add(4, "four piece");
+            goodsnum.Add(5, "five piece");
+            goodsnum.Add(6, "six piece");
+            goodsnum.Add(7, "seven piece");
+            goodsnum.Add(8, "eight piece");
+            goodsnum.Add(9, "nine piece");
+            goodsnum.Add(10, "ten piece");
+
+            
             DateTime dtToday = DateTime.Today;
 
-            for (int i = 0; i < 4; i++)
+            char[] delimiterChars = { '(', ')' };
+
+            
+            for(int times = 0; times < 8; times++)
             {
-                for (int j = 0; j < 2; j++)
+                if (times+1 > Data.DescriptioninB.Count()) break;
+               
+                int i = times / 2;
+                int j = times % 2;
+                
+                int unitp = 10 / Data.NuminB[times];
+
+                string des1 = "";
+                string des2 = "";
+                string des3 = goodsnum[Data.NuminB[times]];
+                string[] word = Data.DescriptioninB[times].Split(delimiterChars);
+                if(word.Length == 1)
                 {
-                    e.Graphics.DrawString("Cosmetics", font, brush, new Point(typex + i * minx, typey + j * miny));
-                    e.Graphics.DrawString("(non alcohol)", font, brush, new Point(typex + i * minx, typey + j * miny + lh));
-                    e.Graphics.DrawString("80g", font, brush, new Point(weightx + i * minx, weighty + j * miny));
-                    e.Graphics.DrawString("USD", font, brush, new Point(weightx + i * minx + wx, weighty + j * miny - lh));
-                    e.Graphics.DrawString("10", font, brush, new Point(weightx + i * minx + wx, weighty + j * miny));
-                    e.Graphics.DrawString("g", font, brush, new Point(weightx + i * minx, weighty + j * miny + wy));
-                    e.Graphics.DrawString("USD", font, brush, new Point(weightx + i * minx + wx, weighty + j * miny + wy - lh));
-                    e.Graphics.DrawString("10", font, brush, new Point(weightx + i * minx + 2 + wx, weighty + j * miny + wy));
-                    e.Graphics.DrawString(dtToday.ToString("d")+"/Manabu Hano", font, brush, new Point(datex + i * minx, datey + j * miny));
+                    des1 = word[0];
+                    des2 = "";
                 }
+                if(word.Length >= 2)
+                {
+                    des1 = word[0];
+                    des2 = word[1];
+                }
+
+                e.Graphics.DrawString(des1, font, brush, new Point(typex + i * minx, typey + j * miny));
+                e.Graphics.DrawString("(" + des2 + ")", font, brush, new Point(typex + i * minx, typey + j * miny + lh));
+                e.Graphics.DrawString(des3, font, brush, new Point(typex + i * minx, typey + j * miny + lh + lh));
+                e.Graphics.DrawString("  g", font, brush, new Point(weightx + i * minx, weighty + j * miny));
+                e.Graphics.DrawString("USD", font, brush, new Point(weightx + i * minx + wx, weighty + j * miny - lh));
+                e.Graphics.DrawString(Convert.ToString(unitp), font, brush, new Point(weightx + i * minx + wx, weighty + j * miny));
+                e.Graphics.DrawString("  g", font, brush, new Point(weightx + i * minx, weighty + j * miny + wy));
+                e.Graphics.DrawString("USD", font, brush, new Point(weightx + i * minx + wx, weighty + j * miny + wy - lh));
+                e.Graphics.DrawString(Convert.ToString(unitp * Data.NuminB[times]), font, brush, new Point(weightx + i * minx + 2 + wx, weighty + j * miny + wy));
+                e.Graphics.DrawString(Convert.ToString(times+1), font, brush, new Point(typex + i * minx, datey + j * miny));
+                e.Graphics.DrawString(dtToday.ToString("d")+"/Manabu Hano", font, brush, new Point(datex + i * minx, datey + j * miny));
             }
          font.Dispose();
+        }
+
+        private void green_Print2(object sender, PrintPageEventArgs e)
+        {
+            Font font = new Font("Calibri", 9.0f);
+            Brush brush = new SolidBrush(Color.Black);
+            e.Graphics.RotateTransform(270.0F);
+
+
+            //-------紙の内容を書く。--------------------------
+
+
+            int typex = -1100; int typey = 145;
+            int weightx = -950; int weighty = 180;
+            int datex = -1030; int datey = 370;
+            int minx = 293;
+            int miny = 410;
+
+            int wx = 45;
+            int wy = 80;
+            int lh = 20;
+
+            IDictionary<int, string> goodsnum = new Dictionary<int, string>();
+            goodsnum.Add(1, "one piece");
+            goodsnum.Add(2, "two piece");
+            goodsnum.Add(3, "three piece");
+            goodsnum.Add(4, "four piece");
+            goodsnum.Add(5, "five piece");
+            goodsnum.Add(6, "six piece");
+            goodsnum.Add(7, "seven piece");
+            goodsnum.Add(8, "eight piece");
+            goodsnum.Add(9, "nine piece");
+            goodsnum.Add(10, "ten piece");
+
+
+            DateTime dtToday = DateTime.Today;
+
+            char[] delimiterChars = { '(', ')' };
+
+
+            for (int times = 0; times < 8; times++)
+            {
+                if (times + 9 > Data.DescriptioninB.Count()) break;
+
+                int i = times / 2;
+                int j = times % 2;
+
+                int unitp = 10 / Data.NuminB[times+8];
+
+                string des1 = "";
+                string des2 = "";
+                string des3 = goodsnum[Data.NuminB[times+8]]; 
+                string[] word = Data.DescriptioninB[times+8].Split(delimiterChars);
+                if (word.Length == 1)
+                {
+                    des1 = word[0];
+                    des2 = "";
+                }
+                if (word.Length >= 2)
+                {
+                    des1 = word[0];
+                    des2 = word[1];
+                }
+
+                e.Graphics.DrawString(des1, font, brush, new Point(typex + i * minx, typey + j * miny));
+                e.Graphics.DrawString("(" + des2 + ")", font, brush, new Point(typex + i * minx, typey + j * miny + lh));
+                e.Graphics.DrawString(des3, font, brush, new Point(typex + i * minx, typey + j * miny + lh + lh));
+                e.Graphics.DrawString("  g", font, brush, new Point(weightx + i * minx, weighty + j * miny));
+                e.Graphics.DrawString("USD", font, brush, new Point(weightx + i * minx + wx, weighty + j * miny - lh));
+                e.Graphics.DrawString(Convert.ToString(unitp), font, brush, new Point(weightx + i * minx + wx, weighty + j * miny));
+                e.Graphics.DrawString("  g", font, brush, new Point(weightx + i * minx, weighty + j * miny + wy));
+                e.Graphics.DrawString("USD", font, brush, new Point(weightx + i * minx + wx, weighty + j * miny + wy - lh));
+                e.Graphics.DrawString(Convert.ToString(unitp * Data.NuminB[times+8]), font, brush, new Point(weightx + i * minx + 2 + wx, weighty + j * miny + wy));
+                e.Graphics.DrawString(Convert.ToString(times+9), font, brush, new Point(typex + i * minx, datey + j * miny));
+                e.Graphics.DrawString(dtToday.ToString("d") + "/Manabu Hano", font, brush, new Point(datex + i * minx, datey + j * miny));
+            }
+            font.Dispose();
         }
 
 

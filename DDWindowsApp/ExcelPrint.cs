@@ -24,10 +24,10 @@ namespace DDWindowsApp
         public String _Country = "";
         public String _TEL = "";
         public String _FAX = "";
+        public String _Count = "0";
 
-        public int _sum = 1;//全部で何行入ってるのか
-        public String[] _description = new String[10];
-        public int[] _num = new int[10];//注文個数
+        public String _description = "";
+        public int _num = 1;//注文個数
         public int _unitP = 10;
 
 
@@ -122,6 +122,12 @@ namespace DDWindowsApp
                 Marshal.ReleaseComObject(objRange);
                 Marshal.ReleaseComObject(objCell);
 
+                objCell = objWorkSheet.Cells[_line + 10, _col + 7];
+                objRange = objWorkSheet.get_Range(objCell, objCell);
+                objRange.Value2 =  _Count;
+                Marshal.ReleaseComObject(objRange);
+                Marshal.ReleaseComObject(objCell);
+
                 objCell = objWorkSheet.Cells[_line + 9, _col + 1];
                 objRange = objWorkSheet.get_Range(objCell, objCell);
                 objRange.Value2 = "TEL: " + _TEL;
@@ -189,48 +195,38 @@ namespace DDWindowsApp
                 Marshal.ReleaseComObject(objCell);
 
                 
-                int totalNum = 0;
-                for (int i = 0; i < _sum; i++)
-                    totalNum += _num[i];
-                if (totalNum == 0) totalNum = 1;
-                _unitP = 10 / totalNum;
+                _unitP = 10 / _num;
                 
 
-                for (int i = 0; i < _sum; i++)
-                {
-                    objCell = objWorkSheet.Cells[_line + 37 + i, _col + 1];
-                    objRange = objWorkSheet.get_Range(objCell, objCell);
-                    objRange.Value2 = _description[i];
-                    Marshal.ReleaseComObject(objRange);
-                    Marshal.ReleaseComObject(objCell);
+                objCell = objWorkSheet.Cells[_line + 37, _col + 1];
+                objRange = objWorkSheet.get_Range(objCell, objCell);
+                objRange.Value2 = _description;
+                Marshal.ReleaseComObject(objRange);
+                Marshal.ReleaseComObject(objCell);
 
-                    objCell = objWorkSheet.Cells[_line + 37 + i, _col + 4];
-                    objRange = objWorkSheet.get_Range(objCell, objCell);
-                    objRange.Value2 = Convert.ToString(_num[i]);
+                objCell = objWorkSheet.Cells[_line + 37, _col + 4];
+                objRange = objWorkSheet.get_Range(objCell, objCell);
+                objRange.Value2 = Convert.ToString(_num);
 
 
-                    Marshal.ReleaseComObject(objRange);
-                    Marshal.ReleaseComObject(objCell);
+                Marshal.ReleaseComObject(objRange);
+                Marshal.ReleaseComObject(objCell);
 
-                    objCell = objWorkSheet.Cells[_line + 37 + i, _col + 6];
-                    objRange = objWorkSheet.get_Range(objCell, objCell);
-                    objRange.Value2 = Convert.ToString(_unitP);
-                    Marshal.ReleaseComObject(objRange);
-                    Marshal.ReleaseComObject(objCell);
+                objCell = objWorkSheet.Cells[_line + 37, _col + 6];
+                objRange = objWorkSheet.get_Range(objCell, objCell);
+                objRange.Value2 = Convert.ToString(_unitP);
+                Marshal.ReleaseComObject(objRange);
+                Marshal.ReleaseComObject(objCell);
 
-                    objCell = objWorkSheet.Cells[_line + 37 + i, _col + 7];
-                    objRange = objWorkSheet.get_Range(objCell, objCell);
-                    objRange.Value2 = Convert.ToString(_num[i] * _unitP);
-                    Marshal.ReleaseComObject(objRange);
-                    Marshal.ReleaseComObject(objCell);
-                }
+                objCell = objWorkSheet.Cells[_line + 37, _col + 7];
+                objRange = objWorkSheet.get_Range(objCell, objCell);
+                objRange.Value2 = Convert.ToString(_num * _unitP);
+                Marshal.ReleaseComObject(objRange);
+                Marshal.ReleaseComObject(objCell);
 
                 objCell = objWorkSheet.Cells[_line + 52, _col + 7];
                 objRange = objWorkSheet.get_Range(objCell, objCell);
-                if ((_unitP) == 0)
-                    objRange.Value2 = "10";
-                else
-                    objRange.Value2 = Convert.ToString(_unitP*totalNum);
+                objRange.Value2 = Convert.ToString(_unitP * _num);
                 Marshal.ReleaseComObject(objRange);
                 Marshal.ReleaseComObject(objCell);
 

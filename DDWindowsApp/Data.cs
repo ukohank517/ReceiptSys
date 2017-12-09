@@ -9,7 +9,7 @@ namespace DDWindowsApp
     class Data
     {
         //すべての変数をここに
-        public const int GOODSMAXNUM = 16; //ボックス内グッズの数
+        public const int GOODSMAXNUM = 3; //ボックス内グッズの数
         public const int BOXMAXNUM = 5000;
         public const int PLURALBOXMAX = 5000;//複数口注文する人用ボックス
 
@@ -42,17 +42,18 @@ namespace DDWindowsApp
         public static List<String> CountryinB = new List<string>();
         public static List<String> TELinB = new List<string>();
         public static List<String> DescriptioninB = new List<string>();
-        public static List<bool> isPluralinB = new List<bool>();
+        public static List<int> NuminB = new List<int>();
+        //public static List<bool> isPluralinB = new List<bool>();
 
-        public static List<List<String>> DescriptioninBPlural = new List<List<string>>();
-        public static List<List<int>> NuminBPlural = new List<List<int>>();
+        //public static List<List<String>> DescriptioninBPlural = new List<List<string>>();
+        //public static List<List<int>> NuminBPlural = new List<List<int>>();
 
         //DBの情報
         public const string dbpath = "\\\\192.168.1.37\\share\\DB_ForTest\\DB_sample.xlsx";
         public static List<DateTime> dbDate = new List<DateTime>();    //日付
         public static List<string> dbBoxNo = new List<string>();       //BoxNo
         public static List<string> dbSKU = new List<string>();         //SKU
-       
+        public static List<string> dbstore = new List<string>();       //在庫 or not
 
         //-----複数注文をする人用の変数(table専用)--------------
         public static List<string> pluralDate = new List<string>();//注文日日
@@ -75,7 +76,6 @@ namespace DDWindowsApp
             CountryinB.Clear();
             TELinB.Clear();
             DescriptioninB.Clear();
-            isPluralinB.Clear();
         }
 
         public static void RenewBox()

@@ -33,7 +33,8 @@ namespace DDWindowsApp
                 {
                     Data.dbDate.Add(Convert.ToDateTime(sheet1.Cell(i + 2, 1).Value));
                     Data.dbBoxNo.Add(Convert.ToString(sheet1.Cell(i + 2, 2).Value));
-                    Data.dbSKU.Add(Convert.ToString(sheet1.Cell(i + 2, 3).Value));                   
+                    Data.dbSKU.Add(Convert.ToString(sheet1.Cell(i + 2, 3).Value));
+                    Data.dbstore.Add(Convert.ToString(sheet1.Cell(i + 2, 5).Value));
                 }
                 book.Save();
             }
@@ -78,7 +79,7 @@ namespace DDWindowsApp
             Data.CountryinB.Add(Data.nowCountry);
             Data.TELinB.Add(Data.nowTEL);
             Data.DescriptioninB.Add(Data.nowDescription);
-            Data.isPluralinB.Add(false);
+            Data.NuminB.Add(1);
 
             //box情報更新
             if (Data.boxCount == Data.GOODSMAXNUM)

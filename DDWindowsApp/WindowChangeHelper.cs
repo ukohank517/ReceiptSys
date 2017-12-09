@@ -67,6 +67,11 @@ namespace DDWindowsApp
                 AppPanel.mainFrame.Visible = false;
                 AppPanel.isCanselFrame.Visible = true;
             }
+            if(to == "notfour")
+            {
+                AppPanel.mainFrame.Visible = false;
+                AppPanel.notFourFrame.Visible = true;
+            }
         }
 
         public void checkSKU(string janCode)
@@ -77,6 +82,11 @@ namespace DDWindowsApp
                 //手元のデータで照会したところ、まだ発送してない。
                 if(janCode==Data.dbSKU[i] && Data.dbBoxNo[i]=="")
                 {
+                    if (Data.dbstore[i] != "")
+                    {
+                        changeWindowTo("notfour");
+                        return;
+                    }
                     //本当に入荷済みかどうかを確認
                     bool deal = CheckHelper.CheckIfExsit(i);
                     if (deal) continue;   //この商品が既に処理されている。
