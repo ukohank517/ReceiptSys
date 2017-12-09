@@ -29,6 +29,7 @@ namespace DDWindowsApp
         public static String nowTEL = "";
         public static String nowDescription = "";
         public static String nowCountry = "";
+        public static String nowSentway = "";
         public static int nownum = 0;
 
 

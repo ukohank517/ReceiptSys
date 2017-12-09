@@ -42,6 +42,7 @@ namespace DDWindowsApp
                     Data.nowTEL = Convert.ToString(sheet1.Cell("P" + Convert.ToString(lineNo + 2)).Value);
                     Data.nowCountry = Convert.ToString(sheet1.Cell("N" + Convert.ToString(lineNo + 2)).Value);
                     Data.nowDescription = Convert.ToString(sheet1.Cell("Q" + Convert.ToString(lineNo + 2)).Value);
+                    Data.nowSentway = Convert.ToString(sheet1.Cell("F" + Convert.ToString(lineNo + 2)).Value);
                     Data.nownum = Convert.ToInt32(sheet1.Cell("R" + Convert.ToString(lineNo + 2)).Value);
                 }
             }

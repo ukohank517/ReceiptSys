@@ -49,7 +49,7 @@ namespace DDWindowsApp
             }
             if(to == "notsal")
             {
-                AppPanel.notSALFrame.textBox1.Text = "行番号" + Data.nowLineNo;
+                AppPanel.notSALFrame.textBox1.Text = "行番号" + Data.nowLineNo + "発送方法:" + Data.nowSentway;
                 AppPanel.mainFrame.Visible = false;
                 AppPanel.notSALFrame.Visible = true;
             }

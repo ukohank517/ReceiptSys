@@ -42,7 +42,7 @@ namespace DDWindowsApp
                 String Order = Data.pluralBoxNo;
 
                 //画面の右側の表を更新
-                AppPanel.tableFrame.situationTable.Rows.Add(NO, BOX, "複数注文ボックス", Order, "---");
+                AppPanel.tableFrame.situationTable.Rows.Add(NO, BOX, "複数注文ボックス", Order, Data.nowLineNo);
                 Data.NameinB.Add(Data.nowName);
                 Data.Address1inB.Add(Data.nowAdress1);
                 Data.Address2inB.Add(Data.nowAdress2);
