@@ -28,7 +28,14 @@ namespace DDWindowsApp
             {
                 var sheet1 = book.Worksheet(1);
                 var range = sheet1.RangeUsed();
-              
+                string goodsbox = Convert.ToString(sheet1.Cell(2, 20).Value);
+                string pluralbox = Convert.ToString(sheet1.Cell(2, 21).Value);
+                int.TryParse(goodsbox, out Data.boxName);
+                int.TryParse(pluralbox, out Data.pluralCount);
+
+                Data.boxName+=2;
+                Data.pluralCount+=2;
+
                 for (int i = 0; i < range.RowCount()-1; i++)
                 {
                     Data.dbDate.Add(Convert.ToDateTime(sheet1.Cell(i + 2, 1).Value));
@@ -64,6 +71,9 @@ namespace DDWindowsApp
                 Order = Convert.ToString(sheet1.Cell("G" + Convert.ToString(i + 2)).Value);
                 line = Convert.ToInt32(sheet1.Cell("D" + Convert.ToString(i + 2)).Value);
                 sheet1.Cell("B" + Convert.ToString(i + 2)).SetValue(Data.boxName);
+                //box情報更新
+                sheet1.Cell("T2").SetValue(Data.boxName);
+                sheet1.Cell("U2").SetValue(Data.pluralCount);
                 book.Save();
             }
 
@@ -85,6 +95,7 @@ namespace DDWindowsApp
             if (Data.boxCount == Data.GOODSMAXNUM)
             {
                 AppPanel.mainFrame.Visible = false;
+                AppPanel.finFrame.label1.Text = "入力完了,今できた箱はNO." + Data.boxName + "です。";
                 AppPanel.finFrame.Visible = true;
             }
 

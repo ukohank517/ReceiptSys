@@ -66,6 +66,7 @@ namespace DDWindowsApp
                 {
 
                     AppPanel.pluralFrame.Visible = false;
+                    AppPanel.finFrame.label1.Text = "入力完了。現在できた箱はNO."+ Data.boxName + "です。";
                     AppPanel.finFrame.Visible = true;
                     AppPanel.pluralTableFrame.Visible = false;
                     AppPanel.tableFrame.Visible = true;

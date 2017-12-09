@@ -154,9 +154,10 @@ namespace DDWindowsApp
                     int aim = Convert.ToInt32(sheet1.Cell("R" + Convert.ToString(i + 2)).Value);
                     if (Data.pluralStock[i - beginIndex]==aim)
                     {
-                        sheet1.Cell("B" + Convert.ToString(i + 2)).SetValue(Data.pluralBoxNo);
+                        sheet1.Cell("B" + Convert.ToString(i + 2)).SetValue(Data.pluralCount);
                     }
-
+                    sheet1.Cell("T2").SetValue(Data.boxName);
+                    sheet1.Cell("U2").SetValue(Data.pluralCount);
                 }
                 book.Save();
             }
