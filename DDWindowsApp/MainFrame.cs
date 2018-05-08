@@ -21,7 +21,7 @@ namespace DDWindowsApp
         {
 
             //アプリ立ち上がった時の処理をここに
-            Data.boxName = 100;
+            Data.boxName = 0;
             Data.boxCount = 0;
 
             //helper 設定
@@ -33,6 +33,9 @@ namespace DDWindowsApp
 
         private void buttonSearchClicked(object sender, EventArgs e)
         {
+            Console.WriteLine("bottone clicked, this time, threr are:");
+            Console.WriteLine(Data.boxCount);
+
             Cursor.Current = Cursors.WaitCursor;
             
             string janCode = textJAN.Text;
@@ -43,6 +46,8 @@ namespace DDWindowsApp
             windowChange.checkSKU(janCode.Replace(Environment.NewLine,"").Trim());//行頭末の空白、改行コードを取り除いて、渡す
 
             textJAN.ResetText();
+            Console.WriteLine("after preccedure , there are *");
+            Console.WriteLine(Data.boxCount);
         }
 
         private void labelNumDetail_Click(object sender, EventArgs e)

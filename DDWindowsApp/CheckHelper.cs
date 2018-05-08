@@ -41,6 +41,7 @@ namespace DDWindowsApp
                     Data.nowPostID = Convert.ToString(sheet1.Cell("M" + Convert.ToString(lineNo + 2)).Value);
                     Data.nowTEL = Convert.ToString(sheet1.Cell("P" + Convert.ToString(lineNo + 2)).Value);
                     Data.nowCountry = Convert.ToString(sheet1.Cell("N" + Convert.ToString(lineNo + 2)).Value);
+                    Data.nowCountryCode = Convert.ToString(sheet1.Cell("O" + Convert.ToString(lineNo + 2)).Value);
                     Data.nowDescription = Convert.ToString(sheet1.Cell("Q" + Convert.ToString(lineNo + 2)).Value);
                     Data.nowSentway = Convert.ToString(sheet1.Cell("F" + Convert.ToString(lineNo + 2)).Value);
                     Data.nownum = Convert.ToInt32(sheet1.Cell("R" + Convert.ToString(lineNo + 2)).Value);
@@ -48,7 +49,6 @@ namespace DDWindowsApp
             }
             return false;
         }
-
 
 
 
@@ -155,10 +155,12 @@ namespace DDWindowsApp
                     int aim = Convert.ToInt32(sheet1.Cell("R" + Convert.ToString(i + 2)).Value);
                     if (Data.pluralStock[i - beginIndex]==aim)
                     {
-                        sheet1.Cell("B" + Convert.ToString(i + 2)).SetValue(Data.pluralCount);
+                        sheet1.Cell("B" + Convert.ToString(i + 2)).SetValue(Data.boxName);
                     }
-                    sheet1.Cell("T2").SetValue(Data.boxName);
-                    sheet1.Cell("U2").SetValue(Data.pluralCount);
+                    sheet1.Cell("V1").SetValue("既に使用された最新のbox↓");
+                    sheet1.Cell("V2").SetValue(Data.boxName);
+                    sheet1.Cell("W1").SetValue("既に使用された最新の複数box↓");
+                    sheet1.Cell("W2").SetValue(Data.pluralCount);
                 }
                 book.Save();
             }
@@ -182,15 +184,16 @@ namespace DDWindowsApp
         /// <returns>0:*, 1:e, 2:c, 3:その他</returns>
         public static int SALCheck(int lineNo)
         {
-            char way;
+            string way;
             using (var book = new XLWorkbook(Data.dbpath, XLEventTracking.Disabled))
             {
                 var sheet1 = book.Worksheet(1);
-                way = Convert.ToChar(sheet1.Cell("F" + Convert.ToString(lineNo + 2)).Value);
+                way = Convert.ToString(sheet1.Cell("F" + Convert.ToString(lineNo + 2)).Value);
             }
-            if (way == '*') return 0;
-            if (way == 'e') return 1;
-            if (way == 'c') return 2;
+            if (way == "*") return 0;
+            if (way == "air") return 0;
+            if (way == "e") return 1;
+            if (way == "c") return 2;
             return 3;
         }
 

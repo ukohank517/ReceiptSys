@@ -27,6 +27,9 @@ namespace DDWindowsApp
             pluralinBox();
             
         }
+        /// <summary>
+        /// 複数の完了の処理
+        /// </summary>
         private void pluralinBox()
         {
             //追加処理
@@ -35,6 +38,7 @@ namespace DDWindowsApp
                 buttonPrint.Enabled = false;
 
                 Data.boxCount++;
+
                 AppPanel.mainFrame.labelNumDetail.Text = Data.boxCount + "件/" + Data.GOODSMAXNUM + "件中";
 
                 int NO = Data.boxCount;
@@ -42,7 +46,7 @@ namespace DDWindowsApp
                 String Order = Data.pluralBoxNo;
 
                 //画面の右側の表を更新
-                AppPanel.tableFrame.situationTable.Rows.Add(NO, BOX, "複数注文ボックス", Order, Data.nowLineNo);
+                AppPanel.tableFrame.situationTable.Rows.Add(NO, BOX, "複数注文ボックス", Data.nowSentway, Order, Data.nowLineNo);
                 Data.NameinB.Add(Data.nowName);
                 Data.Address1inB.Add(Data.nowAdress1);
                 Data.Address2inB.Add(Data.nowAdress2);
@@ -50,7 +54,9 @@ namespace DDWindowsApp
                 Data.Address4inB.Add(Data.nowAdress4);
                 Data.PostIDinB.Add(Data.nowPostID);
                 Data.CountryinB.Add(Data.nowCountry);
+                Data.CountryCodeinB.Add(Data.nowCountryCode);
                 Data.TELinB.Add(Data.nowTEL);
+                Data.SendwayinB.Add(Data.nowSentway);
 
                 List<String> de = new List<string>() ;
                 int nu = 0;
@@ -62,19 +68,20 @@ namespace DDWindowsApp
 
 
                 //box情報更新
-                if (Data.boxCount == Data.GOODSMAXNUM)
+                if (Data.boxCount >= Data.GOODSMAXNUM)
                 {
 
                     AppPanel.pluralFrame.Visible = false;
-                    AppPanel.finFrame.label1.Text = "入力完了。現在できた箱はNO."+ Data.boxName + "です。";
+                    AppPanel.finFrame.label1.Text = "入力完了。現在できた箱はNO." + Data.boxName + "です。";
                     AppPanel.finFrame.Visible = true;
                     AppPanel.pluralTableFrame.Visible = false;
                     AppPanel.tableFrame.Visible = true;
                 }
                 else
+                {
                     changeWindow();
-                Data.RenewBox();
-               
+                }
+                    //Data.boxCount++;
                 return;
             }
             else { changeWindow(); }

@@ -32,6 +32,7 @@
             this.ColumnNO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnBoxNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnJAN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnSentway = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnOrderID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnLine = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.situationTable)).BeginInit();
@@ -45,12 +46,13 @@
             this.ColumnNO,
             this.ColumnBoxNo,
             this.ColumnJAN,
+            this.ColumnSentway,
             this.ColumnOrderID,
             this.ColumnLine});
             this.situationTable.Location = new System.Drawing.Point(0, 0);
             this.situationTable.Name = "situationTable";
             this.situationTable.RowTemplate.Height = 21;
-            this.situationTable.Size = new System.Drawing.Size(450, 200);
+            this.situationTable.Size = new System.Drawing.Size(556, 200);
             this.situationTable.TabIndex = 0;
             // 
             // ColumnNO
@@ -72,6 +74,11 @@
             this.ColumnJAN.Name = "ColumnJAN";
             this.ColumnJAN.ReadOnly = true;
             // 
+            // ColumnSentway
+            // 
+            this.ColumnSentway.HeaderText = "発送方法";
+            this.ColumnSentway.Name = "ColumnSentway";
+            // 
             // ColumnOrderID
             // 
             this.ColumnOrderID.HeaderText = "OrderID";
@@ -92,7 +99,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.situationTable);
             this.Name = "TableFrame";
-            this.Size = new System.Drawing.Size(450, 200);
+            this.Size = new System.Drawing.Size(583, 200);
             ((System.ComponentModel.ISupportInitialize)(this.situationTable)).EndInit();
             this.ResumeLayout(false);
 
@@ -104,6 +111,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNO;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnBoxNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnJAN;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSentway;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnOrderID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLine;
     }

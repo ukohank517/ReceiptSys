@@ -33,8 +33,15 @@ namespace DDWindowsApp
                 int.TryParse(goodsbox, out Data.boxName);
                 int.TryParse(pluralbox, out Data.pluralCount);
 
-                Data.boxName+=2;
-                Data.pluralCount+=2;
+
+                Data.boxName = Convert.ToInt32(sheet1.Cell(2, 22).Value);
+                Data.pluralCount = Convert.ToInt32(sheet1.Cell(2, 23).Value);
+                Data.boxName += 1;
+                Data.pluralCount += 1;
+                Console.WriteLine("here");
+                Console.WriteLine(Data.boxName);
+                Console.WriteLine(Data.pluralCount);
+
 
                 for (int i = 0; i < range.RowCount()-1; i++)
                 {
@@ -72,24 +79,27 @@ namespace DDWindowsApp
                 line = Convert.ToInt32(sheet1.Cell("D" + Convert.ToString(i + 2)).Value);
                 sheet1.Cell("B" + Convert.ToString(i + 2)).SetValue(Data.boxName);
                 //box情報更新
-                sheet1.Cell("T2").SetValue(Data.boxName);
-                sheet1.Cell("U2").SetValue(Data.pluralCount);
+                sheet1.Cell("V2").SetValue(Data.boxName);
+                sheet1.Cell("W2").SetValue(Data.pluralCount);
                 book.Save();
             }
 
             //画面の右側の表を更新
-            AppPanel.tableFrame.situationTable.Rows.Add(NO, BOX, JAN, Order, line);
+            AppPanel.tableFrame.situationTable.Rows.Add(NO, BOX, JAN, Data.nowSentway, Order, line);
 
+            //プリント時必要の情報を保存
             Data.NameinB.Add(Data.nowName);
             Data.Address1inB.Add(Data.nowAdress1);
             Data.Address2inB.Add(Data.nowAdress2);
             Data.Address3inB.Add(Data.nowAdress3);
             Data.Address4inB.Add(Data.nowAdress4);
             Data.PostIDinB.Add(Data.nowPostID);
+            Data.CountryCodeinB.Add(Data.nowCountryCode);
             Data.CountryinB.Add(Data.nowCountry);
             Data.TELinB.Add(Data.nowTEL);
             Data.DescriptioninB.Add(Data.nowDescription);
             Data.NuminB.Add(1);
+            Data.SendwayinB.Add(Data.nowSentway);
 
             //box情報更新
             if (Data.boxCount == Data.GOODSMAXNUM)

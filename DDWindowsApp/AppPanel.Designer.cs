@@ -43,14 +43,14 @@
             // 
             this.panelTable.Location = new System.Drawing.Point(379, 13);
             this.panelTable.Name = "panelTable";
-            this.panelTable.Size = new System.Drawing.Size(450, 200);
+            this.panelTable.Size = new System.Drawing.Size(599, 200);
             this.panelTable.TabIndex = 1;
             // 
             // AppPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(845, 248);
+            this.ClientSize = new System.Drawing.Size(990, 248);
             this.Controls.Add(this.panelTable);
             this.Controls.Add(this.panel);
             this.Name = "AppPanel";

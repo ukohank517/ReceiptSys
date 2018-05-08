@@ -10,8 +10,8 @@ namespace DDWindowsApp
     {
         //すべての変数をここに
         public const int GOODSMAXNUM = 16; //ボックス内グッズの数
-        public const int BOXMAXNUM = 5000;
-        public const int PLURALBOXMAX = 5000;//複数口注文する人用ボックス
+        public const int BOXMAXNUM = 10000;
+        public const int PLURALBOXMAX = 10000;//複数口注文する人用ボックス
 
         //現在の情報
         public static int boxName;         //boxの名前
@@ -29,9 +29,9 @@ namespace DDWindowsApp
         public static String nowTEL = "";
         public static String nowDescription = "";
         public static String nowCountry = "";
+        public static String nowCountryCode = "";
         public static String nowSentway = "";
         public static int nownum = 0;
-
 
         //box内の情報
         public static List<String> NameinB = new List<string>();
@@ -41,9 +41,11 @@ namespace DDWindowsApp
         public static List<String> Address4inB = new List<string>();
         public static List<String> PostIDinB = new List<string>();
         public static List<String> CountryinB = new List<string>();
+        public static List<String> CountryCodeinB = new List<string>();
         public static List<String> TELinB = new List<string>();
         public static List<String> DescriptioninB = new List<string>();
         public static List<int> NuminB = new List<int>();
+        public static List<String> SendwayinB = new List<string>();
         //public static List<bool> isPluralinB = new List<bool>();
 
         //public static List<List<String>> DescriptioninBPlural = new List<List<string>>();
@@ -64,6 +66,28 @@ namespace DDWindowsApp
         public static List<int> pluralAim = new List<int>();//目標個数
         public static List<int> pluralStock = new List<int>();//現在個数 
         public static List<bool> pluralInThree = new List<bool>();//3階に在庫あるかどうか
+
+        
+        //-------------------地区コード　　　　    
+        public static List<string> areaCode1 = new List<string>()
+        {
+            "KP","KR","TW","CN","PW","PH","HK","MH","MO","FM",
+            "MN","AF","IN","ID","KH","SG","LK","TH","NP","PK",
+            "BD","TP","BT","BN","VN","MY","MM","MV","LA","MP",
+            "GU"
+        };
+        public static List<string> areaCode3 = new List<string>()
+        {
+            "AR","UY","EC","GY","CO","SR","CL","PY","FK","GF",
+            "BR","VE","PE","BO","SH","DZ","AO","UG","EG","ET",
+            "ER","GH","GA","CM","GM","GN","GW","KE","CI","KM",
+            "CG","CD","ST","ZM","SL","DJ","ZW","SD","SZ","SC",
+            "GQ","SN","SH","SO","TZ","CF","TN","TG","NG","NA",
+            "NE","BF","BI","BJ","BW","MG","MW","ML","ZA","SS",
+            "MU","MR","MZ","MA","LY","LR","RW","LS","RE"
+        };
+        
+
         public static List<string> pluralDescription = new List<string>();//商品名
 
         public static void EmptyBox()
@@ -77,11 +101,14 @@ namespace DDWindowsApp
             CountryinB.Clear();
             TELinB.Clear();
             DescriptioninB.Clear();
+            CountryCodeinB.Clear();
+            NuminB.Clear();
+            SendwayinB.Clear();
         }
 
         public static void RenewBox()
         {
-            if(boxCount == GOODSMAXNUM)
+            if(boxCount >= GOODSMAXNUM)
             {
                 boxName++;
                 boxName %= BOXMAXNUM;

@@ -25,6 +25,12 @@ namespace DDWindowsApp
 
         private void buttonConfirm_Clicked(object sender, EventArgs e)
         {
+            Console.WriteLine("show you the way to send ");
+            for(int i = 0; i < Data.SendwayinB.Count; i++)
+            {
+                Console.WriteLine(Data.SendwayinB[i]);
+            }
+
             Cursor.Current = Cursors.WaitCursor;
 
             AppPanel.tableFrame.situationTable.Rows.Clear();
@@ -62,6 +68,27 @@ namespace DDWindowsApp
                 objExcel._Country = Data.CountryinB[i];
                 objExcel._TEL = Data.TELinB[i];
                 objExcel._Count = Convert.ToString(i+1);
+                if(Data.SendwayinB[i] == "air")
+                {
+                    objExcel._FAX = "AIR";
+                    objExcel._sendway = "air";
+                }
+                for (int co = 0; co< Data.areaCode1.Count; co++)
+                {
+                    if(Data.CountryCodeinB[i] == Data.areaCode1[co])
+                    {
+                        objExcel._Count += "/①";
+                        break;
+                    }
+                }
+                for(int co = 0; co < Data.areaCode3.Count; co++)
+                {
+                    if(Data.CountryCodeinB[i] == Data.areaCode3[co])
+                    {
+                        objExcel._Count += "/③";
+                        break;
+                    }
+                }
                 objExcel._num = Data.NuminB[i];
                 objExcel._description = Data.DescriptioninB[i];
                 objExcel.Print();
@@ -78,15 +105,15 @@ namespace DDWindowsApp
         /// |  |←----------------------minx-----------------→|              |　　　　
         /// |  Cosmetics     ＼                                 Cosmetics     |
         /// |                  }lh                                            |
-        /// |  (non alcohol) ／         USD                                   |
+        /// |  (non alcohol) ／                 USD                           |
         /// |                            g      10                            |
         /// |                         -                                       |
         /// |                        ↑                                       |
         /// |                        wy                                      miny
         /// |                        ↓                                       |
-        /// |                         -       USD                             |
-        /// |                            g      10                            | 
-        /// |                            |← wx→|                            |
+        /// |                         -            USD                        |
+        /// |                          |<wwx>| g      10                      | 
+        /// |                                 |← wx→|                       |
         /// |                                                                 |
         /// |                                                                 |
         /// |            2017/01/01/Manabu Hano                               |  
@@ -122,14 +149,15 @@ namespace DDWindowsApp
             //-------紙の内容を書く。--------------------------
 
 
-            int typex = -1100; int typey = 145;
-            int weightx = -950; int weighty = 180;
-            int datex = -1030; int datey = 370;
+            int typex = -1100; int typey = 215;
+            int weightx = -1000; int weighty = 230;
+            int datex = -1030; int datey = 365;
             int minx = 293;
-            int miny = 410;
+            int miny = 415;
 
-            int wx = 45;
-            int wy = 80;
+            int wx = 35;
+            int wwx = 40;
+            int wy = 65;
             int lh = 20;
 
             IDictionary<int, string> goodsnum = new Dictionary<int,string>();
@@ -180,11 +208,27 @@ namespace DDWindowsApp
                 e.Graphics.DrawString("  g", font, brush, new Point(weightx + i * minx, weighty + j * miny));
                 e.Graphics.DrawString("USD", font, brush, new Point(weightx + i * minx + wx, weighty + j * miny - lh));
                 e.Graphics.DrawString(Convert.ToString(unitp), font, brush, new Point(weightx + i * minx + wx, weighty + j * miny));
-                e.Graphics.DrawString("  g", font, brush, new Point(weightx + i * minx, weighty + j * miny + wy));
-                e.Graphics.DrawString("USD", font, brush, new Point(weightx + i * minx + wx, weighty + j * miny + wy - lh));
-                e.Graphics.DrawString(Convert.ToString(unitp * Data.NuminB[times]), font, brush, new Point(weightx + i * minx + 2 + wx, weighty + j * miny + wy));
+                //e.Graphics.DrawString("  g", font, brush, new Point(weightx + i * minx + wwx, weighty + j * miny + wy));
+                e.Graphics.DrawString("USD", font, brush, new Point(weightx + i * minx + wwx + wx, weighty + j * miny + wy - lh));
+                e.Graphics.DrawString(Convert.ToString(unitp * Data.NuminB[times]), font, brush, new Point(weightx + i * minx + 2 + wx + wwx, weighty + j * miny + wy - 10));
                 e.Graphics.DrawString(Convert.ToString(times+1), font, brush, new Point(typex + i * minx, datey + j * miny));
                 e.Graphics.DrawString(dtToday.ToString("d")+"/Manabu Hano", font, brush, new Point(datex + i * minx, datey + j * miny));
+                for(int co = 0; co < Data.areaCode1.Count; co++)
+                {
+                    if (Data.CountryCodeinB[times] == Data.areaCode1[co])
+                    {
+                        e.Graphics.DrawString("/①", font, brush, new Point(typex + i * minx + 5, datey + j * miny));
+                        break;
+                    }
+                }
+                for(int co = 0; co < Data.areaCode3.Count; co++)
+                {
+                    if(Data.CountryCodeinB[times] == Data.areaCode3[co])
+                    {
+                        e.Graphics.DrawString("/③", font, brush, new Point(typex + i * minx + 5, datey + j * miny));
+                        break;
+                    }
+                }
             }
          font.Dispose();
         }
@@ -199,14 +243,15 @@ namespace DDWindowsApp
             //-------紙の内容を書く。--------------------------
 
 
-            int typex = -1100; int typey = 145;
-            int weightx = -950; int weighty = 180;
-            int datex = -1030; int datey = 370;
+            int typex = -1100; int typey = 215;
+            int weightx = -1000; int weighty = 230;
+            int datex = -1030; int datey = 365;
             int minx = 293;
-            int miny = 410;
+            int miny = 415;
 
-            int wx = 45;
-            int wy = 80;
+            int wx = 35;
+            int wwx = 40;
+            int wy = 65;
             int lh = 20;
 
             IDictionary<int, string> goodsnum = new Dictionary<int, string>();
@@ -257,9 +302,9 @@ namespace DDWindowsApp
                 e.Graphics.DrawString("  g", font, brush, new Point(weightx + i * minx, weighty + j * miny));
                 e.Graphics.DrawString("USD", font, brush, new Point(weightx + i * minx + wx, weighty + j * miny - lh));
                 e.Graphics.DrawString(Convert.ToString(unitp), font, brush, new Point(weightx + i * minx + wx, weighty + j * miny));
-                e.Graphics.DrawString("  g", font, brush, new Point(weightx + i * minx, weighty + j * miny + wy));
-                e.Graphics.DrawString("USD", font, brush, new Point(weightx + i * minx + wx, weighty + j * miny + wy - lh));
-                e.Graphics.DrawString(Convert.ToString(unitp * Data.NuminB[times+8]), font, brush, new Point(weightx + i * minx + 2 + wx, weighty + j * miny + wy));
+                //e.Graphics.DrawString("  g", font, brush, new Point(weightx + i * minx, weighty + j * miny + wy));
+                e.Graphics.DrawString("USD", font, brush, new Point(weightx + i * minx + wx + wwx, weighty + j * miny + wy - lh));
+                e.Graphics.DrawString(Convert.ToString(unitp * Data.NuminB[times + 8]), font, brush, new Point(weightx + i * minx + 2 + wx + wwx, weighty + j * miny + wy - 10));
                 e.Graphics.DrawString(Convert.ToString(times+9), font, brush, new Point(typex + i * minx, datey + j * miny));
                 e.Graphics.DrawString(dtToday.ToString("d") + "/Manabu Hano", font, brush, new Point(datex + i * minx, datey + j * miny));
             }

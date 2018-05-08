@@ -88,3 +88,7 @@ C:\Users\daida\source\master\ReceiptSys\DDWindowsApp\obj\Debug\DDWindowsApp.pdb
 C:\Users\daida\source\master\ReceiptSys\DDWindowsApp\obj\Debug\DDWindowsApp.IsCansel.resources
 C:\Users\daida\source\master\ReceiptSys\DDWindowsApp\obj\Debug\DDWindowsApp.SinglePrint.resources
 C:\Users\daida\source\master\ReceiptSys\DDWindowsApp\obj\Debug\DDWindowsApp.NotFour.resources
+C:\Users\daida\source\master\ReceiptSys\DDWindowsApp\bin\Debug\DDWindowsApp.exe.manifest
+C:\Users\daida\source\master\ReceiptSys\DDWindowsApp\bin\Debug\DDWindowsApp.application
+C:\Users\daida\source\master\ReceiptSys\DDWindowsApp\obj\Debug\DDWindowsApp.exe.manifest
+C:\Users\daida\source\master\ReceiptSys\DDWindowsApp\obj\Debug\DDWindowsApp.application
