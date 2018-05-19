@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Office.Interop.Excel;
+//using Microsoft.Office.Interop.Excel;
 using ClosedXML.Excel;
 
 namespace DDWindowsApp
@@ -45,12 +45,13 @@ namespace DDWindowsApp
 
                 for (int i = 0; i < range.RowCount()-1; i++)
                 {
+                    if (Convert.ToString(sheet1.Cell(i + 2, 1).Value) == "") break;
                     Data.dbDate.Add(Convert.ToDateTime(sheet1.Cell(i + 2, 1).Value));
                     Data.dbBoxNo.Add(Convert.ToString(sheet1.Cell(i + 2, 2).Value));
                     Data.dbSKU.Add(Convert.ToString(sheet1.Cell(i + 2, 3).Value));
                     Data.dbstore.Add(Convert.ToString(sheet1.Cell(i + 2, 5).Value));
                 }
-                book.Save();
+                //book.Save();
             }
         }
 
