@@ -90,25 +90,25 @@ namespace OneSide
 
                 objCell = objWorkSheet.Cells[_line + 3, _col + 1];
                 objRange = objWorkSheet.get_Range(objCell, objCell);
-                objRange.Value2 = "Address1: " + _Address1;
+                objRange.Value2 = _Address1;
                 Marshal.ReleaseComObject(objRange);
                 Marshal.ReleaseComObject(objCell);
 
                 objCell = objWorkSheet.Cells[_line + 4, _col + 1];
                 objRange = objWorkSheet.get_Range(objCell, objCell);
-                objRange.Value2 = "Address2: " + _Address2;
+                objRange.Value2 = _Address2;
                 Marshal.ReleaseComObject(objRange);
                 Marshal.ReleaseComObject(objCell);
 
                 objCell = objWorkSheet.Cells[_line + 5, _col + 1];
                 objRange = objWorkSheet.get_Range(objCell, objCell);
-                objRange.Value2 = "Address3: " + _Address3;
+                objRange.Value2 = _Address3;
                 Marshal.ReleaseComObject(objRange);
                 Marshal.ReleaseComObject(objCell);
 
                 objCell = objWorkSheet.Cells[_line + 6, _col + 1];
                 objRange = objWorkSheet.get_Range(objCell, objCell);
-                objRange.Value2 = "Address4: " + _Address4;
+                objRange.Value2 = _Address4;
                 Marshal.ReleaseComObject(objRange);
                 Marshal.ReleaseComObject(objCell);
 
