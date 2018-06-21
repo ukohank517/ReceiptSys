@@ -51,6 +51,7 @@ namespace OneSide
             objExcel._Country = Data.dbCountry[this.from];
             objExcel._TEL = Data.dbTel[this.from];
             objExcel._Count = Convert.ToString(nowindex);
+            objExcel._lineNo = Convert.ToString(Data.dbLineNo[this.from]) + "~" + Convert.ToString(Data.dbLineNo[this.to]);
 
             //発送方法処理
             if (Data.dbSendway[this.from] == "air"){objExcel._FAX = "AIR";objExcel._sendway = "air";}

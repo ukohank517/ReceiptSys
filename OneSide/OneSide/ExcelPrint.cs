@@ -27,6 +27,7 @@ namespace OneSide
         public String _FAX = "";
         public String _Count = "0";
         public String _sendway = "SAL";
+        public String _lineNo = "";
 
         public String _description = "";
         public int _num = 1;//注文個数
@@ -133,6 +134,12 @@ namespace OneSide
                 objCell = objWorkSheet.Cells[_line + 9, _col + 1];
                 objRange = objWorkSheet.get_Range(objCell, objCell);
                 objRange.Value2 = "TEL: " + _TEL;
+                Marshal.ReleaseComObject(objRange);
+                Marshal.ReleaseComObject(objCell);
+
+                objCell = objWorkSheet.Cells[_line + 10, _col + 3];
+                objRange = objWorkSheet.get_Range(objCell, objCell);
+                objRange.Value2 = _lineNo;
                 Marshal.ReleaseComObject(objRange);
                 Marshal.ReleaseComObject(objCell);
 

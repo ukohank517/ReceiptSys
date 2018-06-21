@@ -87,16 +87,6 @@ namespace OneSide
                 }
                 
             }
-            //揃ったら、出品する。
-            if (fin)
-            {
-            }
-
-            //#################################
-
-            fin = dealHelper.finwithoutthree(indexfrom, indexto);
-
-
         }
 
         public void tofinishbox()

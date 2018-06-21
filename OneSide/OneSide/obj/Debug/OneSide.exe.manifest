@@ -90,14 +90,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="OneSide.exe" size="57824">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="OneSide.exe" size="58336">
       <assemblyIdentity name="OneSide" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>gII5XzYL6pgg7H/+BXfY5t1+xeNpZ7RYIoeqE5tcEPc=</dsig:DigestValue>
+        <dsig:DigestValue>qCoAEzOlu2dK886ORSG391n609F/sOpJ9z4O69ssxyo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

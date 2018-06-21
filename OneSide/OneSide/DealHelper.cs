@@ -149,9 +149,13 @@ namespace OneSide
 
         public void cancelProcess(int index)
         {
-            Data.dbBoxNo[index] = "cancel";
+            Data.dbNum[index]++;
+            if (Data.dbNum[index] == Data.dbAim[index])
+            {
+                Data.dbBoxNo[index] = "cancel";
+            }
             //windowChangeHelper.toError("一番最初にヒットした注文はキャンセルされています。もう一度検索をかけてください。 \r\n 行番号: " + Data.dbLineNo[index], "確認");
-            DialogResult dr = MessageBox.Show("一番最初にヒットした注文はキャンセルされています。\r\n もう一度検索を掛けてみてください\r\n （行番号: " + Data.dbLineNo[index] + ")", "ER", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            DialogResult dr = MessageBox.Show("一番最初にヒットした注文はキャンセルされています。\r\n 処理済み/目標(件): " + Convert.ToString(Data.dbNum[index]) + "/" + Convert.ToString(Data.dbAim[index]) + " \r\n もう一度検索を掛けてみてください\r\n （行番号: " + Data.dbLineNo[index] + ")", "ER", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
         }
 
@@ -218,6 +222,7 @@ namespace OneSide
                 objExcel._Country = Data.dbCountry[from];
                 objExcel._TEL = Data.dbTel[from];
                 objExcel._Count = Convert.ToString(i+1);
+                objExcel._lineNo = Convert.ToString(Data.dbLineNo[from]) + "~" + Convert.ToString(Data.dbLineNo[to]);
           
                 //発送方法処理
                 if(Data.dbSendway[from] == "air")

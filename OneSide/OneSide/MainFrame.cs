@@ -78,17 +78,18 @@ namespace OneSide
                 dealHelper.cancelProcess(index);
                 return;
             }
-            //sendwayが違う時
-            if(Data.dbSendway[index] !="air" && Data.dbSendway[index] != "*")
-            {
-                dealHelper.sendwayDiffProcess(index);
-                return;
-            }
 
             //plural
             if (Data.dbIfplural[index] != "" || Data.dbAim[index] != 1)
             {
                 dealHelper.pluralProcesure(index);
+                return;
+            }
+
+            //sendwayが違う時
+            if (Data.dbSendway[index] != "air" && Data.dbSendway[index] != "*")
+            {
+                dealHelper.sendwayDiffProcess(index);
                 return;
             }
 
