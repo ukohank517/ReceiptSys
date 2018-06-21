@@ -16,7 +16,7 @@ namespace OneSide
         public const int DELAYDAYS = 14;
         public const int BOXMAXNUM = 10000;
         public const int PLURALBOXMAX = 10000; // 複数口注文する人用のボックス
-        public const string dppath = "\\\\192.168.1.37\\share\\DB_ForTest\\DB_sample_backup.xlsx";
+        public const string dppath = "\\\\192.168.1.37\\share\\DB_ForTest\\DB_sample.xlsx";
         public static int nowMode = 2; // 1はsingle , 2は通常モード
         public const string txtpath = "\\\\192.168.1.37\\share\\DB_ForTest\\herehere.txt";
 

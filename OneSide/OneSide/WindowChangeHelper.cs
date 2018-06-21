@@ -79,6 +79,10 @@ namespace OneSide
                         toMessgae("この商品は複数の注文、" +
                             "この商品で" + Data.dbPluraName[indexfrom] + "と降り割らた商品がすべてそろいました" +
                             "ただ商品の送り方は特殊な：" + Data.dbSendway[indexfrom] + "のものなので、処理をお願いします。");
+                        for(int idx = indexfrom; idx <= indexto; idx++)
+                        {
+                            Data.dbBoxNo[idx] = "special";
+                        }
                         return;
                     }
 
