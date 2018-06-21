@@ -33,8 +33,6 @@ namespace OneSide
         {
             //待機状態
             Cursor.Current = Cursors.WaitCursor;
-            //1秒間停止する
-            //System.Threading.Thread.Sleep(1000);
             DealHelper dealHelper = new DealHelper();
             WindowChangeHelper windowChangeHelper = new WindowChangeHelper();
 

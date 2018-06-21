@@ -74,6 +74,14 @@ namespace OneSide
             {
                 if (fin)
                 {
+                    if(Data.dbSendway[indexfrom] != "air" && Data.dbSendway[indexfrom] != "*")
+                    {
+                        toMessgae("この商品は複数の注文、" +
+                            "この商品で" + Data.dbPluraName[indexfrom] + "と降り割らた商品がすべてそろいました" +
+                            "ただ商品の送り方は特殊な：" + Data.dbSendway[indexfrom] + "のものなので、処理をお願いします。");
+                        return;
+                    }
+
                     toMessgae("この商品は複数口の注文、" +
                         "この商品で" + Data.dbPluraName[indexfrom] + "と割り振られた商品がすべて揃いましたので、" +
                         "全部括ってbox" + Data.boxName + "入れて出荷してください。");
