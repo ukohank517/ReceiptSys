@@ -29,7 +29,6 @@ namespace OneSide
                     Data.dbTel[index] + " " + Data.dbItem[index] + " " + Data.dbAim[index]);
             }
             
-            //return;
 
             /*
              * 下記のコードはdealhelperのprintprocessをコピーしたものである
