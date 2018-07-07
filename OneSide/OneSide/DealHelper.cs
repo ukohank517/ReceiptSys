@@ -18,7 +18,8 @@ namespace OneSide
         {
             if (sku == "") sku = "##########";
             //windowChangeHelper.toError("この商品見つからないんだよね。。" + "\r\n SKU:" + sku);
-            DialogResult dr = MessageBox.Show("この商品見つかりません:\r\n SKU"+sku, "ER", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            DialogResult dr = MessageBox.Show("この商品見つかりません:\r\n SKU" + sku + "\r\n skuをクリップボードに保存しました。", "ER", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            Clipboard.SetText(sku);
         }
 
 
@@ -65,10 +66,10 @@ namespace OneSide
         {
             for (int i = indexfrom; i <= indexto; i++)
             {
-                Data.dbPluraName[i] = "P" + Convert.ToString(Data.pluralBoxName);
+                Data.dbPluraName[i] = "P" + Convert.ToString(Data.pluralBoxName[Data.SIN] + Data.PLURALBOXMAX*Data.SIN);
             }
-            Data.pluralBoxName++;
-            Data.pluralBoxName %= Data.PLURALBOXMAX;
+            Data.pluralBoxName[Data.SIN]++; 
+            Data.pluralBoxName[Data.SIN] %= Data.PLURALBOXMAX;
         }
     
 
@@ -118,7 +119,7 @@ namespace OneSide
         {
             Data.IndexinBfrom.Add(indexfrom);
             Data.IndexinBto.Add(indexto);
-            String boxName = Convert.ToString(Data.boxName);
+            String boxName = Convert.ToString(Data.boxName[Data.SIN] + Data.BOXMAXNUM* Data.SIN);
             String sku = Data.dbSKU[indexfrom];
             String orderid = Data.dbOrderID[indexfrom];
             String sentway = Data.dbSendway[indexfrom];
@@ -159,10 +160,13 @@ namespace OneSide
 
         }
 
+        //複数注文が入ってこない。
         public void sendwayDiffProcess(int index)
         {
-            string errorMessage = "送信方法は特殊な【" + Data.dbSendway[index] + "】になります。ここでは処理できない。";
+            string errorMessage = "特殊発送方法:【" + Data.dbSendway[index] + "】になります。ここでは処理できない。";
             if (Data.dbIfplural[index] != "" || Data.dbAim[index] != 1) errorMessage += "\r\n しかもこの商品は複数注文の一つです。";
+            else Data.dbDealNumber[index]++;
+
             errorMessage += "\r\n 行番号:" + Data.dbLineNo[index];
             Data.dbBoxNo[index] = "special";
             windowChangeHelper.toError(errorMessage);
@@ -170,24 +174,30 @@ namespace OneSide
 
         public void overtimeProcess(int index)
         {
-            string errorMessage = "行番号: " + Data.dbLineNo[index] + "   2週間前の注文" +
-                "\r\n 今頃のお客様の気持ち:: " +
-                "\r\n僕、嫌われたのかな？( ；∀；)";
-            Data.dbBoxNo[index] = "overtime";
-            windowChangeHelper.toError(errorMessage);
+            /*
+             Data.dbNum[index]++;
+            if (Data.dbNum[index] == Data.dbAim[index])
+            {
+                Data.dbBoxNo[index] = "cancel";
+            }
+            //windowChangeHelper.toError("一番最初にヒットした注文はキャンセルされています。もう一度検索をかけてください。 \r\n 行番号: " + Data.dbLineNo[index], "確認");
+            DialogResult dr = MessageBox.Show("一番最初にヒットした注文はキャンセルされています。\r\n 処理済み/目標(件): " + Convert.ToString(Data.dbNum[index]) + "/" + Convert.ToString(Data.dbAim[index]) + " \r\n もう一度検索を掛けてみてください\r\n （行番号: " + Data.dbLineNo[index] + ")", "ER", MessageBoxButtons.OK, MessageBoxIcon.Error);
+             */
+            Data.dbNum[index] ++ ;
+            string errorMessage = "2週間も前の注文。行番号:" + Data.dbLineNo[index] + "\r\n,処理済み/目標(件): " +Convert.ToString(Data.dbNum[index]) + "/" + Convert.ToString(Data.dbAim[index]) + " \r\n skuをクリップボードに保存しました、ペーストで使ってください。";
+            Clipboard.SetText( Data.dbSKU[index]);
+
+            if(Data.dbNum[index] == Data.dbAim[index])
+            {
+                Data.dbBoxNo[index] = "overtime";
+            }
+            DialogResult dr = MessageBox.Show(errorMessage , "ER", MessageBoxButtons.OK, MessageBoxIcon.Error);
+           
         }
 
 
         public void printProcess()
         {
-            Console.WriteLine("印刷を始まります～");
-
-            Console.WriteLine("----商品の一覧-----");
-            for(int i = 0; i < Data.IndexinBfrom.Count; i++)
-            {
-                int from = Data.IndexinBfrom[i];
-                int to = Data.IndexinBto[i];
-            }
 
             Console.WriteLine("グリーンラベルを印刷する");
             PrintDocument pd = new PrintDocument();
@@ -210,7 +220,8 @@ namespace OneSide
             {
                 int from = Data.IndexinBfrom[i];
                 int to = Data.IndexinBto[i];
-
+                if (from == -1) continue;
+                if (to == -1) continue;
 
                 ExcelPrint objExcel = new ExcelPrint();
                 objExcel._Name = Data.dbName[from];
@@ -342,6 +353,8 @@ namespace OneSide
 
                 int from = Data.IndexinBfrom[no];
                 int to = Data.IndexinBto[no];
+                if (from == -1) continue;
+                if (to == -1) continue;
                 int i = no / 2;
                 int j = no % 2;
 
@@ -438,6 +451,8 @@ namespace OneSide
 
                 int from = Data.IndexinBfrom[no];
                 int to = Data.IndexinBto[no];
+                if (from == -1) continue;
+                if (to == -1) continue;
                 int i = (no - 8) / 2;
                 int j = (no - 8) % 2;
 

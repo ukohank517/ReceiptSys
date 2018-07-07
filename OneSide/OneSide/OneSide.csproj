@@ -22,7 +22,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>8</ApplicationRevision>
+    <ApplicationRevision>10</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -108,6 +108,12 @@
     <Compile Include="SingleTable.Designer.cs">
       <DependentUpon>SingleTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModeSelect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ModeSelect.Designer.cs">
+      <DependentUpon>ModeSelect.cs</DependentUpon>
+    </Compile>
     <Compile Include="WindowChangeHelper.cs" />
     <Compile Include="PrintHelper.cs" />
     <Compile Include="Data.cs" />
@@ -173,6 +179,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SingleTable.resx">
       <DependentUpon>SingleTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModeSelect.resx">
+      <DependentUpon>ModeSelect.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="OneSide_TemporaryKey.pfx" />
     <None Include="packages.config" />

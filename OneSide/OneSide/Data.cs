@@ -11,7 +11,11 @@ namespace OneSide
     /// </summary>
     class Data
     {
+
+
         //--------------------------設定変数--------------------------
+        /*
+        //deploy
         public const int GOODSMAXNUM = 16; // ボックス内のグッズの数
         public const int DELAYDAYS = 14;
         public const int BOXMAXNUM = 10000;
@@ -19,6 +23,24 @@ namespace OneSide
         public const string dppath = "\\\\192.168.1.37\\share\\DB_ForTest\\DB_sample.xlsx";
         public static int nowMode = 2; // 1はsingle , 2は通常モード
         public const string txtpath = "\\\\192.168.1.37\\share\\DB_ForTest\\herehere.txt";
+        public static int SIN = 0;
+        */
+        
+        //local
+        public const int GOODSMAXNUM = 2; // ボックス内のグッズの数
+        public const int DELAYDAYS = 365;
+        public const int BOXMAXNUM = 10000;
+        public const int PLURALBOXMAX = 10000; // 複数口注文する人用のボックス
+        public const string dppath = "\\\\192.168.1.37\\share\\DB_ForTest\\DB_sample_backup.xlsx";
+        public static int nowMode = 2; // 1はsingle , 2は通常モード
+        public const string txtpath = "\\\\192.168.1.37\\share\\DB_ForTest\\herehere.txt";
+        public static int SIN = 0;
+        
+
+
+
+        public static int errorline = 0;
+        public static int errorcolum = 0;
 
         //--------------------------地区コード--------------------------
         public static List<string> areaCode1 = new List<string>()
@@ -42,9 +64,8 @@ namespace OneSide
 
 
         //--------------------------現在の情報--------------------------
-        public static int boxName=0;   // boxの名前
-        public static int pluralBoxName=0; // 複数口注文する人用のボックス
-
+        public static int[] boxName = new int[] { 0, 0 };   // boxの名前
+        public static int[] pluralBoxName = new int[] { 0, 0 }; // 複数口注文する人用のボックス
         //--------------------------DBの情報--------------------------
         public static List<int> dbindex = new List<int>();             //必要の部分だけ取ってくるため、そのExcelの行の番号を保存する
         public static List<DateTime> dbDate = new List<DateTime>();    //日付
@@ -68,6 +89,7 @@ namespace OneSide
         public static List<String> dbIfplural = new List<string>();    //上下の行と複数の注文をしているのかどうか
         public static List<String> dbPluraName = new List<string>();   //複数注文商品の場合、その名前を保存する。
         public static List<int> dbNum = new List<int>();               //この商品の現在入手した個数
+        public static List<int> dbDealNumber = new List<int>();        //印刷するまで、この商品の処理した数。
 
 
         //単品印刷の行番号
@@ -86,9 +108,12 @@ namespace OneSide
         public static List<int> IndexinBfrom = new List<int>();   //そのindexはここから　//これは上のリストのindexである。
         public static List<int> IndexinBto = new List<int>();     //そのindexはここまで
 
+        public static List<int> AlreadyDonefrom = new List<int>(); 
+        public static List<int> AlreadyDoneto = new List<int>();//かぶったindexのリスト
 
         public static List<int> beforefrom = new List<int>();
         public static List<int> beforeto = new List<int>();
+        
 
         public static void FinishOneBox()
         {
@@ -105,8 +130,8 @@ namespace OneSide
             IndexinBto.Clear();
 
             //box更新
-            boxName++;
-            boxName %= BOXMAXNUM;
+            boxName[SIN]++;
+            boxName[SIN] %= BOXMAXNUM;
         }
         
     }

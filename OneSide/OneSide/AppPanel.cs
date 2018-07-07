@@ -21,6 +21,8 @@ namespace OneSide
         public static PluralTable pluralTable;
         public static SingleTable singleTable;
 
+        public static ModeSelect modeSelect;
+
         public AppPanel()
         {
             InitializeComponent();
@@ -32,23 +34,27 @@ namespace OneSide
             pluralTable = new PluralTable();
             singleTable = new SingleTable();
 
+            modeSelect = new ModeSelect();
+
             //パネルにすべてのコントロールを追加
             messagepanel.Controls.Add(mainFrame);
             messagepanel.Controls.Add(messageFrame);
             messagepanel.Controls.Add(singleFrame);
+            messagepanel.Controls.Add(modeSelect);
 
             tablepanel.Controls.Add(boxTable);
             tablepanel.Controls.Add(pluralTable);
             tablepanel.Controls.Add(singleTable);
 
             //立ち上がった時、mainFrame boxTableのみを表示する。
-            mainFrame.Visible = true;
+
+            mainFrame.Visible = false;
             messageFrame.Visible = false;
             singleFrame.Visible = false;
             singleTable.Visible = false;
-            boxTable.Visible = true;
+            boxTable.Visible = false;
             pluralTable.Visible = false;
-
+            modeSelect.Visible = true;
         }
 
         /// <summary>

@@ -28,8 +28,7 @@ namespace OneSide
                     Data.dbPostID[index] + " " + Data.dbCountry[index] + " " + Data.dbCode[index] + " " +
                     Data.dbTel[index] + " " + Data.dbItem[index] + " " + Data.dbAim[index]);
             }
-            Console.WriteLine("TODO: 単品印刷");
-
+            
             //return;
 
             /*

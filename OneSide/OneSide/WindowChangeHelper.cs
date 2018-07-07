@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace OneSide
 {
@@ -16,6 +17,18 @@ namespace OneSide
 
             AppPanel.messageFrame.textbox.Text = "ERROR!!\r\n Excelファイルの読み込みに失敗した。Excelファイルの利用を確認の上、アプリを再起動してください。" ;
             AppPanel.messageFrame.button.Visible = false;
+            if (Data.errorline == 0)
+            {
+                DialogResult dr = MessageBox.Show("ファイルが開けない", "ER", MessageBoxButtons.OK);
+            }
+            else
+            {
+                char ch = 'A';
+                while (Data.errorcolum != 0) { ch++; Data.errorcolum--; }
+
+                DialogResult dr = MessageBox.Show("エラー場所: "+ Convert.ToString(Data.errorline+1)+ch , "ER", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+            }
         }
 
         public void toError(string errorMessage, string buttonText)
@@ -76,9 +89,9 @@ namespace OneSide
                 {
                     if(Data.dbSendway[indexfrom] != "air" && Data.dbSendway[indexfrom] != "*")
                     {
-                        toMessgae("この商品は複数の注文、" +
-                            "この商品で" + Data.dbPluraName[indexfrom] + "と降り割らた商品がすべてそろいました" +
-                            "ただ商品の送り方は特殊な：" + Data.dbSendway[indexfrom] + "のものなので、処理をお願いします。");
+                        toMessgae("複数の注文、" +
+                            Data.dbPluraName[indexfrom] + "内の商品がすべてそろいました" +
+                            "特殊発送方法：【" + Data.dbSendway[indexfrom] + "】");
                         for(int idx = indexfrom; idx <= indexto; idx++)
                         {
                             Data.dbBoxNo[idx] = "special";
@@ -88,7 +101,7 @@ namespace OneSide
 
                     toMessgae("この商品は複数口の注文、" +
                         "この商品で" + Data.dbPluraName[indexfrom] + "と割り振られた商品がすべて揃いましたので、" +
-                        "全部括ってbox" + Data.boxName + "入れて出荷してください。");
+                        "全部まとめてbox" + Data.boxName[Data.SIN] + "入れて出荷してください。");
                     dealHelper.putintobox(indexfrom, indexto);
                 }
                 else

@@ -74,6 +74,7 @@ namespace OneSide
             if(Data.dbSendway[index] == "c")
             {
                 dealHelper.cancelProcess(index);
+                Data.dbDealNumber[index]++;
                 return;
             }
 
@@ -81,12 +82,14 @@ namespace OneSide
             if (Data.dbIfplural[index] != "" || Data.dbAim[index] != 1)
             {
                 dealHelper.pluralProcesure(index);
+                Data.dbDealNumber[index]++;
                 return;
             }
 
             //sendwayが違う時
             if (Data.dbSendway[index] != "air" && Data.dbSendway[index] != "*")
             {
+                //data.dbdealnumberのやつは、複数の可能性もあるので、複数じゃない時のみsendwaydiffprocess二書き込んだ。
                 dealHelper.sendwayDiffProcess(index);
                 return;
             }
@@ -98,12 +101,12 @@ namespace OneSide
 
             if (goodsTimeSpan > overTimeSpan)
             {
-                Console.WriteLine(goodsTimeSpan);
-                Console.WriteLine(overTimeSpan);
+                Data.dbDealNumber[index]++;
                 dealHelper.overtimeProcess(index);
                 return;
             }
 
+            Data.dbDealNumber[index]++;
             //normaldeal
             dealHelper.putintobox(index, index);
             //終了処理
@@ -164,6 +167,19 @@ namespace OneSide
             {
                 int from = Data.beforefrom[i];
                 int to = Data.beforeto[i];
+                if (from == -1) continue;
+                if (to == -1) continue;
+
+
+                bool flag = false;
+                for (int j = 0; j < Data.AlreadyDonefrom.Count(); j++){
+                    if(from == Data.AlreadyDonefrom[j])
+                    {
+                        flag = true;
+                        break;
+                    }
+                }
+                if (flag) continue;
 
 
                 ExcelPrint objExcel = new ExcelPrint();
@@ -254,6 +270,21 @@ namespace OneSide
 
                 int from = Data.beforefrom[no];
                 int to = Data.beforeto[no];
+                if (from == -1) continue;
+                if (to == -1) continue;
+
+
+                bool flag = false;
+                for(int idx = 0; idx < Data.AlreadyDonefrom.Count(); idx++)
+                {
+                    if (from == Data.AlreadyDonefrom[idx])
+                    {
+                        flag = true;
+                        break;
+                    }
+                }
+                if (flag) continue;
+
                 int i = no / 2;
                 int j = no % 2;
 
@@ -351,6 +382,21 @@ namespace OneSide
 
                 int from = Data.beforefrom[no];
                 int to = Data.beforeto[no];
+                if (from == -1) continue;
+                if (to == -1) continue;
+
+                bool flag = false;
+                for (int idx = 0; idx < Data.AlreadyDonefrom.Count(); idx++)
+                {
+                    if (from == Data.AlreadyDonefrom[idx])
+                    {
+                        flag = true;
+                        break;
+                    }
+                }
+                if (flag) continue;
+
+
                 int i = (no - 8) / 2;
                 int j = (no - 8) % 2;
 
