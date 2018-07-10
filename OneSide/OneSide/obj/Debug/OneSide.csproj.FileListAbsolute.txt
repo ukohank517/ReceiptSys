@@ -30,3 +30,4 @@ C:\Users\daida\source\repos\OneSide\OneSide\obj\Debug\OneSide.exe.manifest
 C:\Users\daida\source\repos\OneSide\OneSide\obj\Debug\OneSide.application
 C:\Users\daida\source\repos\OneSide\OneSide\obj\Debug\OneSide.SingleTable.resources
 C:\Users\daida\source\repos\OneSide\OneSide\obj\Debug\OneSide.ModeSelect.resources
+C:\Users\daida\source\repos\OneSide\OneSide\obj\Debug\OneSide.DBTable.resources

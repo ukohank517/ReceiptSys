@@ -63,6 +63,10 @@ namespace OneSide
                 dealHelper.nothit(sku);
                 return;
             }
+
+            AppPanel.dBTable.dataGridView1.CurrentCell = AppPanel.dBTable.dataGridView1[3, index];
+            AppPanel.dBTable.dataGridView1.Rows[index].Selected = true;
+
             //notfour
             if (Data.dbIfstore[index] == "在庫")
             {

@@ -1,8 +1,6 @@
-﻿using System.Drawing;
-
-namespace OneSide
+﻿namespace OneSide
 {
-    partial class PluralTable
+    partial class DBTable
     {
         /// <summary> 
         /// 必要なデザイナー変数です。
@@ -33,11 +31,13 @@ namespace OneSide
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.ColumnBoxName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnOrderID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnLineNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnAim = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnBoxNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnSKU = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnLineNO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnSendway = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnOrderNO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnStore = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -54,11 +54,13 @@ namespace OneSide
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColumnBoxName,
-            this.ColumnOrderID,
             this.ColumnDate,
-            this.ColumnLineNo,
-            this.ColumnAim,
+            this.ColumnBoxNo,
+            this.ColumnSKU,
+            this.ColumnLineNO,
+            this.ColumnSendway,
+            this.ColumnOrderNO,
+            this.ColumnNum,
             this.ColumnStore});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -70,50 +72,72 @@ namespace OneSide
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 21;
-            this.dataGridView1.Size = new System.Drawing.Size(690, 231);
+            this.dataGridView1.Size = new System.Drawing.Size(1042, 435);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // ColumnBoxName
-            // 
-            this.ColumnBoxName.HeaderText = "Box";
-            this.ColumnBoxName.Name = "ColumnBoxName";
-            this.ColumnBoxName.Width = 50;
-            // 
-            // ColumnOrderID
-            // 
-            this.ColumnOrderID.HeaderText = "注文番号";
-            this.ColumnOrderID.Name = "ColumnOrderID";
-            this.ColumnOrderID.Width = 150;
             // 
             // ColumnDate
             // 
-            this.ColumnDate.HeaderText = "JANコード";
+            this.ColumnDate.HeaderText = "日付";
             this.ColumnDate.Name = "ColumnDate";
-            this.ColumnDate.Width = 150;
+            this.ColumnDate.ReadOnly = true;
+            this.ColumnDate.Width = 135;
             // 
-            // ColumnLineNo
+            // ColumnBoxNo
             // 
-            this.ColumnLineNo.HeaderText = "行番号";
-            this.ColumnLineNo.Name = "ColumnLineNo";
+            this.ColumnBoxNo.HeaderText = "BoxNo";
+            this.ColumnBoxNo.Name = "ColumnBoxNo";
+            this.ColumnBoxNo.ReadOnly = true;
+            this.ColumnBoxNo.Width = 70;
             // 
-            // ColumnAim
+            // ColumnSKU
             // 
-            this.ColumnAim.HeaderText = "目標数";
-            this.ColumnAim.Name = "ColumnAim";
+            this.ColumnSKU.HeaderText = "SKU";
+            this.ColumnSKU.Name = "ColumnSKU";
+            this.ColumnSKU.ReadOnly = true;
+            this.ColumnSKU.Width = 150;
+            // 
+            // ColumnLineNO
+            // 
+            this.ColumnLineNO.HeaderText = "行番号";
+            this.ColumnLineNO.Name = "ColumnLineNO";
+            this.ColumnLineNO.ReadOnly = true;
+            this.ColumnLineNO.Width = 90;
+            // 
+            // ColumnSendway
+            // 
+            this.ColumnSendway.HeaderText = "発送方法";
+            this.ColumnSendway.Name = "ColumnSendway";
+            this.ColumnSendway.ReadOnly = true;
+            this.ColumnSendway.Width = 110;
+            // 
+            // ColumnOrderNO
+            // 
+            this.ColumnOrderNO.HeaderText = "複数注文";
+            this.ColumnOrderNO.Name = "ColumnOrderNO";
+            this.ColumnOrderNO.ReadOnly = true;
+            this.ColumnOrderNO.Width = 210;
+            // 
+            // ColumnNum
+            // 
+            this.ColumnNum.HeaderText = "個数";
+            this.ColumnNum.Name = "ColumnNum";
+            this.ColumnNum.ReadOnly = true;
             // 
             // ColumnStore
             // 
             this.ColumnStore.HeaderText = "在庫数";
             this.ColumnStore.Name = "ColumnStore";
+            this.ColumnStore.ReadOnly = true;
             // 
-            // PluralTable
+            // DBTable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dataGridView1);
-            this.Name = "PluralTable";
-            this.Size = new System.Drawing.Size(696, 237);
+            this.Name = "DBTable";
+            this.Size = new System.Drawing.Size(1048, 441);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
@@ -122,11 +146,13 @@ namespace OneSide
         #endregion
 
         public System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnBoxName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnOrderID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLineNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnAim;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnBoxNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSKU;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLineNO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSendway;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnOrderNO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNum;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnStore;
     }
 }

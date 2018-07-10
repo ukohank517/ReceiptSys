@@ -66,6 +66,9 @@ namespace OneSide
                     Data.errorcolum++;
                     Data.dbDealNumber.Add(0);// 初期はすべて0で初期化
                 }
+
+                DealHelper dealHelper = new DealHelper();
+                dealHelper.showDBtable();
             }
 
 
@@ -184,6 +187,10 @@ namespace OneSide
                 }
                 book.Save();
             }
+            DealHelper dealHelper = new DealHelper();
+            AppPanel.dBTable.dataGridView1.Rows.Clear();
+            dealHelper.showDBtable();
+
         }
 
 

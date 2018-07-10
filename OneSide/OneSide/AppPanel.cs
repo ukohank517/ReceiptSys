@@ -22,6 +22,7 @@ namespace OneSide
         public static SingleTable singleTable;
 
         public static ModeSelect modeSelect;
+        public static DBTable dBTable;
 
         public AppPanel()
         {
@@ -35,6 +36,7 @@ namespace OneSide
             singleTable = new SingleTable();
 
             modeSelect = new ModeSelect();
+            dBTable = new DBTable();
 
             //パネルにすべてのコントロールを追加
             messagepanel.Controls.Add(mainFrame);
@@ -46,6 +48,7 @@ namespace OneSide
             tablepanel.Controls.Add(pluralTable);
             tablepanel.Controls.Add(singleTable);
 
+            panelDB.Controls.Add(dBTable);
             //立ち上がった時、mainFrame boxTableのみを表示する。
 
             mainFrame.Visible = false;
@@ -55,6 +58,7 @@ namespace OneSide
             boxTable.Visible = false;
             pluralTable.Visible = false;
             modeSelect.Visible = true;
+            dBTable.Visible = true;
         }
 
         /// <summary>

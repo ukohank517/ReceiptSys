@@ -30,6 +30,15 @@ namespace OneSide
             Console.WriteLine("TODO: 三階商品が来る時のDB処理(でもなさそう)?");
         }
 
+        public void showDBtable()
+        {
+            for(int i = 0; i < Data.dbDate.Count; i++)
+            {
+                AppPanel.dBTable.dataGridView1.Rows.Add(Data.dbDate[i], Data.dbBoxNo[i], Data.dbSKU[i], Data.dbLineNo[i], Data.dbSendway[i], Data.dbIfplural[i], Data.dbAim[i], Data.dbNum[i]);
+            }
+        }
+
+
         public void pluralProcesure(int index)
         {
             string orderid = Data.dbIfplural[index];

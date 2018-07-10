@@ -99,6 +99,12 @@
     <Compile Include="AppPanel.Designer.cs">
       <DependentUpon>AppPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="DBTable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DBTable.Designer.cs">
+      <DependentUpon>DBTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="ExcelPrint.cs" />
     <Compile Include="PrintInvoice.cs" />
     <Compile Include="DealHelper.cs" />
@@ -152,6 +158,9 @@
     </Compile>
     <EmbeddedResource Include="AppPanel.resx">
       <DependentUpon>AppPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTable.resx">
+      <DependentUpon>DBTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
