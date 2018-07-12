@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -54,7 +54,9 @@ namespace OneSide
                 if ((Data.dbSKU[i] == sku) && (Data.dbBoxNo[i] == "") && (Data.dbAim[i] > Data.dbNum[i]))
                 {
                     index = i;
-                    break;
+                    if (Data.dbIfstore[index] == "在庫")
+                        continue;
+                    else break;
                 }
             }
             //nothit
