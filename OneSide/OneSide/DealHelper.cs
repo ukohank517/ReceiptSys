@@ -179,6 +179,7 @@ namespace OneSide
             errorMessage += "\r\n 行番号:" + Data.dbLineNo[index];
             Data.dbBoxNo[index] = "special";
             windowChangeHelper.toError(errorMessage);
+            DialogResult dr = MessageBox.Show("この商品の注文番号はコピーされました、そのまま使ってください。", "ER", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         public void overtimeProcess(int index)
@@ -193,8 +194,7 @@ namespace OneSide
             DialogResult dr = MessageBox.Show("一番最初にヒットした注文はキャンセルされています。\r\n 処理済み/目標(件): " + Convert.ToString(Data.dbNum[index]) + "/" + Convert.ToString(Data.dbAim[index]) + " \r\n もう一度検索を掛けてみてください\r\n （行番号: " + Data.dbLineNo[index] + ")", "ER", MessageBoxButtons.OK, MessageBoxIcon.Error);
              */
             Data.dbNum[index] ++ ;
-            string errorMessage = "2週間も前の注文。行番号:" + Data.dbLineNo[index] + "\r\n,処理済み/目標(件): " +Convert.ToString(Data.dbNum[index]) + "/" + Convert.ToString(Data.dbAim[index]) + " \r\n skuをクリップボードに保存しました、ペーストで使ってください。";
-            Clipboard.SetText( Data.dbSKU[index]);
+            string errorMessage = "2週間も前の注文。行番号:" + Data.dbLineNo[index] + "\r\n,処理済み/目標(件): " +Convert.ToString(Data.dbNum[index]) + "/" + Convert.ToString(Data.dbAim[index]) + " \r\n 注文番号をクリップボードに保存しました、ペーストで使ってください。";
 
             if(Data.dbNum[index] == Data.dbAim[index])
             {

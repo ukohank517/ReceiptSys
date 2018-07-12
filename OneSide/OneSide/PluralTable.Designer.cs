@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 
 namespace OneSide
 {
@@ -78,7 +78,6 @@ namespace OneSide
             // 
             this.ColumnBoxName.HeaderText = "Box";
             this.ColumnBoxName.Name = "ColumnBoxName";
-            this.ColumnBoxName.Width = 50;
             // 
             // ColumnOrderID
             // 
@@ -101,11 +100,13 @@ namespace OneSide
             // 
             this.ColumnAim.HeaderText = "目標数";
             this.ColumnAim.Name = "ColumnAim";
+            this.ColumnAim.Width = 75;
             // 
             // ColumnStore
             // 
             this.ColumnStore.HeaderText = "在庫数";
             this.ColumnStore.Name = "ColumnStore";
+            this.ColumnStore.Width = 75;
             // 
             // PluralTable
             // 

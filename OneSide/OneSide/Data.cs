@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,8 +14,9 @@ namespace OneSide
 
 
         //--------------------------設定変数--------------------------
-        /*
+       
         //deploy
+        /*
         public const int GOODSMAXNUM = 16; // ボックス内のグッズの数
         public const int DELAYDAYS = 14;
         public const int BOXMAXNUM = 10000;
@@ -27,11 +28,12 @@ namespace OneSide
         */
         
         //local
+        
         public const int GOODSMAXNUM = 2; // ボックス内のグッズの数
         public const int DELAYDAYS = 365;
         public const int BOXMAXNUM = 10000;
         public const int PLURALBOXMAX = 10000; // 複数口注文する人用のボックス
-        public const string dppath = "\\\\192.168.1.37\\share\\DB_ForTest\\DB_sample_backup.xlsx";
+        public const string dppath = "\\\\192.168.1.37\\share\\DB_ForTest\\DB_sample_local.xlsx";
         public static int nowMode = 2; // 1はsingle , 2は通常モード
         public const string txtpath = "\\\\192.168.1.37\\share\\DB_ForTest\\herehere.txt";
         public static int SIN = 0;

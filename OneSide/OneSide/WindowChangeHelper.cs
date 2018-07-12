@@ -101,7 +101,7 @@ namespace OneSide
 
                     toMessgae("この商品は複数口の注文、" +
                         "この商品で" + Data.dbPluraName[indexfrom] + "と割り振られた商品がすべて揃いましたので、" +
-                        "全部まとめてbox" + Data.boxName[Data.SIN] + "入れて出荷してください。");
+                        "全部まとめてbox" + (Data.boxName[Data.SIN] + Data.SIN*10000) + "入れて出荷してください。");
                     dealHelper.putintobox(indexfrom, indexto);
                 }
                 else

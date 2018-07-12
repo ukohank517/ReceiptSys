@@ -66,13 +66,15 @@ namespace OneSide
 
             AppPanel.dBTable.dataGridView1.CurrentCell = AppPanel.dBTable.dataGridView1[3, index];
             AppPanel.dBTable.dataGridView1.Rows[index].Selected = true;
-
+            Clipboard.SetText(Data.dbOrderID[index]);
+            
             //notfour
             if (Data.dbIfstore[index] == "在庫")
             {
                 dealHelper.notfour(index);
                 return;
             }
+
 
             //cacel
             if(Data.dbSendway[index] == "c")
